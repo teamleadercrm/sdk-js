@@ -1,5 +1,5 @@
-# javascript-sdk
+# sdk-js
 
-Teamleader API SDK for Java
+Teamleader API SDK for JavaScript
 
 [MIT](LICENSE).
