@@ -1,0 +1,43 @@
+{
+  "name": "@teamleader/api",
+  "version": "0.1.0-alpha",
+  "description": "Teamleader API SDK",
+  "main": "dist/api.cjs.js",
+  "module": "dist/api.esm.js",
+  "browser": "dist/api.umd.js",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.17.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "jest": "^22.2.2",
+    "rollup": "^0.50.1",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-node-resolve": "^3.0.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teamleadercrm/sdk-js.git"
+  },
+  "keywords": [
+    "api",
+    "teamleader"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teamleadercrm/sdk-js/issues"
+  },
+  "homepage": "https://github.com/teamleadercrm/sdk-js#readme"
+}
