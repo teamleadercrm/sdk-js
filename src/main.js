@@ -1,4 +1,4 @@
-import contacts from './domains/contacts';
+import contacts from './domains/contacts/index.js';
 
 const createGetAccessToken = config => {
   const { accessToken, getAccessToken } = config;

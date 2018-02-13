@@ -1,17 +1,17 @@
-import createHeaders from '../../utils/createHeaders';
+import createHeaders from '../utils/createHeaders';
 
-const add = async (config, domainName, entity = {}) => {
+const info = async (config, domainName, id) => {
   const { getAccessToken, baseUrl } = config;
   const headers = await createHeaders({ getAccessToken });
-  const url = `${baseUrl}/${domainName}.add`;
+  const url = `${baseUrl}/${domainName}.info`;
 
   const options = {
     headers,
-    body: JSON.stringify(entity),
+    body: JSON.stringify({ id }),
     method: 'POST',
   };
 
   return fetch(url, options).then(r => r.json());
 };
 
-export default add;
+export default info;

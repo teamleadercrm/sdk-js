@@ -1,11 +1,11 @@
-import list from '../methods/general/list';
-import info from '../methods/general/info';
-import add from '../methods/general/add';
-import update from '../methods/general/update';
-import remove from '../methods/general/remove';
+import list from '../../shared/list';
+import info from '../../shared/info';
+import add from '../../shared/add';
+import update from '../../shared/update';
+import remove from '../../shared/remove';
 
-import linkToCompany from '../methods/contacts/linkToCompany';
-import unlinkFromCompany from '../methods/contacts/unlinkFromCompany';
+import linkToCompany from './linkToCompany';
+import unlinkFromCompany from './unlinkFromCompany';
 
 const contacts = config => {
   const domainName = 'contacts';

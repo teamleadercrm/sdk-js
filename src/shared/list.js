@@ -1,4 +1,4 @@
-import createHeaders from '../../utils/createHeaders';
+import createHeaders from '../utils/createHeaders';
 
 const list = async (config, domainName, params = {}) => {
   const { getAccessToken, baseUrl } = config;

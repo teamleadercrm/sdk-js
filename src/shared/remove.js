@@ -1,4 +1,4 @@
-import createHeaders from '../../utils/createHeaders';
+import createHeaders from '../utils/createHeaders';
 
 const remove = async (config, domainName, id) => {
   const { getAccessToken, baseUrl } = config;
