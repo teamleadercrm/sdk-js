@@ -15,6 +15,8 @@ export default [
     },
     plugins: [
       babel({
+        externalHelpers: false,
+        runtimeHelpers: true,
         exclude: 'node_modules/**',
       }),
       resolve(),
@@ -30,15 +32,13 @@ export default [
   // `file` and `format` for each target)
   {
     input: 'src/main.js',
-    // external: ['ms'],
     plugins: [
       babel({
+        externalHelpers: false,
+        runtimeHelpers: true,
         exclude: 'node_modules/**',
       }),
     ],
-    output: [
-      { file: pkg.main, format: 'cjs' },
-      { file: pkg.module, format: 'es' },
-    ],
+    output: [{ file: pkg.main, format: 'cjs' }, { file: pkg.module, format: 'es' }],
   },
 ];

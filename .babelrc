@@ -14,5 +14,6 @@
     "test": {
       "presets": [["env"]]
     }
-  }
+  },
+  "plugins": ["transform-runtime"]
 }
