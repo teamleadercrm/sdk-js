@@ -5,7 +5,7 @@ const unlinkFromCompany = async (config, domainName, params = {}) => {
   const headers = await createHeaders({ getAccessToken });
   const url = `${baseUrl}/${domainName}.unlinkFromCompany`;
 
-  const { id, company_id } = params; // eslint-disable-line
+  const { id, company_id } = params;
 
   const options = {
     headers,

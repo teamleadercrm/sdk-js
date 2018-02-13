@@ -5,7 +5,7 @@ const linkToCompany = async (config, domainName, params = {}) => {
   const headers = await createHeaders({ getAccessToken });
   const url = `${baseUrl}/${domainName}.linkToCompany`;
 
-  const { id, company_id, position, decision_maker } = params; // eslint-disable-line
+  const { id, company_id, position, decision_maker } = params;
 
   const options = {
     headers,
