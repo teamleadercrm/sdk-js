@@ -1,7 +1,13 @@
 import API from '../src/main';
 
-describe(`returns the correct value`, () => {
-  it(`returns hello`, () => {
-    expect(API()).toEqual('hello');
+const init = () => {
+  const { contacts } = API({
+    accessToken: 'hello',
   });
-});
+
+  contacts.list().then(d => console.log(d));
+};
+
+init();
+
+describe(`returns the correct value`, () => {});
