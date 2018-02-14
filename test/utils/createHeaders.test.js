@@ -1,6 +1,6 @@
 import createHeaders from '../../src/utils/createHeaders';
 
-describe(`passing in configuration`, () => {
+describe(`create header object`, () => {
   it(`should handle passing in a contentType`, async () => {
     const config = {
       getAccessToken: () => 'token',
