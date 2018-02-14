@@ -1,4 +1,6 @@
 import contacts from './domains/contacts/index.js';
+import events from './domains/events/index.js';
+import activityTypes from './domains/activityTypes/index.js';
 
 const createGetAccessToken = config => {
   const { accessToken, getAccessToken } = config;
@@ -16,6 +18,10 @@ const API = config => {
 
   return {
     contacts: contacts({ getAccessToken, baseUrl }),
+
+    // Calendar domains.
+    events: events({ getAccessToken, baseUrl }),
+    activityTypes: activityTypes({ getAccessToken, baseUrl }),
   };
 };
 
