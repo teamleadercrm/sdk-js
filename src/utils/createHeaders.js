@@ -1,5 +1,6 @@
-const createHeaders = async config => {
+const createHeaders = async (config = {}) => {
   const { contentType = 'application/json', getAccessToken } = config;
+
   const accessToken = await getAccessToken();
 
   const headers = {
