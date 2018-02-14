@@ -7,7 +7,7 @@ describe(`check if domain contains correct methods`, () => {
       baseUrl: 'https://api.teamleader.eu',
     };
 
-    const methods = ['list'];
+    const methods = ['info'];
 
     const obj = await quotations(config);
 
