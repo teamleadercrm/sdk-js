@@ -9,7 +9,7 @@ const tag = async (config, domainName, params = {}) => {
 
   const options = {
     headers,
-    body: JSON.stringify({ id, company_id }),
+    body: JSON.stringify({ id, tags }),
     method: 'POST',
   };
 
