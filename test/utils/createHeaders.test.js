@@ -15,16 +15,6 @@ describe(`create header object`, () => {
     await expect(createHeaders(config)).resolves.toEqual(headers);
   });
 
-  it(`should throw an error when not passing in a getAccessToken function`, async () => {
-    const error = new Error('pass in an (async) function that returns a valid accessToken');
-
-    try {
-      await createHeaders();
-    } catch (e) {
-      expect(e).toEqual(error);
-    }
-  });
-
   it(`should be able to pass in a sync getAccessToken function`, async () => {
     const getAccessToken = () => 'token';
 
