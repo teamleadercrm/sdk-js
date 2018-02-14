@@ -1,5 +1,9 @@
 import contacts from './domains/contacts.js';
 
+import invoices from './domains/invoices.js';
+import creditNotes from './domains/creditNotes.js';
+import taxRates from './domains/taxRates.js';
+
 const createGetAccessToken = config => {
   const { accessToken, getAccessToken } = config;
 
@@ -14,8 +18,14 @@ const API = config => {
   const getAccessToken = createGetAccessToken(config);
   const { baseUrl = 'https://api.teamleader.eu' } = config;
 
+  const configuration = { getAccessToken, baseUrl };
+
   return {
-    contacts: contacts({ getAccessToken, baseUrl }),
+    contacts: contacts(configuration),
+
+    invoices: invoices(configuration),
+    creditNotes: creditNotes(configuration),
+    taxRates: taxRates(configuration),
   };
 };
 
