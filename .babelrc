@@ -15,5 +15,5 @@
       "presets": [["env"]]
     }
   },
-  "plugins": ["transform-runtime"]
+  "plugins": ["transform-object-rest-spread", "transform-runtime"]
 }
