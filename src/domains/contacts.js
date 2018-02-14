@@ -2,7 +2,7 @@ import createDomain from '../utils/createDomain';
 
 const contacts = config =>
   createDomain({
-    config: { ...config, auth: false },
+    config,
     domain: 'contacts',
     actions: ['list', 'info', 'add', 'update', 'delete', 'linkToCompany', 'unlinkFromCompany'],
   });
