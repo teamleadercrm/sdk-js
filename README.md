@@ -35,9 +35,8 @@ All domains from [developer.teamleader.eu](https://developer.teamleader.eu/) are
 
 This module is also available as UMD build (in the example below via unpkg).
 
-```
+```html
 <script src="https://unpkg.com/@teamleader/api"></script>
-
 ```
 
 ## Configuration
