@@ -1,8 +1,8 @@
-import contacts from './domains/contacts.js';
+import contacts from './domains/contacts';
 
-import invoices from './domains/invoices.js';
-import creditNotes from './domains/creditNotes.js';
-import taxRates from './domains/taxRates.js';
+import invoices from './domains/invoices';
+import creditNotes from './domains/creditNotes';
+import taxRates from './domains/taxRates';
 
 const createGetAccessToken = config => {
   const { accessToken, getAccessToken } = config;
