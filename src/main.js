@@ -1,4 +1,9 @@
 import contacts from './domains/contacts';
+
+import invoices from './domains/invoices';
+import creditNotes from './domains/creditNotes';
+import taxRates from './domains/taxRates';
+
 import companies from './domains/companies';
 import businessTypes from './domains/businessTypes';
 import quotations from './domains/quotations';
@@ -29,6 +34,11 @@ const API = config => {
 
   return {
     contacts: contacts(domainConfig),
+
+    invoices: invoices(domainConfig),
+    creditNotes: creditNotes(domainConfig),
+    taxRates: taxRates(domainConfig),
+
     companies: companies(domainConfig),
     businessTypes: businessTypes(domainConfig),
     quotations: quotations(domainConfig),
