@@ -8,6 +8,9 @@ import dealPhases from './domains/dealPhases';
 import projects from './domains/projects';
 import milestones from './domains/milestones';
 
+import departments from './domains/departments';
+import users from './domains/users';
+
 const createGetAccessToken = config => {
   const { accessToken, getAccessToken } = config;
 
@@ -34,6 +37,9 @@ const API = config => {
 
     projects: projects(domainConfig),
     milestones: milestones(domainConfig),
+
+    departments: departments(domainConfig),
+    users: users(domainConfig),
   };
 };
 
