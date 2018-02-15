@@ -1,6 +1,7 @@
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
+import uglify from 'rollup-plugin-uglify';
 
 import pkg from './package.json';
 
@@ -9,7 +10,7 @@ export default [
   {
     input: 'src/main.js',
     output: {
-      name: 'api',
+      name: 'api.min',
       file: pkg.browser,
       format: 'umd',
     },
@@ -21,6 +22,7 @@ export default [
       }),
       resolve(),
       commonjs(),
+      uglify(),
     ],
   },
 
