@@ -10,7 +10,7 @@ export default [
   {
     input: 'src/main.js',
     output: {
-      name: 'api.min',
+      name: 'api',
       file: pkg.browser,
       format: 'umd',
     },
