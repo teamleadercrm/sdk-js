@@ -18,14 +18,14 @@ const API = config => {
   const getAccessToken = createGetAccessToken(config);
   const { baseUrl = 'https://api.teamleader.eu' } = config;
 
-  const configuration = { getAccessToken, baseUrl };
+  const domainConfig = { getAccessToken, baseUrl };
 
   return {
-    contacts: contacts(configuration),
+    contacts: contacts(domainConfig),
 
-    invoices: invoices(configuration),
-    creditNotes: creditNotes(configuration),
-    taxRates: taxRates(configuration),
+    invoices: invoices(domainConfig),
+    creditNotes: creditNotes(domainConfig),
+    taxRates: taxRates(domainConfig),
   };
 };
 
