@@ -5,6 +5,9 @@ import quotations from './domains/quotations';
 import tags from './domains/tags';
 import dealPhases from './domains/dealPhases';
 
+import projects from './domains/projects';
+import milestones from './domains/milestones';
+
 const createGetAccessToken = config => {
   const { accessToken, getAccessToken } = config;
 
@@ -19,15 +22,18 @@ const API = config => {
   const getAccessToken = createGetAccessToken(config);
   const { baseUrl = 'https://api.teamleader.eu' } = config;
 
-  const configuration = { getAccessToken, baseUrl };
+  const domainConfig = { getAccessToken, baseUrl };
 
   return {
-    contacts: contacts(configuration),
-    companies: companies(configuration),
-    businessTypes: businessTypes(configuration),
-    quotations: quotations(configuration),
-    tags: tags(configuration),
-    dealPhases: dealPhases(configuration),
+    contacts: contacts(domainConfig),
+    companies: companies(domainConfig),
+    businessTypes: businessTypes(domainConfig),
+    quotations: quotations(domainConfig),
+    tags: tags(domainConfig),
+    dealPhases: dealPhases(domainConfig),
+
+    projects: projects(domainConfig),
+    milestones: milestones(domainConfig),
   };
 };
 
