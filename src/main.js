@@ -1,5 +1,4 @@
 import contacts from './domains/contacts.js';
-
 import events from './domains/events';
 import activityTypes from './domains/activityTypes';
 
