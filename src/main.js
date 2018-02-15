@@ -17,12 +17,13 @@ const API = config => {
   const getAccessToken = createGetAccessToken(config);
   const { baseUrl = 'https://api.teamleader.eu' } = config;
 
-  const configuration = { getAccessToken, baseUrl };
-  return {
-    contacts: contacts(configuration),
+  const domainConfig = { getAccessToken, baseUrl };
 
-    events: events(configuration),
-    activityTypes: activityTypes(configuration),
+  return {
+    contacts: contacts(domainConfig),
+
+    events: events(domainConfig),
+    activityTypes: activityTypes(domainConfig),
   };
 };
 
