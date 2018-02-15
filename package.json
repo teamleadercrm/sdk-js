@@ -4,7 +4,7 @@
   "description": "Teamleader API SDK",
   "main": "dist/api.cjs.js",
   "module": "dist/api.esm.js",
-  "browser": "dist/api.umd.js",
+  "browser": "dist/api.min.umd.js",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
@@ -27,7 +27,8 @@
     "rollup": "^0.50.1",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^8.2.6",
-    "rollup-plugin-node-resolve": "^3.0.0"
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^3.0.0"
   },
   "scripts": {
     "build": "rollup -c",
