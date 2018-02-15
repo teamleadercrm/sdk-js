@@ -1,5 +1,8 @@
 import contacts from './domains/contacts';
 
+import events from './domains/events';
+import activityTypes from './domains/activityTypes';
+
 import invoices from './domains/invoices';
 import creditNotes from './domains/creditNotes';
 import taxRates from './domains/taxRates';
@@ -34,6 +37,9 @@ const API = config => {
 
   return {
     contacts: contacts(domainConfig),
+
+    events: events(domainConfig),
+    activityTypes: activityTypes(domainConfig),
 
     invoices: invoices(domainConfig),
     creditNotes: creditNotes(domainConfig),
