@@ -1,10 +1,8 @@
-import partial from 'ramda/src/partial';
-
 import createFetchParameters from './createFetchParameters';
 import call from './call';
 
 const createDomain = ({ config, domain, actions = [], custom = {} } = {}) => {
-  const handler = partial(createFetchParameters, [config, domain]);
+  const handler = (action, params) => createFetchParameters(config, domain, action, params);
 
   const methods = actions.reduce(
     (obj, action) => ({

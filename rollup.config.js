@@ -32,7 +32,6 @@ export default [
   // `file` and `format` for each target)
   {
     input: 'src/main.js',
-    externals: ['ramda'],
     plugins: [
       babel({
         externalHelpers: false,
