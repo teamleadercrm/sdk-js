@@ -4,13 +4,13 @@ Teamleader API SDK for JavaScript
 
 ## Installation
 
-via NPM
+NPM
 
 ```bash
 npm i @teamleader/api
 ```
 
-or Yarn
+Yarn
 
 ```bash
 yarn add @teamleader/api
@@ -31,15 +31,22 @@ const init = async () => {
 };
 ```
 
-all domains from [developer.teamleader.eu](https://developer.teamleader.eu/) are available
+All domains from [developer.teamleader.eu](https://developer.teamleader.eu/) are available
+
+This module is also available as UMD build (in the example below via unpkg).
+
+```
+<script src="https://unpkg.com/@teamleader/api"></script>
+
+```
 
 ## Configuration
 
-you should provide `getAccessToken` **or** `accessToken`
+You should provide `getAccessToken` **or** `accessToken`.
 
 * `getAccessToken`: (function) a (a)sync function that returns a valid access token, triggered on each API call
 * `accessToken`: (string) an access token
 
-you can optionally pass in a `baseUrl` for the API calls (default is set to `https://api.teamleader.eu`)
+You can optionally pass in a `baseUrl` for the API calls (default is set to `https://api.teamleader.eu`)
 
 [MIT](LICENSE).
