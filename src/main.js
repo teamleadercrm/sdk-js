@@ -59,4 +59,5 @@ const API = config => {
   };
 };
 
+export { default as createDomain } from './utils/createDomain';
 export default API;
