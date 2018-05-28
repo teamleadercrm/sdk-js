@@ -1,4 +1,5 @@
 import call from '../../src/utils/call';
+import { camelCase } from '../../src/main';
 
 const mockFetch = desiredResponse => (window.fetch = () => Promise.resolve(desiredResponse));
 const response = ({ ok, statusText, status, contentType, json, text }) => {
@@ -43,6 +44,20 @@ describe('fetch response handling', () => {
 
     call().then(textResponse => {
       expect(textResponse).toEqual('foo bar');
+    });
+  });
+
+  it('returns the correct data after running the plugins', () => {
+    mockFetch(
+      response({
+        ok: true,
+        contentType: 'application/json',
+        json: { data: { user_id: 'bar' } },
+      }),
+    );
+
+    call(undefined, undefined, [camelCase]).then(jsonResponse => {
+      expect(jsonResponse).toEqual({ data: { userId: 'bar' } });
     });
   });
 

@@ -1,3 +1,5 @@
+import flow from './flow';
+
 class FetchError extends Error {
   constructor(status, statusText, body) {
     super(statusText);
@@ -31,6 +33,9 @@ const checkStatus = response => {
   });
 };
 
-const call = (url, options) => fetch(url, options).then(checkStatus);
+const call = (url, options, plugins = []) =>
+  fetch(url, options)
+    .then(checkStatus)
+    .then(data => flow(data, plugins));
 
 export default call;
