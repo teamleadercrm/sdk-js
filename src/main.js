@@ -60,4 +60,8 @@ const API = config => {
 };
 
 export { default as createDomain } from './utils/createDomain';
+
+export { default as camelCase } from './plugins/camelCase';
+export { default as normalize } from './plugins/normalize';
+
 export default API;
