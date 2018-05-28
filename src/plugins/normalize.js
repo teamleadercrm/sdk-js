@@ -1,1 +1,1 @@
-export default ({ data }) => data.reduce((o, d) => ({ [d.id]: d, ...o }), {});
+export default ({ data }) => data.reduce((o, d) => ({ ...o, byId: { ...o.byId, [d.id]: d } }), {});

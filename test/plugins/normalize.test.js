@@ -20,18 +20,20 @@ describe(`normalize data`, () => {
     ];
 
     expect(normalize({ data })).toEqual({
-      '8799873': {
-        id: '8799873',
-        user_id: '6979873',
-        user_info: {
-          first_name: 'Geoffrey',
+      byId: {
+        '8799873': {
+          id: '8799873',
+          user_id: '6979873',
+          user_info: {
+            first_name: 'Geoffrey',
+          },
         },
-      },
-      '3287687': {
-        id: '3287687',
-        user_id: '298034',
-        user_info: {
-          first_name: 'John',
+        '3287687': {
+          id: '3287687',
+          user_id: '298034',
+          user_info: {
+            first_name: 'John',
+          },
         },
       },
     });
