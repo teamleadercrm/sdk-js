@@ -52,5 +52,8 @@
   "bugs": {
     "url": "https://github.com/teamleadercrm/sdk-js/issues"
   },
-  "homepage": "https://github.com/teamleadercrm/sdk-js#readme"
+  "homepage": "https://github.com/teamleadercrm/sdk-js#readme",
+  "dependencies": {
+    "humps": "^2.0.1"
+  }
 }
