@@ -52,20 +52,20 @@ You can optionally pass in a `baseUrl` for the API calls (default is set to `htt
 
 You can provide an extra array of plugins to manipulate your data.
 
-* `plugins`: (Array) Array of functions that receive data and return data
+* `plugins`: (Array) Array of functions that receive data and return (manipulated) data.
 
-A plugin function has the signature `data => data`;
+A plugin function has the signature `data => data`
 
 You can provide them in 2 ways.
 
 * `root` level: passed as an extra argument when creating the root object, used for `all routes`
 * `action` level: per route, only triggered on the `provided action` (second argument for the api call)
 
-If you provide plugins at root level and at route level they are merged in this order.
+If you provide plugins at `root level` and at `action level` they are merged into one plugins array in that order
 
 ```js
 import API from '@teamleader/api';
-import { camelCase, normalize } from '@teamleader/api'; // exported at top level
+import { camelCase, normalize } from '@teamleader/api'; // exported as named exports
 
 const { users } = API({
   getAccessToken: () => 'thisisatoken', // async or sync function
@@ -76,14 +76,114 @@ const { users } = API({
 const addMeta = data => ({ ...data, meta: { size: data.length } });
 
 const init = async () => {
-  const me = await users.me(undefined, [normalize, addMeta]); // (options, plugins)
+  // (options, plugins)
+  const me = await users.me(undefined, [normalize, addMeta]); // at action level
   console.log(me);
 };
 ```
 
-* [camelCase](src/plugins/camelCase.js)
-* [normalize](src/plugins/normalize.js)
+Both camelCase and normalize are exported as named exports for convenience.
 
-are exported at top level for convenience.
+Following the example above:
+
+### camelCase
+
+Recursively convert object keys to camelCase.
+
+data in:
+
+```js
+{
+  data: [
+    {
+      id: '8799873',
+      user_id: '6979873',
+      user_info: {
+        first_name: 'Geoffrey',
+      },
+    },
+    {
+      id: '3287687',
+      user_id: '298034',
+      user_info: {
+        first_name: 'John',
+      },
+    },
+  ];
+}
+```
+
+data out:
+
+```js
+{
+  data: [
+    {
+      id: '8799873',
+      userId: '6979873',
+      userInfo: {
+        firstName: 'Geoffrey',
+      },
+    },
+    {
+      id: '3287687',
+      userId: '298034',
+      userInfo: {
+        firstName: 'John',
+      },
+    },
+  ];
+}
+```
+
+### normalize
+
+Normalize data structure using byId for easy access and linking.
+
+data in:
+
+```js
+{
+  data: [
+    {
+      id: '8799873',
+      userId: '6979873',
+      userInfo: {
+        firstName: 'Geoffrey',
+      },
+    },
+    {
+      id: '3287687',
+      userId: '298034',
+      userInfo: {
+        firstName: 'John',
+      },
+    },
+  ];
+}
+```
+
+data out:
+
+```js
+{
+  byId: {
+    '8799873': {
+      id: '8799873',
+      userId: '6979873',
+      userInfo: {
+        firstName: 'Geoffrey',
+      },
+    },
+    '3287687': {
+      id: '3287687',
+      userId: '298034',
+      userInfo: {
+        firstName: 'John',
+      },
+    }
+  }
+}
+```
 
 [MIT](LICENSE).

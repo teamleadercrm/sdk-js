@@ -2,10 +2,12 @@ import createFetchParameters from '../../src/utils/createFetchParameters';
 
 describe(`create fetch parameters`, () => {
   const getAccessToken = () => 'token';
+  const plugin = data => data;
 
   const config = {
     getAccessToken,
     baseUrl: 'https://api.teamleader.eu',
+    plugins: [plugin],
   };
 
   const domain = 'contacts';
@@ -18,6 +20,11 @@ describe(`create fetch parameters`, () => {
   it(`should return the correct url`, async () => {
     const obj = await createFetchParameters(config, domain, action);
     expect(obj.url).toEqual(`https://api.teamleader.eu/${domain}.${action}`);
+  });
+
+  it(`should return the provided plugins`, async () => {
+    const obj = await createFetchParameters(config, domain, action);
+    expect(obj.plugins).toEqual([plugin]);
   });
 
   it(`should return the correct Authorization header`, async () => {

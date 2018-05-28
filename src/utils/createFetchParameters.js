@@ -1,7 +1,7 @@
 import createHeaders from '../utils/createHeaders';
 
 const createFetchParameters = async (config, domainName, action, attributes = {}) => {
-  const { getAccessToken, baseUrl } = config;
+  const { getAccessToken, baseUrl, plugins = [] } = config;
   const headers = await createHeaders({ getAccessToken });
   const url = `${baseUrl}/${domainName}.${action}`;
 
@@ -14,6 +14,7 @@ const createFetchParameters = async (config, domainName, action, attributes = {}
   return {
     url,
     options,
+    plugins,
   };
 };
 
