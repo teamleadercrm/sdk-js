@@ -48,4 +48,42 @@ You should provide `getAccessToken` **or** `accessToken`.
 
 You can optionally pass in a `baseUrl` for the API calls (default is set to `https://api.teamleader.eu`)
 
+## Plugins
+
+You can provide an extra array of plugins to manipulate your data.
+
+* `plugins`: (Array) Array of functions that receive data and return data
+
+A plugin function has the signature `data => data`;
+
+You can provide them in 2 ways.
+
+* `root` level: passed as an extra argument when creating the root object, used for `all routes`
+* `action` level: per route, only triggered on the `provided action` (second argument for the api call)
+
+If you provide plugins at root level and at route level they are merged in this order.
+
+```js
+import API from '@teamleader/api';
+import { camelCase, normalize } from '@teamleader/api'; // exported at top level
+
+const { users } = API({
+  getAccessToken: () => 'thisisatoken', // async or sync function
+  plugins: [camelCase], // at root level
+});
+
+// own plugin
+const addMeta = data => ({ ...data, meta: { size: data.length } });
+
+const init = async () => {
+  const me = await users.me(undefined, [normalize, addMeta]); // (options, plugins)
+  console.log(me);
+};
+```
+
+* [camelCase](src/plugins/camelCase.js)
+* [normalize](src/plugins/normalize.js)
+
+are exported at top level for convenience.
+
 [MIT](LICENSE).
