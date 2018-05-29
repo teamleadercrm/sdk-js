@@ -1,2 +1,2 @@
 import { camelizeKeys } from 'humps';
-export default data => camelizeKeys(data);
+export default camelizeKeys;
