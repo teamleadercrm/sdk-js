@@ -1,6 +1,6 @@
 {
   "name": "@teamleader/api",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Teamleader API SDK",
   "main": "dist/api.cjs.js",
   "module": "dist/api.esm.js",
@@ -22,8 +22,10 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
+    "husky": "^0.14.3",
     "jest": "^22.2.2",
     "prettier": "^1.10.2",
+    "pretty-quick": "^1.6.0",
     "rollup": "^0.50.1",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^8.2.6",
@@ -35,7 +37,8 @@
     "start": "rollup -c -w",
     "test": "jest",
     "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore src",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "precommit": "pretty-quick --staged"
   },
   "files": [
     "dist"
@@ -52,5 +55,8 @@
   "bugs": {
     "url": "https://github.com/teamleadercrm/sdk-js/issues"
   },
-  "homepage": "https://github.com/teamleadercrm/sdk-js#readme"
+  "homepage": "https://github.com/teamleadercrm/sdk-js#readme",
+  "dependencies": {
+    "humps": "^2.0.1"
+  }
 }

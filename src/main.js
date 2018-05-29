@@ -31,9 +31,9 @@ const createGetAccessToken = config => {
 
 const API = config => {
   const getAccessToken = createGetAccessToken(config);
-  const { baseUrl = 'https://api.teamleader.eu' } = config;
+  const { baseUrl = 'https://api.teamleader.eu', plugins } = config;
 
-  const domainConfig = { getAccessToken, baseUrl };
+  const domainConfig = { getAccessToken, baseUrl, plugins };
 
   return {
     contacts: contacts(domainConfig),
@@ -60,4 +60,8 @@ const API = config => {
 };
 
 export { default as createDomain } from './utils/createDomain';
+
+export { default as camelCase } from './plugins/camelCase';
+export { default as normalize } from './plugins/normalize';
+
 export default API;
