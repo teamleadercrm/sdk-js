@@ -21,7 +21,11 @@ export default [
         exclude: 'node_modules/**',
       }),
       resolve(),
-      commonjs(),
+      commonjs({
+        namedExports: {
+          'node_modules/humps/humps.js': ['camelizeKeys'],
+        },
+      }),
       uglify(),
     ],
   },
