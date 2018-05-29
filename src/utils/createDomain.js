@@ -8,8 +8,8 @@ const createDomain = ({ config, domain, actions = [], custom = {} } = {}) => {
   const methods = actions.reduce(
     (obj, action) => ({
       ...obj,
-      [action]: async params => {
-        const { url, options, plugins = [] } = await handler(action, params);
+      [action]: async (params, plugins = []) => {
+        const { url, options } = await handler(action, params);
         return call(url, options, [...globalPlugins, ...plugins]);
       },
     }),
