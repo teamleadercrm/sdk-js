@@ -1,6 +1,6 @@
 {
   "name": "@teamleader/api",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Teamleader API SDK",
   "main": "dist/api.cjs.js",
   "module": "dist/api.esm.js",
