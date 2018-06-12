@@ -38,4 +38,25 @@ describe(`normalize data`, () => {
       },
     });
   });
+  it(`should return the data normalized by Id`, () => {
+    const data = {
+      id: '8799873',
+      user_id: '6979873',
+      user_info: {
+        first_name: 'Geoffrey',
+      },
+    };
+
+    expect(normalize({ data })).toEqual({
+      byId: {
+        '8799873': {
+          id: '8799873',
+          user_id: '6979873',
+          user_info: {
+            first_name: 'Geoffrey',
+          },
+        },
+      },
+    });
+  });
 });
