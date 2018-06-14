@@ -48,6 +48,26 @@ You should provide `getAccessToken` **or** `accessToken`.
 
 You can optionally pass in a `baseUrl` for the API calls (default is set to `https://api.teamleader.eu`)
 
+## Custom actions
+
+You can also add extra custom actions to the domains (which will be handled the same way as the available actions).
+
+* `customActions`: (Object) domain as property -> array of actions as value
+
+In the example below we are extending `api.contacts` with `deleted` and `api.tags` with `deleted` and `linkToInvoice`
+
+```js
+import API from '@teamleader/api';
+
+const api = API({
+  getAccessToken: () => 'thisisatoken', // async or sync function
+  customActions: {
+    contacts: ['deleted'],
+    tags: ['deleted', 'linkToInvoice'],
+  },
+});
+```
+
 ## Plugins
 
 You can provide an extra array of plugins to manipulate your data.

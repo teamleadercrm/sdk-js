@@ -4,7 +4,7 @@ const taxRates = config =>
   createDomain({
     config,
     domain: 'taxRates',
-    actions: ['list'],
+    actions: ['list', ...(config.customActions || [])],
   });
 
 export default taxRates;

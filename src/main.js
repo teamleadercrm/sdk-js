@@ -31,31 +31,31 @@ const createGetAccessToken = config => {
 
 const API = config => {
   const getAccessToken = createGetAccessToken(config);
-  const { baseUrl = 'https://api.teamleader.eu', plugins } = config;
+  const { baseUrl = 'https://api.teamleader.eu', plugins, customActions = {} } = config;
 
   const domainConfig = { getAccessToken, baseUrl, plugins };
 
   return {
-    contacts: contacts(domainConfig),
+    contacts: contacts({ ...domainConfig, customActions: customActions.contacts }),
 
-    events: events(domainConfig),
-    activityTypes: activityTypes(domainConfig),
+    events: events({ ...domainConfig, customActions: customActions.events }),
+    activityTypes: activityTypes({ ...domainConfig, customActions: customActions.activityTypes }),
 
-    invoices: invoices(domainConfig),
-    creditNotes: creditNotes(domainConfig),
-    taxRates: taxRates(domainConfig),
+    invoices: invoices({ ...domainConfig, customActions: customActions.invoices }),
+    creditNotes: creditNotes({ ...domainConfig, customActions: customActions.creditNotes }),
+    taxRates: taxRates({ ...domainConfig, customActions: customActions.taxRates }),
 
-    companies: companies(domainConfig),
-    businessTypes: businessTypes(domainConfig),
-    quotations: quotations(domainConfig),
-    tags: tags(domainConfig),
-    dealPhases: dealPhases(domainConfig),
+    companies: companies({ ...domainConfig, customActions: customActions.companies }),
+    businessTypes: businessTypes({ ...domainConfig, customActions: customActions.businessTypes }),
+    quotations: quotations({ ...domainConfig, customActions: customActions.quotations }),
+    tags: tags({ ...domainConfig, customActions: customActions.tags }),
+    dealPhases: dealPhases({ ...domainConfig, customActions: customActions.dealPhases }),
 
-    projects: projects(domainConfig),
-    milestones: milestones(domainConfig),
+    projects: projects({ ...domainConfig, customActions: customActions.projects }),
+    milestones: milestones({ ...domainConfig, customActions: customActions.milestones }),
 
-    departments: departments(domainConfig),
-    users: users(domainConfig),
+    departments: departments({ ...domainConfig, customActions: customActions.departments }),
+    users: users({ ...domainConfig, customActions: customActions.users }),
   };
 };
 
