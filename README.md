@@ -52,7 +52,7 @@ You can optionally pass in a `baseUrl` for the API calls (default is set to `htt
 
 * `customActions`: (Object) domain as property -> array of actions as value
 
-In the example below we are adding `api.contacts.deleted` and `api.tags.deleted` and `api.tags.linkToInvoice`
+In the example below we are adding `api.contacts.deleted`, `api.tags.deleted` and `api.tags.linkToInvoice`
 
 ```js
 import API from '@teamleader/api';
