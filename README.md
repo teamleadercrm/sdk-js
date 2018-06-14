@@ -50,9 +50,11 @@ You can optionally pass in a `baseUrl` for the API calls (default is set to `htt
 
 ## Custom actions
 
+You can also add extra custom actions to the domains (which will be handled the same way as the available actions).
+
 * `customActions`: (Object) domain as property -> array of actions as value
 
-In the example below we are adding `api.contacts.deleted`, `api.tags.deleted` and `api.tags.linkToInvoice`
+In the example below we are extending `api.contacts` with `deleted` and `api.tags` with `deleted` and `linkToInvoice`
 
 ```js
 import API from '@teamleader/api';
