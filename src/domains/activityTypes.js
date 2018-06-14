@@ -4,7 +4,7 @@ const activityTypes = config =>
   createDomain({
     config,
     domain: 'activityTypes',
-    actions: ['list'],
+    actions: ['list', ...(config.customActions || [])],
   });
 
 export default activityTypes;

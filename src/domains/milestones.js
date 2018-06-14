@@ -4,7 +4,7 @@ const milestones = config =>
   createDomain({
     config,
     domain: 'milestones',
-    actions: ['list', 'info', 'create', 'update'],
+    actions: ['list', 'info', 'create', 'update', ...(config.customActions || [])],
   });
 
 export default milestones;

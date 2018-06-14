@@ -4,7 +4,7 @@ const departments = config =>
   createDomain({
     config,
     domain: 'departments',
-    actions: ['list', 'info'],
+    actions: ['list', 'info', ...(config.customActions || [])],
   });
 
 export default departments;

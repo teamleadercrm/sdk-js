@@ -4,7 +4,7 @@ const creditNotes = config =>
   createDomain({
     config,
     domain: 'creditNotes',
-    actions: ['list', 'info'],
+    actions: ['list', 'info', ...(config.customActions || [])],
   });
 
 export default creditNotes;

@@ -4,7 +4,7 @@ const dealPhases = config =>
   createDomain({
     config,
     domain: 'dealPhases',
-    actions: ['list'],
+    actions: ['list', ...(config.customActions || [])],
   });
 
 export default dealPhases;

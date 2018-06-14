@@ -4,7 +4,7 @@ const users = config =>
   createDomain({
     config,
     domain: 'users',
-    actions: ['me', 'list', 'info'],
+    actions: ['me', 'list', 'info', ...(config.customActions || [])],
   });
 
 export default users;

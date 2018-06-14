@@ -4,7 +4,7 @@ const businessTypes = config =>
   createDomain({
     config,
     domain: 'businessTypes',
-    actions: ['list'],
+    actions: ['list', ...(config.customActions || [])],
   });
 
 export default businessTypes;

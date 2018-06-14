@@ -4,7 +4,7 @@ const events = config =>
   createDomain({
     config,
     domain: 'events',
-    actions: ['list', 'info', 'create'],
+    actions: ['list', 'info', 'create', ...(config.customActions || [])],
   });
 
 export default events;

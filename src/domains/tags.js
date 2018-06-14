@@ -4,7 +4,7 @@ const tags = config =>
   createDomain({
     config,
     domain: 'tags',
-    actions: ['list'],
+    actions: ['list', ...(config.customActions || [])],
   });
 
 export default tags;

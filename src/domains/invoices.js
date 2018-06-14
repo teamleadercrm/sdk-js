@@ -4,7 +4,17 @@ const invoices = config =>
   createDomain({
     config,
     domain: 'invoices',
-    actions: ['list', 'info', 'draft', 'update', 'copy', 'book', 'delete', 'registerPayment'],
+    actions: [
+      'list',
+      'info',
+      'draft',
+      'update',
+      'copy',
+      'book',
+      'delete',
+      'registerPayment',
+      ...(config.customActions || []),
+    ],
   });
 
 export default invoices;
