@@ -1,10 +1,10 @@
 import API from '../src/main';
 
 describe('fetch response handling', () => {
-  it('shoud add the customMethods to the correct domains', () => {
+  it('shoud add the customActions to the correct domains', () => {
     const api = API({
       getAccessToken: () => 'thisisatoken', // async or sync function
-      customMethods: {
+      customActions: {
         contacts: ['deleted'],
         activityTypes: ['deleted'],
       },

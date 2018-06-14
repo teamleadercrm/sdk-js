@@ -31,31 +31,31 @@ const createGetAccessToken = config => {
 
 const API = config => {
   const getAccessToken = createGetAccessToken(config);
-  const { baseUrl = 'https://api.teamleader.eu', plugins, customMethods = {} } = config;
+  const { baseUrl = 'https://api.teamleader.eu', plugins, customActions = {} } = config;
 
   const domainConfig = { getAccessToken, baseUrl, plugins };
 
   return {
-    contacts: contacts({ ...domainConfig, customMethods: customMethods.contacts }),
+    contacts: contacts({ ...domainConfig, customActions: customActions.contacts }),
 
-    events: events({ ...domainConfig, customMethods: customMethods.events }),
-    activityTypes: activityTypes({ ...domainConfig, customMethods: customMethods.activityTypes }),
+    events: events({ ...domainConfig, customActions: customActions.events }),
+    activityTypes: activityTypes({ ...domainConfig, customActions: customActions.activityTypes }),
 
-    invoices: invoices({ ...domainConfig, customMethods: customMethods.invoices }),
-    creditNotes: creditNotes({ ...domainConfig, customMethods: customMethods.creditNotes }),
-    taxRates: taxRates({ ...domainConfig, customMethods: customMethods.taxRates }),
+    invoices: invoices({ ...domainConfig, customActions: customActions.invoices }),
+    creditNotes: creditNotes({ ...domainConfig, customActions: customActions.creditNotes }),
+    taxRates: taxRates({ ...domainConfig, customActions: customActions.taxRates }),
 
-    companies: companies({ ...domainConfig, customMethods: customMethods.companies }),
-    businessTypes: businessTypes({ ...domainConfig, customMethods: customMethods.businessTypes }),
-    quotations: quotations({ ...domainConfig, customMethods: customMethods.quotations }),
-    tags: tags({ ...domainConfig, customMethods: customMethods.tags }),
-    dealPhases: dealPhases({ ...domainConfig, customMethods: customMethods.dealPhases }),
+    companies: companies({ ...domainConfig, customActions: customActions.companies }),
+    businessTypes: businessTypes({ ...domainConfig, customActions: customActions.businessTypes }),
+    quotations: quotations({ ...domainConfig, customActions: customActions.quotations }),
+    tags: tags({ ...domainConfig, customActions: customActions.tags }),
+    dealPhases: dealPhases({ ...domainConfig, customActions: customActions.dealPhases }),
 
-    projects: projects({ ...domainConfig, customMethods: customMethods.projects }),
-    milestones: milestones({ ...domainConfig, customMethods: customMethods.milestones }),
+    projects: projects({ ...domainConfig, customActions: customActions.projects }),
+    milestones: milestones({ ...domainConfig, customActions: customActions.milestones }),
 
-    departments: departments({ ...domainConfig, customMethods: customMethods.departments }),
-    users: users({ ...domainConfig, customMethods: customMethods.users }),
+    departments: departments({ ...domainConfig, customActions: customActions.departments }),
+    users: users({ ...domainConfig, customActions: customActions.users }),
   };
 };
 

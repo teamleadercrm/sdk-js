@@ -18,7 +18,7 @@ describe(`check if domain contains correct methods`, () => {
     const config = {
       getAccessToken: () => 'token',
       baseUrl: 'https://api.teamleader.eu',
-      customMethods: ['deleted'],
+      customActions: ['deleted'],
     };
 
     const methods = ['me', 'list', 'info', 'deleted'];
