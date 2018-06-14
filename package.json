@@ -36,6 +36,7 @@
     "build": "rollup -c",
     "start": "rollup -c -w",
     "test": "jest",
+    "test:watch": "jest --watch",
     "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore src",
     "lint:fix": "npm run lint -- --fix",
     "precommit": "pretty-quick --staged"
