@@ -31,31 +31,31 @@ const createGetAccessToken = config => {
 
 const API = config => {
   const getAccessToken = createGetAccessToken(config);
-  const { baseUrl = 'https://api.teamleader.eu', plugins } = config;
+  const { baseUrl = 'https://api.teamleader.eu', plugins, customMethods = {} } = config;
 
   const domainConfig = { getAccessToken, baseUrl, plugins };
 
   return {
-    contacts: contacts(domainConfig),
+    contacts: contacts({ ...domainConfig, customMethods: customMethods.contacts }),
 
-    events: events(domainConfig),
-    activityTypes: activityTypes(domainConfig),
+    events: events({ ...domainConfig, customMethods: customMethods.events }),
+    activityTypes: activityTypes({ ...domainConfig, customMethods: customMethods.activityTypes }),
 
-    invoices: invoices(domainConfig),
-    creditNotes: creditNotes(domainConfig),
-    taxRates: taxRates(domainConfig),
+    invoices: invoices({ ...domainConfig, customMethods: customMethods.invoices }),
+    creditNotes: creditNotes({ ...domainConfig, customMethods: customMethods.creditNotes }),
+    taxRates: taxRates({ ...domainConfig, customMethods: customMethods.taxRates }),
 
-    companies: companies(domainConfig),
-    businessTypes: businessTypes(domainConfig),
-    quotations: quotations(domainConfig),
-    tags: tags(domainConfig),
-    dealPhases: dealPhases(domainConfig),
+    companies: companies({ ...domainConfig, customMethods: customMethods.companies }),
+    businessTypes: businessTypes({ ...domainConfig, customMethods: customMethods.businessTypes }),
+    quotations: quotations({ ...domainConfig, customMethods: customMethods.quotations }),
+    tags: tags({ ...domainConfig, customMethods: customMethods.tags }),
+    dealPhases: dealPhases({ ...domainConfig, customMethods: customMethods.dealPhases }),
 
-    projects: projects(domainConfig),
-    milestones: milestones(domainConfig),
+    projects: projects({ ...domainConfig, customMethods: customMethods.projects }),
+    milestones: milestones({ ...domainConfig, customMethods: customMethods.milestones }),
 
-    departments: departments(domainConfig),
-    users: users(domainConfig),
+    departments: departments({ ...domainConfig, customMethods: customMethods.departments }),
+    users: users({ ...domainConfig, customMethods: customMethods.users }),
   };
 };
 
