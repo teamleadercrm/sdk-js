@@ -1,4 +1,4 @@
-import events from '../../src/domains/events';
+import customFieldDefinitions from '../../src/domains/customFieldDefinitions';
 
 describe(`check if domain contains correct methods`, () => {
   it(`should contain the correct given methods`, async () => {
@@ -7,9 +7,9 @@ describe(`check if domain contains correct methods`, () => {
       baseUrl: 'https://api.teamleader.eu',
     };
 
-    const methods = ['list', 'info', 'create', 'update', 'cancel'];
+    const methods = ['list', 'info'];
 
-    const obj = await events(config);
+    const obj = await customFieldDefinitions(config);
 
     expect(Object.keys(obj).sort()).toEqual(methods.sort());
   });
@@ -21,9 +21,9 @@ describe(`check if domain contains correct methods`, () => {
       customActions: ['deleted'],
     };
 
-    const methods = ['list', 'info', 'create', 'update', 'cancel', 'deleted'];
+    const methods = ['list', 'info', 'deleted'];
 
-    const obj = await events(config);
+    const obj = await customFieldDefinitions(config);
 
     expect(Object.keys(obj).sort()).toEqual(methods.sort());
   });

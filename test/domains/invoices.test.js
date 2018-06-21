@@ -7,7 +7,7 @@ describe(`check if domain contains correct methods`, () => {
       baseUrl: 'https://api.teamleader.eu',
     };
 
-    const methods = ['list', 'info', 'draft', 'update', 'copy', 'book', 'delete', 'registerPayment'];
+    const methods = ['list', 'info', 'download', 'draft', 'update', 'copy', 'book', 'delete', 'registerPayment'];
 
     const obj = await invoices(config);
 
@@ -21,7 +21,18 @@ describe(`check if domain contains correct methods`, () => {
       customActions: ['deleted'],
     };
 
-    const methods = ['list', 'info', 'draft', 'update', 'copy', 'book', 'delete', 'registerPayment', 'deleted'];
+    const methods = [
+      'list',
+      'info',
+      'download',
+      'draft',
+      'update',
+      'copy',
+      'book',
+      'delete',
+      'registerPayment',
+      'deleted',
+    ];
 
     const obj = await invoices(config);
 

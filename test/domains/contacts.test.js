@@ -7,7 +7,7 @@ describe(`check if domain contains correct methods`, () => {
       baseUrl: 'https://api.teamleader.eu',
     };
 
-    const methods = ['list', 'info', 'add', 'update', 'delete', 'linkToCompany', 'unlinkFromCompany'];
+    const methods = ['list', 'info', 'add', 'update', 'delete', 'tag', 'untag', 'linkToCompany', 'unlinkFromCompany'];
 
     const obj = await contacts(config);
 
@@ -21,7 +21,18 @@ describe(`check if domain contains correct methods`, () => {
       customActions: ['deleted'],
     };
 
-    const methods = ['list', 'info', 'add', 'update', 'delete', 'linkToCompany', 'unlinkFromCompany', 'deleted'];
+    const methods = [
+      'list',
+      'info',
+      'add',
+      'update',
+      'delete',
+      'tag',
+      'untag',
+      'linkToCompany',
+      'unlinkFromCompany',
+      'deleted',
+    ];
 
     const obj = await contacts(config);
 
