@@ -10,7 +10,7 @@ import dealSources from './domains/dealSources';
 import departments from './domains/departments';
 import events from './domains/events';
 import invoices from './domains/invoices';
-import lostReasons from './domains/invoices';
+import lostReasons from './domains/lostReasons';
 import milestones from './domains/milestones';
 import paymentTerms from './domains/paymentTerms';
 import productCategories from './domains/productCategories';
