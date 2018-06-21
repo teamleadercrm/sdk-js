@@ -4,7 +4,7 @@ const companies = config =>
   createDomain({
     config,
     domain: 'companies',
-    actions: ['list', 'info', 'add', 'update', 'delete', 'tag', ...(config.customActions || [])],
+    actions: ['list', 'info', 'add', 'update', 'delete', 'tag', 'untag', ...(config.customActions || [])],
   });
 
 export default companies;

@@ -7,6 +7,7 @@ const invoices = config =>
     actions: [
       'list',
       'info',
+      'download',
       'draft',
       'update',
       'copy',

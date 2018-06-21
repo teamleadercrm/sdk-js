@@ -10,6 +10,8 @@ const contacts = config =>
       'add',
       'update',
       'delete',
+      'tag',
+      'untag',
       'linkToCompany',
       'unlinkFromCompany',
       ...(config.customActions || []),
