@@ -1,23 +1,27 @@
-import contacts from './domains/contacts';
-
-import events from './domains/events';
 import activityTypes from './domains/activityTypes';
-
-import invoices from './domains/invoices';
-import creditNotes from './domains/creditNotes';
-import taxRates from './domains/taxRates';
-
-import companies from './domains/companies';
 import businessTypes from './domains/businessTypes';
+import companies from './domains/companies';
+import contacts from './domains/contacts';
+import creditNotes from './domains/creditNotes';
+import customFieldDefinitions from './domains/customFieldDefinitions';
+import dealPhases from './domains/dealPhases';
+import deals from './domains/deals';
+import dealSources from './domains/dealSources';
+import departments from './domains/departments';
+import events from './domains/events';
+import invoices from './domains/invoices';
+import lostReasons from './domains/lostReasons';
+import milestones from './domains/milestones';
+import paymentTerms from './domains/paymentTerms';
+import productCategories from './domains/productCategories';
+import projects from './domains/projects';
 import quotations from './domains/quotations';
 import tags from './domains/tags';
-import dealPhases from './domains/dealPhases';
-
-import projects from './domains/projects';
-import milestones from './domains/milestones';
-
-import departments from './domains/departments';
+import taxRates from './domains/taxRates';
+import timers from './domains/timers';
+import timeTracking from './domains/timeTracking';
 import users from './domains/users';
+import workTypes from './domains/workTypes';
 
 const createGetAccessToken = config => {
   const { accessToken, getAccessToken } = config;
@@ -36,26 +40,102 @@ const API = config => {
   const domainConfig = { getAccessToken, baseUrl, plugins };
 
   return {
-    contacts: contacts({ ...domainConfig, customActions: customActions.contacts }),
-
-    events: events({ ...domainConfig, customActions: customActions.events }),
-    activityTypes: activityTypes({ ...domainConfig, customActions: customActions.activityTypes }),
-
-    invoices: invoices({ ...domainConfig, customActions: customActions.invoices }),
-    creditNotes: creditNotes({ ...domainConfig, customActions: customActions.creditNotes }),
-    taxRates: taxRates({ ...domainConfig, customActions: customActions.taxRates }),
-
-    companies: companies({ ...domainConfig, customActions: customActions.companies }),
-    businessTypes: businessTypes({ ...domainConfig, customActions: customActions.businessTypes }),
-    quotations: quotations({ ...domainConfig, customActions: customActions.quotations }),
-    tags: tags({ ...domainConfig, customActions: customActions.tags }),
-    dealPhases: dealPhases({ ...domainConfig, customActions: customActions.dealPhases }),
-
-    projects: projects({ ...domainConfig, customActions: customActions.projects }),
-    milestones: milestones({ ...domainConfig, customActions: customActions.milestones }),
-
-    departments: departments({ ...domainConfig, customActions: customActions.departments }),
-    users: users({ ...domainConfig, customActions: customActions.users }),
+    activityTypes: activityTypes({
+      ...domainConfig,
+      customActions: customActions.activityTypes,
+    }),
+    businessTypes: businessTypes({
+      ...domainConfig,
+      customActions: customActions.businessTypes,
+    }),
+    companies: companies({
+      ...domainConfig,
+      customActions: customActions.companies,
+    }),
+    contacts: contacts({
+      ...domainConfig,
+      customActions: customActions.contacts,
+    }),
+    creditNotes: creditNotes({
+      ...domainConfig,
+      customActions: customActions.creditNotes,
+    }),
+    customFieldDefinitions: customFieldDefinitions({
+      ...domainConfig,
+      customActions: customActions.customFieldDefinitions,
+    }),
+    dealPhases: dealPhases({
+      ...domainConfig,
+      customActions: customActions.dealPhases,
+    }),
+    deals: deals({
+      ...domainConfig,
+      customActions: customActions.deals,
+    }),
+    dealSources: dealSources({
+      ...domainConfig,
+      customActions: customActions.dealSources,
+    }),
+    departments: departments({
+      ...domainConfig,
+      customActions: customActions.departments,
+    }),
+    events: events({
+      ...domainConfig,
+      customActions: customActions.events,
+    }),
+    invoices: invoices({
+      ...domainConfig,
+      customActions: customActions.invoices,
+    }),
+    lostReasons: lostReasons({
+      ...domainConfig,
+      customActions: customActions.lostReasons,
+    }),
+    milestones: milestones({
+      ...domainConfig,
+      customActions: customActions.milestones,
+    }),
+    paymentTerms: paymentTerms({
+      ...domainConfig,
+      customActions: customActions.paymentTerms,
+    }),
+    productCategories: productCategories({
+      ...domainConfig,
+      customActions: customActions.productCategories,
+    }),
+    projects: projects({
+      ...domainConfig,
+      customActions: customActions.projects,
+    }),
+    quotations: quotations({
+      ...domainConfig,
+      customActions: customActions.quotations,
+    }),
+    tags: tags({
+      ...domainConfig,
+      customActions: customActions.tags,
+    }),
+    taxRates: taxRates({
+      ...domainConfig,
+      customActions: customActions.taxRates,
+    }),
+    timers: timers({
+      ...domainConfig,
+      customActions: customActions.timers,
+    }),
+    timeTracking: timeTracking({
+      ...domainConfig,
+      customActions: customActions.timeTracking,
+    }),
+    users: users({
+      ...domainConfig,
+      customActions: customActions.users,
+    }),
+    workTypes: workTypes({
+      ...domainConfig,
+      customActions: customActions.workTypes,
+    }),
   };
 };
 

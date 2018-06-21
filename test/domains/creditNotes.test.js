@@ -7,7 +7,7 @@ describe(`check if domain contains correct methods`, () => {
       baseUrl: 'https://api.teamleader.eu',
     };
 
-    const methods = ['list', 'info'];
+    const methods = ['list', 'info', 'download'];
 
     const obj = await creditNotes(config);
 
@@ -21,7 +21,7 @@ describe(`check if domain contains correct methods`, () => {
       customActions: ['deleted'],
     };
 
-    const methods = ['list', 'info', 'deleted'];
+    const methods = ['list', 'info', 'download', 'deleted'];
 
     const obj = await creditNotes(config);
 
