@@ -7,7 +7,7 @@ describe(`check if domain contains correct methods`, () => {
       baseUrl: 'https://api.teamleader.eu',
     };
 
-    const methods = ['current', 'start', 'stop'];
+    const methods = ['current', 'start', 'stop', 'update'];
 
     const obj = await timers(config);
 
@@ -21,7 +21,7 @@ describe(`check if domain contains correct methods`, () => {
       customActions: ['deleted'],
     };
 
-    const methods = ['current', 'start', 'stop', 'deleted'];
+    const methods = ['current', 'start', 'stop', 'update', 'deleted'];
 
     const obj = await timers(config);
 
