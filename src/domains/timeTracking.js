@@ -4,7 +4,7 @@ const timeTracking = config =>
   createDomain({
     config,
     domain: 'timeTracking',
-    actions: ['list', 'info', 'add', 'update', 'resume', ...(config.customActions || [])],
+    actions: ['list', 'info', 'add', 'update', 'resume', 'delete', ...(config.customActions || [])],
   });
 
 export default timeTracking;
