@@ -1,4 +1,5 @@
 import createFetchParameters from '../../src/utils/createFetchParameters';
+import snakeCaseKeys from '../../src/plugins/snakeCase';
 
 describe(`create fetch parameters`, () => {
   const getAccessToken = () => 'token';
@@ -7,7 +8,7 @@ describe(`create fetch parameters`, () => {
   const config = {
     getAccessToken,
     baseUrl: 'https://api.teamleader.eu',
-    plugins: [plugin],
+    plugins: { request: [plugin] },
   };
 
   const domain = 'contacts';
@@ -15,6 +16,8 @@ describe(`create fetch parameters`, () => {
 
   const params = {
     id: '48684984984',
+    user_id: '848494985',
+    firstName: 'john',
   };
 
   it(`should return the correct url`, async () => {
@@ -24,12 +27,34 @@ describe(`create fetch parameters`, () => {
 
   it(`should return the provided plugins`, async () => {
     const obj = await createFetchParameters(config, domain, action);
-    expect(obj.plugins).toEqual([plugin]);
+    expect(obj.plugins).toEqual({ request: [plugin] });
   });
 
   it(`should return the correct Authorization header`, async () => {
     const obj = await createFetchParameters(config, domain, action);
     expect(obj.options.headers.Authorization).toEqual(`Bearer ${getAccessToken()}`);
+  });
+
+  it(`should return the correct body data`, async () => {
+    const obj = await createFetchParameters(config, domain, action, params);
+    expect(obj.options.body).toEqual(JSON.stringify(params));
+  });
+
+  it(`should return the correct body data after running the plugin`, async () => {
+    const obj = await createFetchParameters(
+      { ...config, plugins: { request: [snakeCaseKeys] } },
+      domain,
+      action,
+      params,
+    );
+
+    const snakeCasedParams = {
+      id: '48684984984',
+      user_id: '848494985',
+      first_name: 'john',
+    };
+
+    expect(obj.options.body).toEqual(JSON.stringify(snakeCasedParams));
   });
 
   it(`should return the correct body data`, async () => {
