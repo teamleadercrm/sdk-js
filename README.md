@@ -72,9 +72,9 @@ const api = API({
 
 You can provide an extra array of plugins to manipulate your data.
 
-* `plugins`: (Array) Array of functions that receive data and return (manipulated) data.
+* `plugins`: (Object) has 2 keys `request` / `response`, each key should be an Array with plugins.
 
-A plugin function has the signature `data => data`
+A plugin is a function that receives data (request params or response data) & returns manipulated data, it has the signature `data => data`.
 
 You can provide them in 2 ways.
 
@@ -85,11 +85,11 @@ If you provide plugins at `root level` and at `action level` they are merged int
 
 ```js
 import API from '@teamleader/api';
-import { camelCase, normalize } from '@teamleader/api'; // exported as named exports
+import { camelCase, normalize, snakeCase } from '@teamleader/api'; // exported as named exports
 
 const { users } = API({
   getAccessToken: () => 'thisisatoken', // async or sync function
-  plugins: [camelCase], // at root level
+  plugins: { response: [camelCase], request: [snakeCase] }, // at root level
 });
 
 // own plugin
@@ -97,18 +97,18 @@ const addMeta = data => ({ ...data, meta: { size: data.length } });
 
 const init = async () => {
   // (options, plugins)
-  const me = await users.me(undefined, [normalize, addMeta]); // at action level
+  const me = await users.me(undefined, { response: [normalize, addMeta] }); // at action level
   console.log(me);
 };
 ```
 
-Both camelCase and normalize are exported as named exports for convenience.
+`camelCase`, `snakeCase` & `normalize` are exported as named exports for convenience.
 
 Following the example above:
 
 ### camelCase
 
-Recursively convert object keys to camelCase.
+Recursively convert object keys to camelCase (can be used for response).
 
 data in:
 
@@ -150,6 +150,56 @@ data out:
       userId: '298034',
       userInfo: {
         firstName: 'John',
+      },
+    },
+  ];
+}
+```
+
+### snakeCase
+
+Recursively convert object keys to snakeCase (can be used for request).
+
+data in:
+
+```js
+{
+  data: [
+    {
+      id: '8799873',
+      userId: '6979873',
+      userInfo: {
+        firstName: 'Geoffrey',
+      },
+    },
+    {
+      id: '3287687',
+      userId: '298034',
+      userInfo: {
+        firstName: 'John',
+      },
+    },
+  ];
+}
+```
+
+data out:
+
+```js
+{
+  data: [
+    {
+      id: '8799873',
+      user_id: '6979873',
+      user_info: {
+        first_name: 'Geoffrey',
+      },
+    },
+    {
+      id: '3287687',
+      user_id: '298034',
+      user_info: {
+        first_name: 'John',
       },
     },
   ];
