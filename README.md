@@ -72,7 +72,7 @@ const api = API({
 
 You can provide an extra array of plugins to manipulate your data.
 
-* `plugins`: (Object) has 2 keys `request` / `response`, each key should be an Array with plugins.
+* `plugins`: (Object) has 2 keys `request` / `response`, each property can contain an Array with plugins.
 
 A plugin is a function that receives data (request params or response data) & returns manipulated data, it has the signature `data => data`.
 
