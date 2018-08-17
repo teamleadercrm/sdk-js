@@ -143,5 +143,6 @@ export { default as createDomain } from './utils/createDomain';
 
 export { default as camelCase } from './plugins/camelCase';
 export { default as normalize } from './plugins/normalize';
+export { default as snakeCase } from './plugins/snakeCase';
 
 export default API;
