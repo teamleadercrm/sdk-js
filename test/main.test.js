@@ -1,6 +1,4 @@
-import API from '../src/main';
-import camelCase from '../src/plugins/camelCase';
-import normalize from '../src/plugins/normalize';
+import API, { camelCase, normalize } from '../src/main';
 
 describe('fetch response handling', () => {
   const mockFetch = desiredResponse => (window.fetch = () => Promise.resolve(desiredResponse));

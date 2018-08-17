@@ -1,4 +1,4 @@
-import normalize from '../../src/plugins/normalize';
+import { normalize } from '../../src/main';
 
 describe(`normalize data`, () => {
   it(`should return the data normalized by Id`, () => {
