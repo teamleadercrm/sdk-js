@@ -33,9 +33,7 @@ const checkStatus = response => {
   });
 };
 
-const call = (url, options, plugins = {}) => {
-  const { response: responsePlugins = [] } = plugins;
-
+const call = (url, options, responsePlugins = []) => {
   return fetch(url, options)
     .then(checkStatus)
     .then(data => flow(data, responsePlugins));
