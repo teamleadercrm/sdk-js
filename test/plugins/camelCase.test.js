@@ -1,4 +1,4 @@
-import camelCase from '../../src/plugins/camelCase';
+import { camelCase } from '../../src/main';
 
 describe(`camelCase data`, () => {
   it(`should return the data camelCased`, () => {
