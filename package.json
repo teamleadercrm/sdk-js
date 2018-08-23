@@ -1,6 +1,6 @@
 {
   "name": "@teamleader/api",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Teamleader API SDK",
   "main": "dist/api.cjs.js",
   "module": "dist/api.esm.js",
@@ -59,7 +59,6 @@
   },
   "homepage": "https://github.com/teamleadercrm/sdk-js#readme",
   "dependencies": {
-    "humps": "^2.0.1",
-    "snakecase-keys": "^1.2.0"
+    "humps": "^2.0.1"
   }
 }

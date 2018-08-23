@@ -1,2 +1,6 @@
-import snakeCaseKeys from 'snakecase-keys';
-export default snakeCaseKeys;
+import { decamelizeKeys } from 'humps';
+
+export default object =>
+  decamelizeKeys(object, {
+    separator: '_',
+  });
