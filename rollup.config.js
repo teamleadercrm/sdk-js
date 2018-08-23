@@ -23,7 +23,7 @@ export default [
       resolve(),
       commonjs({
         namedExports: {
-          'node_modules/humps/humps.js': ['camelizeKeys'],
+          'node_modules/humps/humps.js': ['camelizeKeys', 'decamelizeKeys'],
         },
       }),
       uglify(),
