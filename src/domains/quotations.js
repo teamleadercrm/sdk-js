@@ -4,7 +4,7 @@ const quotations = config =>
   createDomain({
     config,
     domain: 'quotations',
-    actions: ['info', ...(config.customActions || [])],
+    actions: ['info', 'download', ...(config.customActions || [])],
   });
 
 export default quotations;
