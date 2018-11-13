@@ -7,6 +7,11 @@ const parseArguments = async ({ config = {}, domain, options = {}, action, param
   const { request: localRequestPlugins = [], response: localResponsePlugins = [] } = options.plugins || {};
   const { request: globalRequestPlugins = [], response: globalResponsePlugins = [] } = config.plugins || {};
 
+  const { fetchAll = false } = options;
+  if (fetchAll === true) {
+    params = { ...params, page: { size: 100 } };
+  }
+
   const parsedOptions = {
     ...options,
     plugins: {
