@@ -34,7 +34,6 @@ const checkStatus = response => {
 };
 
 const call = (url, options = {}, { plugins = [], fetchAll = false } = {}) => {
-  console.log(fetchAll);
   return fetch(url, options)
     .then(checkStatus)
     .then(data => flow(data, plugins));
