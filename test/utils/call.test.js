@@ -56,7 +56,7 @@ describe('fetch response handling', () => {
       }),
     );
 
-    call(undefined, undefined, [camelCase]).then(jsonResponse => {
+    call(undefined, undefined, { plugins: [camelCase] }).then(jsonResponse => {
       expect(jsonResponse).toEqual({ data: { userId: 'bar' } });
     });
   });
