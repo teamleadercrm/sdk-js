@@ -32,12 +32,12 @@ describe(`create fetch parameters`, () => {
 
   it(`should return the correct Authorization header`, async () => {
     const obj = await createFetchParameters(config, domain, action);
-    expect(obj.options.headers.Authorization).toEqual(`Bearer ${getAccessToken()}`);
+    expect(obj.fetchOptions.headers.Authorization).toEqual(`Bearer ${getAccessToken()}`);
   });
 
   it(`should return the correct body data`, async () => {
     const obj = await createFetchParameters(config, domain, action, params);
-    expect(obj.options.body).toEqual(JSON.stringify(params));
+    expect(obj.fetchOptions.body).toEqual(JSON.stringify(params));
   });
 
   it(`should return the correct body data after running the plugin`, async () => {
@@ -54,16 +54,16 @@ describe(`create fetch parameters`, () => {
       first_name: 'john',
     };
 
-    expect(obj.options.body).toEqual(JSON.stringify(snakeCasedParams));
+    expect(obj.fetchOptions.body).toEqual(JSON.stringify(snakeCasedParams));
   });
 
   it(`should return the correct body data`, async () => {
     const obj = await createFetchParameters(config, domain, action, params);
-    expect(obj.options.body).toEqual(JSON.stringify(params));
+    expect(obj.fetchOptions.body).toEqual(JSON.stringify(params));
   });
 
   it(`should return the correct method`, async () => {
     const obj = await createFetchParameters(config, domain, action, params);
-    expect(obj.options.method).toEqual('POST');
+    expect(obj.fetchOptions.method).toEqual('POST');
   });
 });

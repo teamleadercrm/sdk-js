@@ -10,7 +10,7 @@ const createFetchParameters = async (config, domainName, action, params = {}) =>
   const body = JSON.stringify(flow(params, requestPlugins));
   const method = 'POST';
 
-  const options = {
+  const fetchOptions = {
     headers,
     body,
     method,
@@ -18,7 +18,7 @@ const createFetchParameters = async (config, domainName, action, params = {}) =>
 
   return {
     url,
-    options,
+    fetchOptions,
     plugins: config.plugins || {},
   };
 };
