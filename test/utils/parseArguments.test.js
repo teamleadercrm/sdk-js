@@ -1,4 +1,4 @@
-import createFetchParameters from '../../src/utils/createFetchParameters';
+import createFetchParameters from '../../src/utils/parseArguments';
 import snakeCaseKeys from '../../src/plugins/snakeCase';
 
 describe(`create fetch parameters`, () => {
@@ -20,33 +20,37 @@ describe(`create fetch parameters`, () => {
     firstName: 'john',
   };
 
+  const options = {
+    plugins: { request: [plugin] },
+  };
+
   it(`should return the correct url`, async () => {
-    const obj = await createFetchParameters(config, domain, action);
+    const obj = await createFetchParameters({ config, domain, action, params, options });
     expect(obj.url).toEqual(`https://api.teamleader.eu/${domain}.${action}`);
   });
 
   it(`should return the provided plugins`, async () => {
-    const obj = await createFetchParameters(config, domain, action);
-    expect(obj.plugins).toEqual({ request: [plugin] });
+    const obj = await createFetchParameters({ config, domain, action, params, options });
+    expect(obj.options.plugins).toEqual({ request: [plugin, plugin], response: [] });
   });
 
   it(`should return the correct Authorization header`, async () => {
-    const obj = await createFetchParameters(config, domain, action);
+    const obj = await createFetchParameters({ config, domain, action, params, options });
     expect(obj.fetchOptions.headers.Authorization).toEqual(`Bearer ${getAccessToken()}`);
   });
 
   it(`should return the correct body data`, async () => {
-    const obj = await createFetchParameters(config, domain, action, params);
+    const obj = await createFetchParameters({ config, domain, action, params, options });
     expect(obj.fetchOptions.body).toEqual(JSON.stringify(params));
   });
 
   it(`should return the correct body data after running the plugin`, async () => {
-    const obj = await createFetchParameters(
-      { ...config, plugins: { request: [snakeCaseKeys] } },
+    const obj = await createFetchParameters({
+      config: { ...config, plugins: { request: [snakeCaseKeys] } },
       domain,
       action,
       params,
-    );
+    });
 
     const snakeCasedParams = {
       id: '48684984984',
@@ -58,12 +62,12 @@ describe(`create fetch parameters`, () => {
   });
 
   it(`should return the correct body data`, async () => {
-    const obj = await createFetchParameters(config, domain, action, params);
+    const obj = await createFetchParameters({ config, domain, action, params, options });
     expect(obj.fetchOptions.body).toEqual(JSON.stringify(params));
   });
 
   it(`should return the correct method`, async () => {
-    const obj = await createFetchParameters(config, domain, action, params);
+    const obj = await createFetchParameters({ config, domain, action, params, options });
     expect(obj.fetchOptions.method).toEqual('POST');
   });
 });
