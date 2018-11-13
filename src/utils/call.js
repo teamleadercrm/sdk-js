@@ -33,10 +33,10 @@ const checkStatus = response => {
   });
 };
 
-const call = (url, options = {}, { plugins = [], fetchAll = false } = {}) => {
-  return fetch(url, options)
+const call = (url, fetchOptions = {}, { plugins: { response = [] } = {} } = {}) => {
+  return fetch(url, fetchOptions)
     .then(checkStatus)
-    .then(data => flow(data, plugins));
+    .then(data => flow(data, response));
 };
 
 export default call;
