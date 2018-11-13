@@ -2,7 +2,7 @@ import createFetchParameters from './createFetchParameters';
 import call from './call';
 
 const createDomain = ({ config, domain, actions = [], custom = {} } = {}) => {
-  const handler = (action, params, localPlugins) => {
+  const handler = (action, params, { plugins: localPlugins }) => {
     const { request: localRequestPlugins = [], response: localResponsePlugins = [] } = localPlugins;
     const { request: globalRequestPlugins = [], response: globalResponsePlugins = [] } = config.plugins || {};
 
@@ -23,8 +23,10 @@ const createDomain = ({ config, domain, actions = [], custom = {} } = {}) => {
   const methods = actions.reduce(
     (obj, action) => ({
       ...obj,
-      [action]: async (params, plugins = {}) => {
-        const { url, options, plugins: { response: responsePlugins = [] } } = await handler(action, params, plugins);
+      [action]: async (params, { plugins = {} } = {}) => {
+        const { url, options, plugins: { response: responsePlugins = [] } } = await handler(action, params, {
+          plugins,
+        });
         return call(url, options, responsePlugins);
       },
     }),
