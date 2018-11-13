@@ -62,7 +62,7 @@ describe('fetch response handling', () => {
       },
     });
 
-    api.contacts.info({ userId: '84989' }, { response: [normalize] }).then(data => {
+    api.contacts.info({ userId: '84989' }, { plugins: { response: [normalize] } }).then(data => {
       expect(data).toEqual({ byId: { '84845512': { id: '84845512', lastName: 'doe', name: 'john' } } });
     });
   });
