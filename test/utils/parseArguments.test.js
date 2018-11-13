@@ -70,4 +70,15 @@ describe(`create fetch parameters`, () => {
     const obj = await createFetchParameters({ config, domain, action, params, options });
     expect(obj.fetchOptions.method).toEqual('POST');
   });
+
+  it(`should handle fetchAll option correctly`, async () => {
+    const obj = await createFetchParameters({
+      config,
+      domain,
+      action,
+      params,
+      options: { ...options, fetchAll: true },
+    });
+    expect(obj.fetchOptions.body).toEqual(JSON.stringify({ ...params, page: { size: 100 } }));
+  });
 });
