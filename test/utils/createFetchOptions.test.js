@@ -53,4 +53,15 @@ describe(`create fetch options`, () => {
     const obj = await createFetchOptions({ configuration, parameters });
     expect(obj.method).toEqual('POST');
   });
+
+  it(`should return the correct body data with the fetchAll config option`, async () => {
+    const obj = await createFetchOptions({
+      configuration: {
+        ...configuration,
+        fetchAll: true,
+      },
+    });
+
+    expect(obj.body).toEqual(JSON.stringify({ page: { size: 100 } }));
+  });
 });
