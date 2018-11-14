@@ -97,7 +97,7 @@ const addMeta = data => ({ ...data, meta: { size: data.length } });
 
 const init = async () => {
   // (options, plugins)
-  const me = await users.me(undefined, { response: [normalize, addMeta] }); // at action level
+  const me = await users.me(undefined, { plugins: { response: [normalize, addMeta] } }); // at action level
   console.log(me);
 };
 ```
