@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const paymentTerms = config =>
-  createDomain({
-    config,
-    domain: 'paymentTerms',
-    actions: ['list', ...(config.customActions || [])],
+const paymentTerms = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'paymentTerms',
+    actions: ['list', ...(configuration.customActions || [])],
   });
 
 export default paymentTerms;

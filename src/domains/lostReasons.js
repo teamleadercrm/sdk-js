@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const lostReasons = config =>
-  createDomain({
-    config,
-    domain: 'lostReasons',
-    actions: ['list', ...(config.customActions || [])],
+const lostReasons = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'lostReasons',
+    actions: ['list', ...(configuration.customActions || [])],
   });
 
 export default lostReasons;

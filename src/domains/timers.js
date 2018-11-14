@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const timers = config =>
-  createDomain({
-    config,
-    domain: 'timers',
-    actions: ['current', 'start', 'stop', 'update', ...(config.customActions || [])],
+const timers = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'timers',
+    actions: ['current', 'start', 'stop', 'update', ...(configuration.customActions || [])],
   });
 
 export default timers;

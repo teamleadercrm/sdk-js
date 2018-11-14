@@ -1,9 +1,9 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const contacts = config =>
-  createDomain({
-    config,
-    domain: 'contacts',
+const contacts = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'contacts',
     actions: [
       'list',
       'info',
@@ -14,7 +14,7 @@ const contacts = config =>
       'untag',
       'linkToCompany',
       'unlinkFromCompany',
-      ...(config.customActions || []),
+      ...(configuration.customActions || []),
     ],
   });
 

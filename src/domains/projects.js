@@ -1,9 +1,9 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const projects = config =>
-  createDomain({
-    config,
-    domain: 'projects',
+const projects = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'projects',
     actions: [
       'list',
       'info',
@@ -12,7 +12,7 @@ const projects = config =>
       'delete',
       'addParticipant',
       'updateParticipant',
-      ...(config.customActions || []),
+      ...(configuration.customActions || []),
     ],
   });
 

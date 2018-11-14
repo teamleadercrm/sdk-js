@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const dealPhases = config =>
-  createDomain({
-    config,
-    domain: 'dealPhases',
-    actions: ['list', ...(config.customActions || [])],
+const dealPhases = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'dealPhases',
+    actions: ['list', ...(configuration.customActions || [])],
   });
 
 export default dealPhases;

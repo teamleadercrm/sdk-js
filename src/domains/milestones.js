@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const milestones = config =>
-  createDomain({
-    config,
-    domain: 'milestones',
-    actions: ['list', 'info', 'create', 'update', ...(config.customActions || [])],
+const milestones = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'milestones',
+    actions: ['list', 'info', 'create', 'update', ...(configuration.customActions || [])],
   });
 
 export default milestones;

@@ -1,9 +1,9 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const invoices = config =>
-  createDomain({
-    config,
-    domain: 'invoices',
+const invoices = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'invoices',
     actions: [
       'list',
       'info',
@@ -14,7 +14,7 @@ const invoices = config =>
       'book',
       'delete',
       'registerPayment',
-      ...(config.customActions || []),
+      ...(configuration.customActions || []),
     ],
   });
 

@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const users = config =>
-  createDomain({
-    config,
-    domain: 'users',
-    actions: ['me', 'list', 'info', ...(config.customActions || [])],
+const users = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'users',
+    actions: ['me', 'list', 'info', ...(configuration.customActions || [])],
   });
 
 export default users;
