@@ -68,6 +68,24 @@ const api = API({
 });
 ```
 
+## fetchAll
+
+On `local` level you can pass the `fetchAll` option to ask sdk-js to perform multiple requests until all resources are loaded (the max amount of items in 1 go is 100 currently). This can be useful in situations where you can't paginate the response (example: events in month view).
+
+```js
+import API from '@teamleader/api';
+
+const { users } = API({
+  getAccessToken: () => 'thisisatoken', // async or sync function
+});
+
+const init = async () => {
+  // (parameters, localConfiguration)
+  const events = await events.list({ filter: /* ... */ }, { fetchAll: true }); // at action level
+  console.log(events);
+};
+```
+
 ## Plugins
 
 You can provide an extra array of plugins to manipulate your data.
@@ -78,8 +96,8 @@ A plugin is a function that receives data (request params or response data) & re
 
 You can provide them in 2 ways.
 
-* `root` level: passed as an extra argument when creating the root object, used for `all routes`
-* `action` level: per route, only triggered on the `provided action` (second argument for the api call)
+* `global` level: passed as an extra argument when creating the API object, used for `all actions`
+* `local` level: per action, only triggered on the `provided action` (within the config object for the api call)
 
 If you provide plugins at `root level` and at `action level` they are merged into one plugins array in that order
 
@@ -96,8 +114,8 @@ const { users } = API({
 const addMeta = data => ({ ...data, meta: { size: data.length } });
 
 const init = async () => {
-  // (options, plugins)
-  const me = await users.me(undefined, { plugins: { response: [normalize, addMeta] } }); // at action level
+  // (parameters, localConfiguration)
+  const me = await users.me(undefined, { plugins: { response: [normalize, addMeta] }, fetchAll: true }); // at action level
   console.log(me);
 };
 ```
