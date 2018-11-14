@@ -15,6 +15,7 @@ describe(`merge configurations`, () => {
   };
 
   const localConfiguration = {
+    fetchAll: true,
     plugins: {
       request: [snakeCase],
     },
@@ -25,6 +26,7 @@ describe(`merge configurations`, () => {
 
     const expectedConfiguration = {
       baseUrl: 'https://test.teamleader.eu',
+      fetchAll: true,
       getAccessToken,
       plugins: {
         request: [snakeCase],
@@ -38,8 +40,19 @@ describe(`merge configurations`, () => {
   it(`should provide the correct defaults`, async () => {
     const configuration = mergeConfigurations({
       globalConfiguration: { ...globalConfiguration, baseUrl: undefined },
+      localConfiguration: { ...localConfiguration, fetchAll: undefined },
     });
 
-    expect(configuration.baseUrl).toEqual('https://api.teamleader.eu');
+    const expectedConfiguration = {
+      baseUrl: 'https://api.teamleader.eu',
+      fetchAll: false,
+      getAccessToken,
+      plugins: {
+        request: [snakeCase],
+        response: [camelCase],
+      },
+    };
+
+    expect(configuration).toEqual(expectedConfiguration);
   });
 });
