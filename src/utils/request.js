@@ -39,7 +39,7 @@ const singleCall = async (requestUrl, parameters, configuration) => {
   return fetch(requestUrl, fetchOptions);
 };
 
-const multipleCalls = async (requestUrl, parameters, configuration) => {
+const sequentialCalls = async (requestUrl, parameters, configuration) => {
   const fetchOptions = await createFetchOptions({ configuration, parameters });
   return fetch(requestUrl, fetchOptions);
 };
@@ -47,7 +47,7 @@ const multipleCalls = async (requestUrl, parameters, configuration) => {
 const request = async (requestUrl, parameters = {}, configuration = {}) => {
   const { fetchAll, plugins: { response: responsePlugins = [] } = {} } = configuration;
 
-  const call = fetchAll === true ? multipleCalls : singleCall;
+  const call = fetchAll === true ? sequentialCalls : singleCall;
 
   return call(requestUrl, parameters, configuration)
     .then(checkStatus)
