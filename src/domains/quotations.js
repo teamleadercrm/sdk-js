@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const quotations = config =>
-  createDomain({
-    config,
-    domain: 'quotations',
-    actions: ['info', 'download', ...(config.customActions || [])],
+const quotations = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'quotations',
+    actions: ['info', 'download', ...(configuration.customActions || [])],
   });
 
 export default quotations;

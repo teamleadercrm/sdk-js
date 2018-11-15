@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const tags = config =>
-  createDomain({
-    config,
-    domain: 'tags',
-    actions: ['list', ...(config.customActions || [])],
+const tags = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'tags',
+    actions: ['list', ...(configuration.customActions || [])],
   });
 
 export default tags;

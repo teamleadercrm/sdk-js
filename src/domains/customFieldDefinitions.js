@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const customFieldDefinitions = config =>
-  createDomain({
-    config,
-    domain: 'customFieldDefinitions',
-    actions: ['list', 'info', ...(config.customActions || [])],
+const customFieldDefinitions = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'customFieldDefinitions',
+    actions: ['list', 'info', ...(configuration.customActions || [])],
   });
 
 export default customFieldDefinitions;

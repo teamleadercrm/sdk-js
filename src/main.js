@@ -23,9 +23,7 @@ import timeTracking from './domains/timeTracking';
 import users from './domains/users';
 import workTypes from './domains/workTypes';
 
-const createGetAccessToken = config => {
-  const { accessToken, getAccessToken } = config;
-
+const createGetAccessToken = ({ accessToken, getAccessToken }) => {
   if (accessToken) {
     return () => accessToken;
   }
@@ -33,113 +31,113 @@ const createGetAccessToken = config => {
   return getAccessToken;
 };
 
-const API = config => {
-  const getAccessToken = createGetAccessToken(config);
-  const { baseUrl = 'https://api.teamleader.eu', plugins, customActions = {} } = config;
+const API = globalConfiguration => {
+  const getAccessToken = createGetAccessToken(globalConfiguration);
+  const { baseUrl, plugins, customActions = {} } = globalConfiguration;
 
-  const domainConfig = { getAccessToken, baseUrl, plugins };
+  const domainConfiguration = { getAccessToken, baseUrl, plugins };
 
   return {
     activityTypes: activityTypes({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.activityTypes,
     }),
     businessTypes: businessTypes({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.businessTypes,
     }),
     companies: companies({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.companies,
     }),
     contacts: contacts({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.contacts,
     }),
     creditNotes: creditNotes({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.creditNotes,
     }),
     customFieldDefinitions: customFieldDefinitions({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.customFieldDefinitions,
     }),
     dealPhases: dealPhases({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.dealPhases,
     }),
     deals: deals({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.deals,
     }),
     dealSources: dealSources({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.dealSources,
     }),
     departments: departments({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.departments,
     }),
     events: events({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.events,
     }),
     invoices: invoices({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.invoices,
     }),
     lostReasons: lostReasons({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.lostReasons,
     }),
     milestones: milestones({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.milestones,
     }),
     paymentTerms: paymentTerms({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.paymentTerms,
     }),
     productCategories: productCategories({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.productCategories,
     }),
     projects: projects({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.projects,
     }),
     quotations: quotations({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.quotations,
     }),
     tags: tags({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.tags,
     }),
     taxRates: taxRates({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.taxRates,
     }),
     timers: timers({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.timers,
     }),
     timeTracking: timeTracking({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.timeTracking,
     }),
     users: users({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.users,
     }),
     workTypes: workTypes({
-      ...domainConfig,
+      ...domainConfiguration,
       customActions: customActions.workTypes,
     }),
   };
 };
 
-export { default as createDomain } from './utils/createDomain';
+export { default as createDomainWithActions } from './utils/createDomainWithActions';
 
 export { default as camelCase } from './plugins/camelCase';
 export { default as normalize } from './plugins/normalize';

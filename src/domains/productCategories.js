@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const productCategories = config =>
-  createDomain({
-    config,
-    domain: 'productCategories',
-    actions: ['list', ...(config.customActions || [])],
+const productCategories = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'productCategories',
+    actions: ['list', ...(configuration.customActions || [])],
   });
 
 export default productCategories;

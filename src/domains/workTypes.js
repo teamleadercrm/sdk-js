@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const workTypes = config =>
-  createDomain({
-    config,
-    domain: 'workTypes',
-    actions: ['list', ...(config.customActions || [])],
+const workTypes = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'workTypes',
+    actions: ['list', ...(configuration.customActions || [])],
   });
 
 export default workTypes;

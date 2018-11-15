@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const taxRates = config =>
-  createDomain({
-    config,
-    domain: 'taxRates',
-    actions: ['list', ...(config.customActions || [])],
+const taxRates = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'taxRates',
+    actions: ['list', ...(configuration.customActions || [])],
   });
 
 export default taxRates;

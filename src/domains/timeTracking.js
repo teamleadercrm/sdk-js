@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const timeTracking = config =>
-  createDomain({
-    config,
-    domain: 'timeTracking',
-    actions: ['list', 'info', 'add', 'update', 'resume', 'delete', ...(config.customActions || [])],
+const timeTracking = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'timeTracking',
+    actions: ['list', 'info', 'add', 'update', 'resume', 'delete', ...(configuration.customActions || [])],
   });
 
 export default timeTracking;

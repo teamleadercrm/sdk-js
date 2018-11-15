@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const activityTypes = config =>
-  createDomain({
-    config,
-    domain: 'activityTypes',
-    actions: ['list', ...(config.customActions || [])],
+const activityTypes = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'activityTypes',
+    actions: ['list', ...(configuration.customActions || [])],
   });
 
 export default activityTypes;

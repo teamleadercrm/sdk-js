@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const creditNotes = config =>
-  createDomain({
-    config,
-    domain: 'creditNotes',
-    actions: ['list', 'info', 'download', ...(config.customActions || [])],
+const creditNotes = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'creditNotes',
+    actions: ['list', 'info', 'download', ...(configuration.customActions || [])],
   });
 
 export default creditNotes;

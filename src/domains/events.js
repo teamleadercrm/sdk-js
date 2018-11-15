@@ -1,10 +1,10 @@
-import createDomain from '../utils/createDomain';
+import createDomainWithActions from '../utils/createDomainWithActions';
 
-const events = config =>
-  createDomain({
-    config,
-    domain: 'events',
-    actions: ['list', 'info', 'create', 'update', 'cancel', ...(config.customActions || [])],
+const events = configuration =>
+  createDomainWithActions({
+    configuration,
+    domainName: 'events',
+    actions: ['list', 'info', 'create', 'update', 'cancel', ...(configuration.customActions || [])],
   });
 
 export default events;
