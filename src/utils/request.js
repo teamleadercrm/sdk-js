@@ -36,12 +36,12 @@ const checkStatus = response => {
 
 const singleCall = async (requestUrl, parameters, configuration) => {
   const fetchOptions = await createFetchOptions({ configuration, parameters });
-  return fetch(requestUrl, fetchOptions);
+  return fetch(requestUrl, fetchOptions).then(checkStatus);
 };
 
 const sequentialCalls = async (requestUrl, parameters, configuration) => {
   const fetchOptions = await createFetchOptions({ configuration, parameters });
-  return fetch(requestUrl, fetchOptions);
+  return fetch(requestUrl, fetchOptions).then(checkStatus);
 };
 
 const request = async (requestUrl, parameters = {}, configuration = {}) => {
@@ -49,9 +49,7 @@ const request = async (requestUrl, parameters = {}, configuration = {}) => {
 
   const call = fetchAll === true ? sequentialCalls : singleCall;
 
-  return call(requestUrl, parameters, configuration)
-    .then(checkStatus)
-    .then(data => flow(data, responsePlugins));
+  return call(requestUrl, parameters, configuration).then(data => flow(data, responsePlugins));
 };
 
 export default request;
