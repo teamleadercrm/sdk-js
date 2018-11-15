@@ -34,11 +34,22 @@ const checkStatus = response => {
   });
 };
 
-const request = async (requestUrl, parameters = {}, configuration = {}) => {
-  const { plugins: { response: responsePlugins = [] } = {} } = configuration;
+const singleCall = async (requestUrl, parameters, configuration) => {
   const fetchOptions = await createFetchOptions({ configuration, parameters });
+  return fetch(requestUrl, fetchOptions);
+};
 
-  return fetch(requestUrl, fetchOptions)
+const multipleCalls = async (requestUrl, parameters, configuration) => {
+  const fetchOptions = await createFetchOptions({ configuration, parameters });
+  return fetch(requestUrl, fetchOptions);
+};
+
+const request = async (requestUrl, parameters = {}, configuration = {}) => {
+  const { fetchAll, plugins: { response: responsePlugins = [] } = {} } = configuration;
+
+  const call = fetchAll === true ? multipleCalls : singleCall;
+
+  return call(requestUrl, parameters, configuration)
     .then(checkStatus)
     .then(data => flow(data, responsePlugins));
 };
