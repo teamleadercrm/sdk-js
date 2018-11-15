@@ -14,12 +14,11 @@ class FetchError extends Error {
   }
 }
 
-export default response => {
-  return getResponseData(response).then(data => {
+export default response =>
+  getResponseData(response).then(data => {
     if (!response.ok) {
       throw new FetchError(response.status, response.statusText, data);
     }
 
     return data;
   });
-};
