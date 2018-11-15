@@ -1,4 +1,4 @@
-import createRequestHeaders from '../../src/utils/createRequestHeaders';
+import createRequestHeaders from '../../src/request/createRequestHeaders';
 
 describe(`create header object`, () => {
   it(`should be able to pass in a sync getAccessToken function`, async () => {

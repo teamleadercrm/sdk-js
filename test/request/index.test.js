@@ -1,4 +1,4 @@
-import request from '../../src/utils/request';
+import request from '../../src/request';
 import { camelCase } from '../../src/main';
 
 const mockFetch = desiredResponse => (window.fetch = () => Promise.resolve(desiredResponse));

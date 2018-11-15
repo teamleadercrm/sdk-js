@@ -1,4 +1,4 @@
-import createFetchOptions from '../../src/utils/createFetchOptions';
+import createFetchOptions from '../../src/request/createFetchOptions';
 import snakeCaseKeys from '../../src/plugins/snakeCase';
 
 describe(`create fetch options`, () => {

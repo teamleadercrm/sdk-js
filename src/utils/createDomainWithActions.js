@@ -1,4 +1,4 @@
-import request from './request';
+import request from '../request';
 
 import mergeConfigurations from './mergeConfigurations';
 import createRequestUrl from './createRequestUrl';

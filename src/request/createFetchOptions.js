@@ -1,5 +1,5 @@
 import createRequestHeaders from './createRequestHeaders';
-import flow from './flow';
+import flow from '../utils/flow';
 
 export default async ({ configuration, parameters = {} } = {}) => {
   const { getAccessToken, plugins: { request: requestPlugins = [] } = {}, fetchAll } = configuration;
