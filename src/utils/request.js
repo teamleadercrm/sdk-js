@@ -1,4 +1,5 @@
 import flow from './flow';
+import createFetchOptions from './createFetchOptions';
 
 class FetchError extends Error {
   constructor(status, statusText, body) {
@@ -33,10 +34,11 @@ const checkStatus = response => {
   });
 };
 
-const request = (url, fetchOptions = {}, configuration = {}) => {
+const request = async (requestUrl, parameters = {}, configuration = {}) => {
   const { plugins: { response: responsePlugins = [] } = {} } = configuration;
+  const fetchOptions = await createFetchOptions({ configuration, parameters });
 
-  return fetch(url, fetchOptions)
+  return fetch(requestUrl, fetchOptions)
     .then(checkStatus)
     .then(data => flow(data, responsePlugins));
 };
