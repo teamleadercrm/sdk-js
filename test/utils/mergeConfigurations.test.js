@@ -12,6 +12,7 @@ describe(`merge configurations`, () => {
     plugins: {
       response: [camelCase],
     },
+    version: '2018-09-20',
   };
 
   const localConfiguration = {
@@ -30,6 +31,44 @@ describe(`merge configurations`, () => {
         request: [snakeCase],
         response: [camelCase],
       },
+      version: '2018-09-20',
+    };
+
+    expect(configuration).toEqual(expectedConfiguration);
+  });
+
+  it(`should use the correct defaults when optionals are not provided`, async () => {
+    const configuration = mergeConfigurations({
+      globalConfiguration: { ...globalConfiguration, version: undefined, baseUrl: undefined },
+      localConfiguration,
+    });
+
+    const expectedConfiguration = {
+      baseUrl: 'https://api.teamleader.eu',
+      getAccessToken,
+      plugins: {
+        request: [snakeCase],
+        response: [camelCase],
+      },
+    };
+
+    expect(configuration).toEqual(expectedConfiguration);
+  });
+
+  it(`should prefer the local version over the global version `, async () => {
+    const configuration = mergeConfigurations({
+      globalConfiguration,
+      localConfiguration: { ...localConfiguration, version: '2018-11-20' },
+    });
+
+    const expectedConfiguration = {
+      baseUrl: 'https://test.teamleader.eu',
+      getAccessToken,
+      plugins: {
+        request: [snakeCase],
+        response: [camelCase],
+      },
+      version: '2018-11-20',
     };
 
     expect(configuration).toEqual(expectedConfiguration);

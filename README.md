@@ -46,7 +46,26 @@ You should provide `getAccessToken` **or** `accessToken`.
 * `getAccessToken`: (function) a (a)sync function that returns a valid access token, triggered on each API call
 * `accessToken`: (string) an access token
 
-You can optionally pass in a `baseUrl` for the API calls (default is set to `https://api.teamleader.eu`)
+### optional
+
+* `baseUrl`: (string) url the sdk should use to call the API (default is set to `https://api.teamleader.eu`)
+* `version`: (string) specific version of the API in YYYY-MM-DD format (see the [Teamleader documentation](https://developer.teamleader.eu/#/introduction/changes-&-upgrades/upgrading-your-api-version))
+
+`version` can also be provided at action level, in that case it will override the root setting.
+
+```js
+import API from '@teamleader/api';
+
+const { users } = API({
+  getAccessToken: () => 'thisisatoken',
+  version: '2018-10-30',
+});
+
+const init = async () => {
+  // (options, plugins)
+  const me = await users.me(undefined, { version: '2018-09-12' }); // version 2018-09-12 is used
+};
+```
 
 ## Custom actions
 

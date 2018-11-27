@@ -9,7 +9,19 @@ describe(`create header object`, () => {
       Authorization: `Bearer token`,
     };
 
-    await expect(createRequestHeaders(getAccessToken)).resolves.toEqual(headers);
+    await expect(createRequestHeaders({ getAccessToken })).resolves.toEqual(headers);
+  });
+
+  it(`should be able to pass in a version`, async () => {
+    const getAccessToken = () => 'token';
+
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer token`,
+      'X-Api-Version': '2018-09-12',
+    };
+
+    await expect(createRequestHeaders({ getAccessToken, version: '2018-09-12' })).resolves.toEqual(headers);
   });
 
   it(`should be able to pass in a async getAccessToken function`, async () => {
@@ -25,6 +37,6 @@ describe(`create header object`, () => {
       Authorization: `Bearer token`,
     };
 
-    await expect(createRequestHeaders(getAccessToken)).resolves.toEqual(headers);
+    await expect(createRequestHeaders({ getAccessToken })).resolves.toEqual(headers);
   });
 });
