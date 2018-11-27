@@ -51,7 +51,7 @@ You should provide `getAccessToken` **or** `accessToken`.
 * `baseUrl`: (string) url the sdk should use to call the API (default is set to `https://api.teamleader.eu`)
 * `version`: (string) specific version of the API in YYYY-MM-DD format (see the [Teamleader documentation](https://developer.teamleader.eu/#/introduction/changes-&-upgrades/upgrading-your-api-version))
 
-`version` can also be provided at a call level, in that case it will override the global setting.
+`version` can also be provided at action level, in that case it will override the root setting.
 
 ```js
 import API from '@teamleader/api';
