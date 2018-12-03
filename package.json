@@ -60,5 +60,8 @@
   "homepage": "https://github.com/teamleadercrm/sdk-js#readme",
   "dependencies": {
     "humps": "^2.0.1"
+  },
+  "jest": {
+    "testURL": "http://localhost"
   }
 }
