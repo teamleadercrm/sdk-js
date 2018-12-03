@@ -8,7 +8,11 @@ describe('Validate the provided API version', () => {
   it('should throw an error for an invalid format', () => {
     expect(() => {
       validateApiVersion('01-05-20188');
-    }).toThrow();
+    }).toThrowError(
+      'The provided API version is not in the right format. Please provide the API version in the yyyy-mm-dd format.',
+    );
+  });
+
   it('should throw an error because the date is in the future', () => {
     expect(() => {
       validateApiVersion('2030-01-01');
