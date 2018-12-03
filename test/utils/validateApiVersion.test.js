@@ -9,6 +9,12 @@ describe('Validate the provided API version', () => {
     expect(() => {
       validateApiVersion('01-05-20188');
     }).toThrow();
+  it('should throw an error because the date is in the future', () => {
+    expect(() => {
+      validateApiVersion('2030-01-01');
+    }).toThrowError('The provided API version date is in the future. Please provide an API version from the past.');
+  });
+
   it('should recognize that the version date is in the past', () => {
     expect(isVersionDateInTheFuture('2018-09-01')).toBe(false);
   });

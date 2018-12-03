@@ -7,6 +7,10 @@ export const validateApiVersion = version => {
     );
   }
 
+  if (isVersionDateInTheFuture(version)) {
+    throw new Error('The provided API version date is in the future. Please provide an API version from the past.');
+  }
+
   return true;
 };
 
