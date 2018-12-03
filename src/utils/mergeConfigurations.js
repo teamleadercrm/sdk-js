@@ -1,4 +1,5 @@
 import mergePlugins from './mergePlugins';
+import { validateApiVersion } from './validateApiVersion';
 
 export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   const { getAccessToken, baseUrl = 'https://api.teamleader.eu', version: globalVersion } = globalConfiguration; // only destruct what we might need on request level
@@ -13,6 +14,8 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   };
 
   if (localVersion !== undefined) {
+    validateApiVersion(localVersion);
+
     return {
       ...mergedConfiguration,
       version: localVersion,
@@ -20,6 +23,8 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   }
 
   if (globalVersion !== undefined) {
+    validateApiVersion(globalVersion);
+
     return {
       ...mergedConfiguration,
       version: globalVersion,
