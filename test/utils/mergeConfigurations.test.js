@@ -58,7 +58,7 @@ describe(`merge configurations`, () => {
   it(`should prefer the local version over the global version `, async () => {
     const configuration = mergeConfigurations({
       globalConfiguration,
-      localConfiguration: { ...localConfiguration, version: '2018-11-20' },
+      localConfiguration: { ...localConfiguration, version: '2018-11-20', fetchAll: true },
     });
 
     const expectedConfiguration = {
@@ -68,6 +68,7 @@ describe(`merge configurations`, () => {
         request: [snakeCase],
         response: [camelCase],
       },
+      fetchAll: true,
       version: '2018-11-20',
     };
 
