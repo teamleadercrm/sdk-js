@@ -1,5 +1,5 @@
-import request from '../../src/utils/request';
-import { camelCase } from '../../src/main';
+import request from '../../../src/utils/request';
+import { camelCase } from '../../../src/main';
 
 const mockFetch = desiredResponse => (window.fetch = () => Promise.resolve(desiredResponse));
 const response = ({ ok, statusText, status, contentType, json, text }) => {
