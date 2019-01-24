@@ -85,9 +85,10 @@ describe(`merge configurations`, () => {
   it('should throw an error because an invalid global API version was provided', () => {
     expect(() => {
       mergeConfigurations({
+        localConfiguration,
         globalConfiguration: { ...globalConfiguration, version: '2018-12-35' },
       });
-    }).toThrowError('The provided global API version is not valid.');
+    }).toThrowError(`'2018-12-35' is not a valid API version.`);
   });
 
   it('should throw an error because an invalid local API version was provided', () => {
@@ -96,6 +97,6 @@ describe(`merge configurations`, () => {
         localConfiguration: { ...localConfiguration, version: '2018-12-35' },
         globalConfiguration,
       });
-    }).toThrowError('The provided local API version is not valid.');
+    }).toThrowError(`'2018-12-35' is not a valid API version.`);
   });
 });
