@@ -15,7 +15,7 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
 
   if (localVersion !== undefined) {
     if (!isValidDate(localVersion)) {
-      throw new Error('The provided local API version is not valid.');
+      throw new Error(`'${localVersion}' is not a valid API version.`);
     }
 
     return {
@@ -26,7 +26,7 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
 
   if (globalVersion !== undefined) {
     if (!isValidDate(globalVersion)) {
-      throw new Error('The provided global API version is not valid.');
+      throw new Error(`'${globalVersion}' is not a valid API version.`);
     }
 
     return {
