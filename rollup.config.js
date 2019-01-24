@@ -1,7 +1,8 @@
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
-import uglify from 'rollup-plugin-uglify';
+import { uglify } from 'rollup-plugin-uglify';
+import bundleSize from 'rollup-plugin-bundle-size';
 
 import pkg from './package.json';
 
@@ -27,6 +28,7 @@ export default [
         },
       }),
       uglify(),
+      bundleSize(),
     ],
   },
 
@@ -44,6 +46,7 @@ export default [
         runtimeHelpers: true,
         exclude: 'node_modules/**',
       }),
+      bundleSize(),
     ],
     output: [{ file: pkg.main, format: 'cjs' }, { file: pkg.module, format: 'es' }],
   },
