@@ -16,8 +16,8 @@ export const validateApiVersion = version => {
 
 export const isVersionDateInTheFuture = version => {
   const today = new Date();
-  const versionDateIndexes = version.split('-').map(date => parseInt(date, 10));
-  const apiVersionDate = new Date(versionDateIndexes[0], versionDateIndexes[1] - 1, versionDateIndexes[2]);
+  const [year, month, day] = version.split('-').map(date => parseInt(date, 10));
+  const apiVersionDate = new Date(year, month - 1, day);
 
   return today - apiVersionDate < 0;
 };
