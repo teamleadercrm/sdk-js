@@ -2,7 +2,7 @@ import mergePlugins from './mergePlugins';
 
 export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   const { getAccessToken, baseUrl = 'https://api.teamleader.eu', version: globalVersion } = globalConfiguration; // only destruct what we might need on request level
-  const { version: localVersion } = localConfiguration;
+  const { version: localVersion, fetchAll } = localConfiguration;
 
   const plugins = mergePlugins(globalConfiguration.plugins, localConfiguration.plugins);
 
@@ -10,6 +10,7 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
     getAccessToken,
     baseUrl,
     plugins,
+    fetchAll,
   };
 
   if (localVersion !== undefined) {
