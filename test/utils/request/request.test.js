@@ -46,6 +46,26 @@ describe('fetch response handling', () => {
     });
   });
 
+  it('returns the correct data with fetchAll enabled', () => {
+    mockFetch(
+      response({
+        ok: true,
+        contentType: 'application/json',
+        json: { data: { user_id: 'bar' } },
+      }),
+    );
+
+    request(undefined, undefined, { plugins: { response: [camelCase] }, fetchAll: true }).then(jsonResponse => {
+      expect(jsonResponse).toEqual({
+        data: [
+          { name: 'John', lastName: 'Doe' },
+          { name: 'Alex', lastName: 'Turner' },
+          { name: 'William', lastName: 'Hurt' },
+        ],
+      });
+    });
+  });
+
   it('throws an error with json if the response was unsuccessful', () => {
     mockFetch(
       response({
