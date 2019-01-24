@@ -75,6 +75,25 @@ describe(`merge configurations`, () => {
     expect(configuration).toEqual(expectedConfiguration);
   });
 
+  it(`should ignore invalid keys`, async () => {
+    const configuration = mergeConfigurations({
+      globalConfiguration: { ...globalConfiguration, fetchAll: true },
+      localConfiguration: { ...localConfiguration, blabla: 'checkitout' },
+    });
+
+    const expectedConfiguration = {
+      baseUrl: 'https://test.teamleader.eu',
+      getAccessToken,
+      plugins: {
+        request: [snakeCase],
+        response: [camelCase],
+      },
+      version: '2018-09-20',
+    };
+
+    expect(configuration).toEqual(expectedConfiguration);
+  });
+
   it(`should provide the correct defaults`, async () => {
     const configuration = mergeConfigurations({
       globalConfiguration: { ...globalConfiguration, baseUrl: undefined },
