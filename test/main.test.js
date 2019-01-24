@@ -101,6 +101,7 @@ describe('fetch response handling', () => {
       'timeTracking',
       'users',
       'workTypes',
+      'withholdingTaxRates',
     ];
 
     expect(Object.keys(api).sort()).toEqual(domains.sort());
