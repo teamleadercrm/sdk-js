@@ -32,6 +32,9 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-uglify": "^3.0.0"
   },
+  "dependencies": {
+    "humps": "^2.0.1"
+  },
   "scripts": {
     "build": "rollup -c",
     "start": "rollup -c -w",
@@ -53,12 +56,13 @@
     "api",
     "teamleader"
   ],
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/teamleadercrm/sdk-js/issues"
   },
-  "homepage": "https://github.com/teamleadercrm/sdk-js#readme",
-  "dependencies": {
-    "humps": "^2.0.1"
-  }
+  "homepage": "https://github.com/teamleadercrm/sdk-js#readme"
 }
