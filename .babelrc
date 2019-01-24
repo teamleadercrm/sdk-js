@@ -1,19 +1,18 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
         "modules": false,
         "targets": {
-          "browsers": ["last 2 versions", "ie >= 11"]
+          "browsers": [">0.25%", "not op_mini all"]
         }
       }
     ]
   ],
   "env": {
     "test": {
-      "presets": [["env"]]
+      "presets": [["@babel/preset-env"]]
     }
-  },
-  "plugins": ["transform-object-rest-spread", "transform-runtime"]
+  }
 }

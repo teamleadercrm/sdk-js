@@ -6,7 +6,12 @@ export default async ({ configuration, parameters } = {}) => {
 
   return {
     headers: await createRequestHeaders({ getAccessToken, version }),
-    body: JSON.stringify(flow(parameters, requestPlugins)),
+    body: JSON.stringify(
+      flow(
+        parameters,
+        requestPlugins,
+      ),
+    ),
     method: 'POST',
   };
 };
