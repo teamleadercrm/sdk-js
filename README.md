@@ -31,7 +31,7 @@ const init = async () => {
 };
 ```
 
-All domains from [developer.teamleader.eu](https://developer.teamleader.eu/) are available
+The [domains config file](/src/config/domains.js) should reflect [developer.teamleader.eu](https://developer.teamleader.eu/), please [open PRs](https://github.com/teamleadercrm/sdk-js/compare) to keep it in sync.
 
 This module is also available as UMD build (in the example below via unpkg).
 
@@ -43,13 +43,13 @@ This module is also available as UMD build (in the example below via unpkg).
 
 You should provide `getAccessToken` **or** `accessToken`.
 
-* `getAccessToken`: (function) a (a)sync function that returns a valid access token, triggered on each API call
-* `accessToken`: (string) an access token
+- `getAccessToken`: (function) a (a)sync function that returns a valid access token, triggered on each API call
+- `accessToken`: (string) an access token
 
 ### optional
 
-* `baseUrl`: (string) url the sdk should use to call the API (default is set to `https://api.teamleader.eu`)
-* `version`: (string) specific version of the API in YYYY-MM-DD format (see the [Teamleader documentation](https://developer.teamleader.eu/#/introduction/changes-&-upgrades/upgrading-your-api-version))
+- `baseUrl`: (string) url the sdk should use to call the API (default is set to `https://api.teamleader.eu`)
+- `version`: (string) specific version of the API in YYYY-MM-DD format (see the [Teamleader documentation](https://developer.teamleader.eu/#/introduction/changes-&-upgrades/upgrading-your-api-version))
 
 `version` can also be provided at action level, in that case it will override the root setting.
 
@@ -71,7 +71,7 @@ const init = async () => {
 
 You can also add extra custom actions to the domains (which will be handled the same way as the available actions).
 
-* `customActions`: (Object) domain as property -> array of actions as value
+- `customActions`: (Object) domain as property -> array of actions as value
 
 In the example below we are extending `api.contacts` with `deleted` and `api.tags` with `deleted` and `linkToInvoice`
 
@@ -91,14 +91,14 @@ const api = API({
 
 You can provide an extra array of plugins to manipulate your data.
 
-* `plugins`: (Object) has 2 keys `request` / `response`, each property can contain an Array with plugins.
+- `plugins`: (Object) has 2 keys `request` / `response`, each property can contain an Array with plugins.
 
 A plugin is a function that receives data (request params or response data) & returns manipulated data, it has the signature `data => data`.
 
 You can provide them in 2 ways.
 
-* `root` level: passed as an extra argument when creating the root object, used for `all routes`
-* `action` level: per route, only triggered on the `provided action` (second argument for the api call)
+- `root` level: passed as an extra argument when creating the root object, used for `all routes`
+- `action` level: per route, only triggered on the `provided action` (second argument for the api call)
 
 If you provide plugins at `root level` and at `action level` they are merged into one plugins array in that order
 
