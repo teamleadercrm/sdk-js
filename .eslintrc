@@ -1,7 +1,6 @@
 {
-  "parser": "babel-eslint",
   "extends": ["standard", "prettier"],
-  "plugins": ["babel", "prettier"],
+  "plugins": ["prettier"],
   "env": {
     "browser": true,
     "jest": true

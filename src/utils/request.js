@@ -38,7 +38,12 @@ const request = (url, fetchOptions = {}, configuration = {}) => {
 
   return fetch(url, fetchOptions)
     .then(checkStatus)
-    .then(data => flow(data, responsePlugins));
+    .then(data =>
+      flow(
+        data,
+        responsePlugins,
+      ),
+    );
 };
 
 export default request;
