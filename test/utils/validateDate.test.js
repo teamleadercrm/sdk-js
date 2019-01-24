@@ -1,4 +1,4 @@
-import { isValidDate } from '../../src/utils/validateDate';
+import isValidDate from '../../src/utils/isValidDate';
 
 describe('Test the date validator', () => {
   it('should validate the format of the provided date as true', () => {

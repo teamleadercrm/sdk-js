@@ -1,4 +1,4 @@
-export const isValidDate = date => {
+export default date => {
   const API_VERSION_FORMAT_REGEX = /^([0-9]{4})-([0-9]{2})-([0-9]{2})$/g;
 
   return API_VERSION_FORMAT_REGEX.test(date) && isValid(date);

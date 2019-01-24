@@ -1,5 +1,5 @@
 import mergePlugins from './mergePlugins';
-import { isValidDate } from './validateDate';
+import isValidDate from './isValidDate';
 
 export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   const { getAccessToken, baseUrl = 'https://api.teamleader.eu', version: globalVersion } = globalConfiguration; // only destruct what we might need on request level
