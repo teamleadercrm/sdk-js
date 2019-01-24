@@ -81,4 +81,21 @@ describe(`merge configurations`, () => {
 
     expect(configuration.baseUrl).toEqual('https://api.teamleader.eu');
   });
+
+  it('should throw an error because an invalid global API version was provided', () => {
+    expect(() => {
+      mergeConfigurations({
+        globalConfiguration: { ...globalConfiguration, version: '2018-12-35' },
+      });
+    }).toThrowError('The provided global API version is not valid.');
+  });
+
+  it('should throw an error because an invalid local API version was provided', () => {
+    expect(() => {
+      mergeConfigurations({
+        localConfiguration: { ...localConfiguration, version: '2018-12-35' },
+        globalConfiguration,
+      });
+    }).toThrowError('The provided local API version is not valid.');
+  });
 });
