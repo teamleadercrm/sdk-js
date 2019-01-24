@@ -1,4 +1,5 @@
 import mergePlugins from './mergePlugins';
+import { isValidDate } from './validateDate';
 
 export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   const { getAccessToken, baseUrl = 'https://api.teamleader.eu', version: globalVersion } = globalConfiguration; // only destruct what we might need on request level
@@ -13,6 +14,10 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   };
 
   if (localVersion !== undefined) {
+    if (!isValidDate(localVersion)) {
+      throw new Error('The provided local API version is not valid.');
+    }
+
     return {
       ...mergedConfiguration,
       version: localVersion,
@@ -20,6 +25,10 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   }
 
   if (globalVersion !== undefined) {
+    if (!isValidDate(globalVersion)) {
+      throw new Error('The provided global API version is not valid.');
+    }
+
     return {
       ...mergedConfiguration,
       version: globalVersion,
