@@ -15,7 +15,7 @@ const response = ({ ok, statusText, status, contentType, json, text }) => {
 };
 
 describe('getResponseData', () => {
-  it('returns json when the response is type "application/json"', () => {
+  it('returns json when the response is type "application/json"', async () => {
     const testResponse = response({
       ok: true,
       contentType: 'application/json',
@@ -24,16 +24,18 @@ describe('getResponseData', () => {
       },
     });
 
-    getResponseData(testResponse).then(data => expect(data).toEqual({ foo: 'bar' }));
+    const data = await getResponseData(testResponse);
+    expect(data).toEqual({ foo: 'bar' });
   });
 
-  it('returns text when the response is type "application/text"', () => {
+  it('returns text when the response is type "application/text"', async () => {
     const testResponse = response({
       ok: true,
       contentType: 'application/text',
       text: 'test',
     });
 
-    getResponseData(testResponse).then(data => expect(data).toEqual('test'));
+    const data = await getResponseData(testResponse);
+    expect(data).toEqual('test');
   });
 });

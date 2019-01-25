@@ -16,17 +16,18 @@ const response = ({ ok, statusText, status, contentType, json, text }) => {
 };
 
 describe('checkStatus', () => {
-  it('returns the data on true status', () => {
+  it('returns the data on true status', async () => {
     const testResponse = response({
       ok: true,
       contentType: 'application/json',
       json: { data: 'this is correct' },
     });
 
-    checkStatus(testResponse).then(data => expect(data).toEqual({ data: 'this is correct' }));
+    const data = await checkStatus(testResponse);
+    expect(data).toEqual({ data: 'this is correct' });
   });
 
-  it('throws an error on false status', () => {
+  it('throws an error on false status', async () => {
     const testError = new FetchError(404, 'Not found.', { error: 'this is an error' });
 
     const testResponse = response({
@@ -37,6 +38,10 @@ describe('checkStatus', () => {
       json: { error: 'this is an error' },
     });
 
-    checkStatus(testResponse).catch(error => expect(error).toEqual(testError));
+    try {
+      checkStatus(testResponse);
+    } catch (error) {
+      expect(error).toEqual(testError);
+    }
   });
 });

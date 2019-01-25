@@ -16,7 +16,7 @@ const response = ({ ok, statusText, status, contentType, json, text }) => {
 };
 
 describe('fetch response handling', () => {
-  it('returns json when the response was successful', () => {
+  it('returns json when the response was successful', async () => {
     mockFetch(
       response({
         ok: true,
@@ -25,14 +25,14 @@ describe('fetch response handling', () => {
       }),
     );
 
-    request().then(jsonResponse => {
-      expect(jsonResponse).toEqual({
-        foo: 'bar',
-      });
+    const jsonResponse = await request();
+
+    expect(jsonResponse).toEqual({
+      foo: 'bar',
     });
   });
 
-  it('returns the correct data after running the plugins', () => {
+  it('returns the correct data after running the plugins', async () => {
     mockFetch(
       response({
         ok: true,
@@ -41,12 +41,12 @@ describe('fetch response handling', () => {
       }),
     );
 
-    request(undefined, undefined, { plugins: { response: [camelCase] } }).then(jsonResponse => {
-      expect(jsonResponse).toEqual({ data: { userId: 'bar' } });
-    });
+    const jsonResponse = await request(undefined, undefined, { plugins: { response: [camelCase] } });
+
+    expect(jsonResponse).toEqual({ data: { userId: 'bar' } });
   });
 
-  it('returns the correct data with fetchAll enabled', () => {
+  it('returns the correct data with fetchAll enabled', async () => {
     mockFetch(
       response({
         ok: true,
@@ -55,18 +55,18 @@ describe('fetch response handling', () => {
       }),
     );
 
-    request(undefined, undefined, { plugins: { response: [camelCase] }, fetchAll: true }).then(jsonResponse => {
-      expect(jsonResponse).toEqual({
-        data: [
-          { name: 'John', lastName: 'Doe' },
-          { name: 'Alex', lastName: 'Turner' },
-          { name: 'William', lastName: 'Hurt' },
-        ],
-      });
+    const jsonResponse = await request(undefined, undefined, { plugins: { response: [camelCase] }, fetchAll: true });
+
+    expect(jsonResponse).toEqual({
+      data: [
+        { name: 'John', lastName: 'Doe' },
+        { name: 'Alex', lastName: 'Turner' },
+        { name: 'William', lastName: 'Hurt' },
+      ],
     });
   });
 
-  it('throws an error with json if the response was unsuccessful', () => {
+  it('throws an error with json if the response was unsuccessful', async () => {
     mockFetch(
       response({
         ok: false,
@@ -79,13 +79,15 @@ describe('fetch response handling', () => {
       }),
     );
 
-    request().catch(e => {
+    try {
+      await request();
+    } catch (e) {
       expect(e.status).toEqual(500);
       expect(e.statusText).toEqual('There was an error 500');
       expect(e.message).toEqual('There was an error 500');
       expect(e.body).toEqual({
         errors: ['There was an error'],
       });
-    });
+    }
   });
 });

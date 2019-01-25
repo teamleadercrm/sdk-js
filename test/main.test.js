@@ -46,7 +46,7 @@ describe('fetch response handling', () => {
     expect(Object.keys(api.dealPhases).sort()).toEqual(dealPhasesMethods.sort());
   });
 
-  it('should run the correct response plugins', () => {
+  it('should run the correct response plugins', async () => {
     mockFetch(
       response({
         ok: true,
@@ -62,9 +62,8 @@ describe('fetch response handling', () => {
       },
     });
 
-    api.contacts.info({ userId: '84989' }, { plugins: { response: [normalize] } }).then(data => {
-      expect(data).toEqual({ byId: { '84845512': { id: '84845512', lastName: 'doe', name: 'john' } } });
-    });
+    const data = await api.contacts.info({ userId: '84989' }, { plugins: { response: [normalize] } });
+    expect(data).toEqual({ byId: { '84845512': { id: '84845512', lastName: 'doe', name: 'john' } } });
   });
 
   it('shoud include all domains', () => {

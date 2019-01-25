@@ -1,7 +1,7 @@
 import singleRequest from './singleRequest';
 import applyPlugins from '../applyPlugins';
 
-const request = (url, fetchOptions = {}, configuration = {}) => {
+const request = async (url, fetchOptions = {}, configuration = {}) => {
   const { plugins: { response: responsePlugins = [] } = {}, fetchAll = false } = configuration;
 
   if (fetchAll) {
@@ -12,7 +12,8 @@ const request = (url, fetchOptions = {}, configuration = {}) => {
     return Promise.resolve('todo');
   }
 
-  return singleRequest(url, fetchOptions).then(data => applyPlugins(data, responsePlugins));
+  const data = await singleRequest(url, fetchOptions);
+  return applyPlugins(data, responsePlugins);
 };
 
 export default request;
