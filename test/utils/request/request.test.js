@@ -16,14 +16,14 @@ const response = ({ ok, statusText, status, contentType, json, text }) => {
 };
 
 describe('fetch response handling', () => {
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
+
   it('returns json when the response was successful', async () => {
-    mockFetch(
-      response({
-        ok: true,
-        contentType: 'application/json',
-        json: { foo: 'bar' },
-      }),
-    );
+    fetch.mockResponseOnce(JSON.stringify({ foo: 'bar' }), {
+      headers: { 'content-type': 'application/json' },
+    });
 
     const jsonResponse = await request();
 
@@ -33,13 +33,9 @@ describe('fetch response handling', () => {
   });
 
   it('returns the correct data after running the plugins', async () => {
-    mockFetch(
-      response({
-        ok: true,
-        contentType: 'application/json',
-        json: { data: { user_id: 'bar' } },
-      }),
-    );
+    fetch.mockResponseOnce(JSON.stringify({ data: { user_id: 'bar' } }), {
+      headers: { 'content-type': 'application/json' },
+    });
 
     const jsonResponse = await request(undefined, undefined, { plugins: { response: [camelCase] } });
 
@@ -47,13 +43,9 @@ describe('fetch response handling', () => {
   });
 
   it('returns the correct data with fetchAll enabled', async () => {
-    mockFetch(
-      response({
-        ok: true,
-        contentType: 'application/json',
-        json: { data: { user_id: 'bar' } },
-      }),
-    );
+    fetch.mockResponseOnce(JSON.stringify({ data: { user_id: 'bar' } }), {
+      headers: { 'content-type': 'application/json' },
+    });
 
     const jsonResponse = await request(undefined, undefined, { plugins: { response: [camelCase] }, fetchAll: true });
 
@@ -67,17 +59,12 @@ describe('fetch response handling', () => {
   });
 
   it('throws an error with json if the response was unsuccessful', async () => {
-    mockFetch(
-      response({
-        ok: false,
-        contentType: 'application/json',
-        json: {
-          errors: ['There was an error'],
-        },
-        status: 500,
-        statusText: 'There was an error 500',
-      }),
-    );
+    fetch.mockResponseOnce(JSON.stringify({ errors: ['There was an error'] }), {
+      ok: false,
+      status: 500,
+      statusText: 'There was an error 500',
+      headers: { 'content-type': 'application/json' },
+    });
 
     try {
       await request();

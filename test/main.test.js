@@ -1,20 +1,9 @@
 import API, { camelCase, normalize } from '../src/main';
 
 describe('fetch response handling', () => {
-  const mockFetch = desiredResponse => (window.fetch = () => Promise.resolve(desiredResponse));
-  const response = ({ ok, statusText, status, contentType, json, text }) => {
-    const headers = new Map();
-    headers.set('content-type', contentType);
-
-    return {
-      ok,
-      headers,
-      status,
-      statusText,
-      json: () => Promise.resolve(json),
-      text: () => Promise.resolve(text),
-    };
-  };
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
 
   it('shoud add the customActions to the correct domains', () => {
     const api = API({
@@ -47,13 +36,9 @@ describe('fetch response handling', () => {
   });
 
   it('should run the correct response plugins', async () => {
-    mockFetch(
-      response({
-        ok: true,
-        contentType: 'application/json',
-        json: { data: { id: '84845512', name: 'john', last_name: 'doe' } },
-      }),
-    );
+    fetch.mockResponseOnce(JSON.stringify({ data: { id: '84845512', name: 'john', last_name: 'doe' } }), {
+      headers: { 'content-type': 'application/json' },
+    });
 
     const api = API({
       getAccessToken: () => 'thisisatoken', // async or sync function
