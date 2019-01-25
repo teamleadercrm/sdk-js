@@ -8,8 +8,8 @@ describe(`create request url`, () => {
   const domainName = 'contacts';
   const actionName = 'list';
 
-  it(`should return the correct url`, async () => {
-    const requestUrl = await createRequestUrl({ configuration, domainName, actionName });
+  it(`should return the correct url`, () => {
+    const requestUrl = createRequestUrl({ configuration, domainName, actionName });
     expect(requestUrl).toEqual(`https://api.teamleader.eu/${domainName}.${actionName}`);
   });
 });

@@ -21,7 +21,7 @@ describe(`merge configurations`, () => {
     },
   };
 
-  it(`should merge the configurations in a correct way`, async () => {
+  it(`should merge the configurations in a correct way`, () => {
     const configuration = mergeConfigurations({ globalConfiguration, localConfiguration });
 
     const expectedConfiguration = {
@@ -37,7 +37,7 @@ describe(`merge configurations`, () => {
     expect(configuration).toEqual(expectedConfiguration);
   });
 
-  it(`should use the correct defaults when optionals are not provided`, async () => {
+  it(`should use the correct defaults when optionals are not provided`, () => {
     const configuration = mergeConfigurations({
       globalConfiguration: { ...globalConfiguration, version: undefined, baseUrl: undefined },
       localConfiguration,
@@ -55,7 +55,7 @@ describe(`merge configurations`, () => {
     expect(configuration).toEqual(expectedConfiguration);
   });
 
-  it(`should prefer the local version over the global version `, async () => {
+  it(`should prefer the local version over the global version `, () => {
     const configuration = mergeConfigurations({
       globalConfiguration,
       localConfiguration: { ...localConfiguration, version: '2018-11-20', fetchAll: true },
@@ -75,7 +75,7 @@ describe(`merge configurations`, () => {
     expect(configuration).toEqual(expectedConfiguration);
   });
 
-  it(`should ignore invalid keys`, async () => {
+  it(`should ignore invalid keys`, () => {
     const configuration = mergeConfigurations({
       globalConfiguration: { ...globalConfiguration, fetchAll: true },
       localConfiguration: { ...localConfiguration, blabla: 'checkitout' },
@@ -94,7 +94,7 @@ describe(`merge configurations`, () => {
     expect(configuration).toEqual(expectedConfiguration);
   });
 
-  it(`should provide the correct defaults`, async () => {
+  it(`should provide the correct defaults`, () => {
     const configuration = mergeConfigurations({
       globalConfiguration: { ...globalConfiguration, baseUrl: undefined },
     });

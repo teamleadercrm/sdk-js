@@ -39,7 +39,7 @@ describe('checkStatus', () => {
     });
 
     try {
-      checkStatus(testResponse);
+      await checkStatus(testResponse);
     } catch (error) {
       expect(error).toEqual(testError);
     }
