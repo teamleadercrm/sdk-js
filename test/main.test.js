@@ -36,7 +36,7 @@ describe('fetch response handling', () => {
   });
 
   it('should run the correct response plugins', async () => {
-    fetch.mockResponseOnce(JSON.stringify({ data: { id: '84845512', name: 'john', last_name: 'doe' } }), {
+    fetch.once(JSON.stringify({ data: { id: '84845512', name: 'john', last_name: 'doe' } }), {
       headers: { 'content-type': 'application/json' },
     });
 
