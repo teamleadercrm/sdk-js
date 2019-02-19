@@ -39,4 +39,12 @@ describe(`create header object`, () => {
 
     await expect(createRequestHeaders({ getAccessToken })).resolves.toEqual(headers);
   });
+
+  it(`should only keep content type when no options are provided`, async () => {
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+
+    await expect(createRequestHeaders()).resolves.toEqual(headers);
+  });
 });
