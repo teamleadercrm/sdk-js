@@ -59,6 +59,19 @@ describe(`merge configurations`, () => {
     expect(configuration).toEqual(expectedConfiguration);
   });
 
+  it(`should create function out of provided accessToken`, async () => {
+    const customGlobalConfiguration = {
+      baseUrl: 'https://test.teamleader.eu',
+      accessToken: 'accessToken',
+      plugins: {
+        response: [camelCase],
+      },
+    };
+
+    const configuration = mergeConfigurations({ globalConfiguration: customGlobalConfiguration, localConfiguration });
+    expect(configuration.getAccessToken()).toEqual(customGlobalConfiguration.accessToken);
+  });
+
   it(`should use the correct defaults when optionals are not provided`, async () => {
     const configuration = mergeConfigurations({
       globalConfiguration: { ...globalConfiguration, version: undefined, baseUrl: undefined },
