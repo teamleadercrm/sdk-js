@@ -22,7 +22,7 @@ yarn add @teamleader/api
 import API from '@teamleader/api';
 
 const { users } = API({
-  getAccessToken: () => 'thisisatoken', // async or sync function
+  getAccessToken: () => 'thisisatoken',
 });
 
 const init = async () => {
@@ -41,17 +41,34 @@ This module is also available as UMD build (in the example below via unpkg).
 
 ## Configuration
 
-You should provide `getAccessToken` **or** `accessToken`.
+All configuration is optional.
 
-- `getAccessToken`: (function) a (a)sync function that returns a valid access token, triggered on each API call
+`getAccessToken` **or** `accessToken` (when both are provided `getAccessToken` has priority)
+
+- `getAccessToken`: (function) an (a)sync function that returns a valid access token, triggered on each API call
+
+```js
+import API from '@teamleader/api';
+
+const { users } = API({
+  getAccessToken: () => 'thisisatoken',
+});
+```
+
 - `accessToken`: (string) an access token
 
-### optional
+```js
+import API from '@teamleader/api';
+
+const { users } = API({
+  accessToken: 'thisisatoken',
+});
+```
 
 - `baseUrl`: (string) url the sdk should use to call the API (default is set to `https://api.teamleader.eu`)
 - `version`: (string) specific version of the API in YYYY-MM-DD format (see the [Teamleader documentation](https://developer.teamleader.eu/#/introduction/changes-&-upgrades/upgrading-your-api-version))
 
-`version` can also be provided at action level, in that case it will override the root setting.
+`version` can also be provided at local level, in that case it will override the global setting.
 
 ```js
 import API from '@teamleader/api';
@@ -97,10 +114,10 @@ A plugin is a function that receives data (request params or response data) & re
 
 You can provide them in 2 ways.
 
-- `root` level: passed as an extra argument when creating the root object, used for `all routes`
-- `action` level: per route, only triggered on the `provided action` (second argument for the api call)
+- `global` level: passed as an extra argument when creating the API object, used for `all domains`
+- `local` level: per action, only triggered on the `provided action` (second argument for the api call)
 
-If you provide plugins at `root level` and at `action level` they are merged into one plugins array in that order
+If you provide plugins at `global level` and at `local level` they are merged into one plugins array in that order
 
 ```js
 import API from '@teamleader/api';
