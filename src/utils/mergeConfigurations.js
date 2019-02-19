@@ -1,30 +1,35 @@
 import mergePlugins from './mergePlugins';
 
+const createGetAccessToken = ({ accessToken, getAccessToken }) => {
+  if (getAccessToken) {
+    return getAccessToken;
+  }
+
+  if (accessToken) {
+    return () => accessToken;
+  }
+
+  return undefined;
+};
+
 export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
-  const { getAccessToken, baseUrl = 'https://api.teamleader.eu', version: globalVersion } = globalConfiguration; // only destruct what we might need on request level
+  const {
+    baseUrl = 'https://api.teamleader.eu',
+    version: globalVersion,
+    accessToken,
+    getAccessToken,
+  } = globalConfiguration; // only destruct what we might need on request level
+
   const { version: localVersion } = localConfiguration;
 
   const plugins = mergePlugins(globalConfiguration.plugins, localConfiguration.plugins);
 
-  const mergedConfiguration = {
-    getAccessToken,
+  return {
     baseUrl,
     plugins,
+    ...(accessToken || getAccessToken
+      ? { getAccessToken: createGetAccessToken({ getAccessToken, accessToken }) }
+      : undefined),
+    ...(localVersion || globalVersion ? { version: localVersion || globalVersion } : undefined),
   };
-
-  if (localVersion !== undefined) {
-    return {
-      ...mergedConfiguration,
-      version: localVersion,
-    };
-  }
-
-  if (globalVersion !== undefined) {
-    return {
-      ...mergedConfiguration,
-      version: globalVersion,
-    };
-  }
-
-  return mergedConfiguration;
 };
