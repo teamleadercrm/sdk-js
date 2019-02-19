@@ -8,6 +8,7 @@ describe(`merge configurations`, () => {
   const globalConfiguration = {
     baseUrl: 'https://test.teamleader.eu',
     getAccessToken,
+    accessToken: 'test',
     wrong_property: 'okokokoko',
     plugins: {
       response: [camelCase],
@@ -32,6 +33,27 @@ describe(`merge configurations`, () => {
         response: [camelCase],
       },
       version: '2018-09-20',
+    };
+
+    expect(configuration).toEqual(expectedConfiguration);
+  });
+
+  it(`should ignore properties when they are not there`, async () => {
+    const customGlobalConfiguration = {
+      baseUrl: 'https://test.teamleader.eu',
+      plugins: {
+        response: [camelCase],
+      },
+    };
+
+    const configuration = mergeConfigurations({ globalConfiguration: customGlobalConfiguration, localConfiguration });
+
+    const expectedConfiguration = {
+      baseUrl: 'https://test.teamleader.eu',
+      plugins: {
+        request: [snakeCase],
+        response: [camelCase],
+      },
     };
 
     expect(configuration).toEqual(expectedConfiguration);
