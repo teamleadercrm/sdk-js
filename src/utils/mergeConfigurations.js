@@ -15,7 +15,7 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   return {
     baseUrl,
     plugins,
-    ...(accessToken || getAccessToken ? { getAccessToken: getAccessToken || (() => accessToken) } : undefined),
-    ...(localVersion || globalVersion ? { version: localVersion || globalVersion } : undefined),
+    ...((accessToken || getAccessToken) && { getAccessToken: getAccessToken || (() => accessToken) }),
+    ...((localVersion || globalVersion) && { version: localVersion || globalVersion }),
   };
 };
