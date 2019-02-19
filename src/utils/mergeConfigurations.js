@@ -1,17 +1,5 @@
 import mergePlugins from './mergePlugins';
 
-const createGetAccessToken = ({ accessToken, getAccessToken }) => {
-  if (getAccessToken) {
-    return getAccessToken;
-  }
-
-  if (accessToken) {
-    return () => accessToken;
-  }
-
-  return undefined;
-};
-
 export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   const {
     baseUrl = 'https://api.teamleader.eu',
@@ -27,9 +15,7 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   return {
     baseUrl,
     plugins,
-    ...(accessToken || getAccessToken
-      ? { getAccessToken: createGetAccessToken({ getAccessToken, accessToken }) }
-      : undefined),
+    ...(accessToken || getAccessToken ? { getAccessToken: getAccessToken || (() => accessToken) } : undefined),
     ...(localVersion || globalVersion ? { version: localVersion || globalVersion } : undefined),
   };
 };
