@@ -14,7 +14,7 @@
 
 ### Fixed
 
-- Fix a bug that caused `version` at global level not to be passed down. ([@duivvv](https://github.com/duivvv) in [#44](https://github.com/teamleadercrm/sdk-js/pull/44))
+- Fixed a bug that caused `version` at global level not to be passed down. ([@duivvv](https://github.com/duivvv) in [#44](https://github.com/teamleadercrm/sdk-js/pull/44))
 
 ## [3.2.0] - 2019-02-20
 
