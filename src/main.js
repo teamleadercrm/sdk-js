@@ -1,23 +1,14 @@
 import domains from './config/domains';
 import createDomainWithActions from './utils/createDomainWithActions';
 
-const createGetAccessToken = ({ accessToken, getAccessToken }) => {
-  if (accessToken) {
-    return () => accessToken;
-  }
-
-  return getAccessToken;
-};
-
 const API = globalConfiguration => {
-  const getAccessToken = createGetAccessToken(globalConfiguration);
-  const { baseUrl, plugins, customActions = {} } = globalConfiguration;
+  const { baseUrl, plugins, customActions = {}, accessToken, getAccessToken } = globalConfiguration;
 
   return Object.keys(domains).reduce(
     (apiObject, domainName) => ({
       ...apiObject,
       [domainName]: createDomainWithActions({
-        configuration: { getAccessToken, baseUrl, plugins },
+        configuration: { getAccessToken, baseUrl, plugins, accessToken },
         domainName,
         actions: [...domains[domainName], ...(customActions[domainName] || [])],
       }),
