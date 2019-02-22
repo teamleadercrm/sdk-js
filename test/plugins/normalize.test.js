@@ -59,4 +59,11 @@ describe(`normalize data`, () => {
       },
     });
   });
+  it(`should empty byId when data is empty`, () => {
+    const data = {};
+
+    expect(normalize({ data })).toEqual({
+      byId: {},
+    });
+  });
 });
