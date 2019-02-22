@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- Made sure `byId` key is set in response when data is empty for normalize plugin ([@mikeverf](https://github.com/mikeverf) in [#45](https://github.com/teamleadercrm/sdk-js/pull/45))
+
 ## [3.2.1] - 2019-02-20
 
 ### Fixed
