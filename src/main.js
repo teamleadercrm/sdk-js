@@ -2,9 +2,9 @@ import domains from './config/domains';
 import createDomainWithActions from './utils/createDomainWithActions';
 
 const mergeDomains = (originalActions, additionalActions) =>
-  Object.keys(additionalActions).reduce((acc, val) => {
-    const mergedActions = [...(originalActions[val] || []), ...(additionalActions[val] || [])];
-    return { ...acc, [val]: mergedActions };
+  Object.keys(additionalActions).reduce((mergedDomains, domainKey) => {
+    const mergedActions = [...(originalActions[domainKey] || []), ...(additionalActions[domainKey] || [])];
+    return { ...mergedDomains, [domainKey]: mergedActions };
   }, originalActions);
 
 const API = globalConfiguration => {
