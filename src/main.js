@@ -1,21 +1,29 @@
 import domains from './config/domains';
 import createDomainWithActions from './utils/createDomainWithActions';
 
+const mergeDomains = (originalActions, additionalActions) =>
+  Object.keys(additionalActions).reduce((acc, val) => {
+    const mergedActions = [...(originalActions[val] || []), ...(additionalActions[val] || [])];
+    return { ...acc, [val]: mergedActions };
+  }, originalActions);
+
 const API = globalConfiguration => {
-  const { customActions = {} } = globalConfiguration;
+  const { customActions = {}, additionalActions = {} } = globalConfiguration;
+  const mergedDomains = mergeDomains(domains, additionalActions);
+
   if (Object.keys(customActions).length > 0) {
     console.warn(
       '@teamleader/api: customActions will be deprecated in the next minor version, use additionalActions instead.',
     );
   }
 
-  return Object.keys(domains).reduce(
+  return Object.keys(mergedDomains).reduce(
     (apiObject, domainName) => ({
       ...apiObject,
       [domainName]: createDomainWithActions({
         configuration: globalConfiguration,
         domainName,
-        actions: [...domains[domainName], ...(customActions[domainName] || [])],
+        actions: [...mergedDomains[domainName], ...(customActions[domainName] || [])],
       }),
     }),
     {},
