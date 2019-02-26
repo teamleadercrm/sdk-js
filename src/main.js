@@ -17,7 +17,14 @@ const API = globalConfiguration => {
   );
 };
 
-export { default as createDomainWithActions } from './utils/createDomainWithActions';
+const deprecatedCreateDomainWithActions = configuration => {
+  console.warn(
+    '@teamleader/api: createDomainWithActions will be deprecated in the next minor version, use additionalActions instead.',
+  );
+  return createDomainWithActions(configuration);
+};
+
+export { deprecatedCreateDomainWithActions as createDomainWithActions };
 
 export { default as camelCase } from './plugins/camelCase';
 export { default as normalize } from './plugins/normalize';
