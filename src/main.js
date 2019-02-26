@@ -13,7 +13,7 @@ const API = globalConfiguration => {
 
   if (Object.keys(customActions).length > 0) {
     console.warn(
-      '@teamleader/api: customActions will be deprecated in the next minor version, use additionalActions instead.',
+      '@teamleader/api: `customActions` will be deprecated in a next version, use `additionalActions` instead.',
     );
   }
 
@@ -32,7 +32,7 @@ const API = globalConfiguration => {
 
 const deprecatedCreateDomainWithActions = configuration => {
   console.warn(
-    '@teamleader/api: createDomainWithActions will be deprecated in the next minor version, use additionalActions instead.',
+    '@teamleader/api: `createDomainWithActions` will be deprecated in a next version, use `additionalActions` instead.',
   );
   return createDomainWithActions(configuration);
 };
