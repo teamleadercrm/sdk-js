@@ -84,22 +84,22 @@ const init = async () => {
 };
 ```
 
-## Custom actions
+## Additional actions
 
-You can also add extra custom actions to the domains (which will be handled the same way as the available actions).
+You can also add additional actions (the domain will also be created if needed), which will be handled the same way as the available actions.
 
-- `customActions`: (Object) domain as property -> array of actions as value
+- `additionalActions`: (Object) domain as property -> array of actions as value
 
-In the example below we are extending `api.contacts` with `deleted` and `api.tags` with `deleted` and `linkToInvoice`
+In the example below we are extending `api.contacts` with `deleted` and we're adding a `products` domain with a `list` action.
 
 ```js
 import API from '@teamleader/api';
 
 const api = API({
   getAccessToken: () => 'thisisatoken', // async or sync function
-  customActions: {
+  additionalActions: {
     contacts: ['deleted'],
-    tags: ['deleted', 'linkToInvoice'],
+    products: ['list'],
   },
 });
 ```
