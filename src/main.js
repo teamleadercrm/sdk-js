@@ -3,6 +3,11 @@ import createDomainWithActions from './utils/createDomainWithActions';
 
 const API = globalConfiguration => {
   const { customActions = {} } = globalConfiguration;
+  if (Object.keys(customActions).length > 0) {
+    console.warn(
+      '@teamleader/api: customActions will be deprecated in the next minor version, use additionalActions instead.',
+    );
+  }
 
   return Object.keys(domains).reduce(
     (apiObject, domainName) => ({
