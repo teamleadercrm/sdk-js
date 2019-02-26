@@ -10,6 +10,16 @@
 
 ### Fixed
 
+## [3.3.0] - 2019-02-26
+
+### Added
+
+- Added `additionalActions` option when configuring the API object ([@duivvv](https://github.com/duivvv) in [#47](https://github.com/teamleadercrm/sdk-js/pull/47))
+
+### Deprecated
+
+- Deprecated `customActions` & `createDomainWithActions` in favour of `additionalActions` ([@duivvv](https://github.com/duivvv) in [#47](https://github.com/teamleadercrm/sdk-js/pull/47))
+
 ## [3.2.2] - 2019-02-25
 
 ### Fixed
