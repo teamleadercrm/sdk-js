@@ -2,6 +2,8 @@
 
 ### Added
 
+- Added `fetchAll` option to enable fetching all data across pages ([@duivvv](https://github.com/duivvv) in [#39](https://github.com/teamleadercrm/sdk-js/pull/39))
+
 ### Changed
 
 ### Deprecated
