@@ -1,6 +1,7 @@
 import singleRequest from './singleRequest';
 import applyPlugins from '../applyPlugins';
 import mergeArraysOnProperty from '../mergeArraysOnProperty';
+import fetchAllRequest from './fetchAllRequest';
 
 const request = async (url, fetchOptions = {}, configuration = {}) => {
   const { plugins: { response: responsePlugins = [] } = {}, fetchAll = false } = configuration;
@@ -22,11 +23,7 @@ const request = async (url, fetchOptions = {}, configuration = {}) => {
     const amountOfRequests = Math.ceil(matches / size);
 
     // do the 2nd batch in parallel
-    const parallelRequestData = await Promise.all(
-      [...new Array(amountOfRequests - 1)] // -1 because we already did a firstRequest
-        .map((_, i) => i + 2) // 2, 3, 4, ...
-        .map((_, number) => singleRequest(url, { ...fetchOptions, page: { number } })),
-    );
+    const parallelRequestData = await fetchAllRequest(url, amountOfRequests, fetchOptions);
 
     return applyPlugins(
       { data: mergeArraysOnProperty('data', firstRequestData, ...parallelRequestData) },
