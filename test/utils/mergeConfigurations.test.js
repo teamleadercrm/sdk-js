@@ -8,6 +8,7 @@ describe(`merge configurations`, () => {
   const globalConfiguration = {
     baseUrl: 'https://test.teamleader.eu',
     getAccessToken,
+    accessToken: 'test',
     wrong_property: 'okokokoko',
     plugins: {
       response: [camelCase],
@@ -35,6 +36,40 @@ describe(`merge configurations`, () => {
     };
 
     expect(configuration).toEqual(expectedConfiguration);
+  });
+
+  it(`should ignore properties when they are not there`, async () => {
+    const customGlobalConfiguration = {
+      baseUrl: 'https://test.teamleader.eu',
+      plugins: {
+        response: [camelCase],
+      },
+    };
+
+    const configuration = mergeConfigurations({ globalConfiguration: customGlobalConfiguration, localConfiguration });
+
+    const expectedConfiguration = {
+      baseUrl: 'https://test.teamleader.eu',
+      plugins: {
+        request: [snakeCase],
+        response: [camelCase],
+      },
+    };
+
+    expect(configuration).toEqual(expectedConfiguration);
+  });
+
+  it(`should create function out of provided accessToken`, async () => {
+    const customGlobalConfiguration = {
+      baseUrl: 'https://test.teamleader.eu',
+      accessToken: 'accessToken',
+      plugins: {
+        response: [camelCase],
+      },
+    };
+
+    const configuration = mergeConfigurations({ globalConfiguration: customGlobalConfiguration, localConfiguration });
+    expect(configuration.getAccessToken()).toEqual(customGlobalConfiguration.accessToken);
   });
 
   it(`should use the correct defaults when optionals are not provided`, () => {
