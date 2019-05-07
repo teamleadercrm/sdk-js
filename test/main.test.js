@@ -1,4 +1,5 @@
-import API, { camelCase, normalize } from '../src/main';
+import API, { camelCase, normalize, createDomainWithActions } from '../src/main';
+import { create } from 'domain';
 
 describe('fetch response handling', () => {
   beforeEach(() => {
@@ -33,6 +34,99 @@ describe('fetch response handling', () => {
 
     const dealPhasesMethods = ['list'];
     expect(Object.keys(api.dealPhases).sort()).toEqual(dealPhasesMethods.sort());
+  });
+
+  it('should trigger a deprecation warning when using customActions', () => {
+    const spy = jest.spyOn(global.console, 'warn');
+    API({
+      getAccessToken: () => 'thisisatoken', // async or sync function
+      customActions: {
+        contacts: ['deleted'],
+        activityTypes: ['deleted'],
+      },
+    });
+    expect(spy).toHaveBeenCalled();
+    spy.mockRestore();
+  });
+
+  it('shoud add the additional domains to the API objects', () => {
+    const api = API({
+      getAccessToken: () => 'thisisatoken', // async or sync function
+      additionalActions: {
+        products: ['list'],
+        contacts: ['deleted'],
+      },
+    });
+
+    const expectedDomains = [
+      'activityTypes',
+      'businessTypes',
+      'companies',
+      'contacts',
+      'creditNotes',
+      'customFieldDefinitions',
+      'dealPhases',
+      'deals',
+      'dealSources',
+      'departments',
+      'events',
+      'invoices',
+      'lostReasons',
+      'products',
+      'milestones',
+      'paymentTerms',
+      'productCategories',
+      'projects',
+      'quotations',
+      'tags',
+      'taxRates',
+      'timers',
+      'timeTracking',
+      'users',
+      'workTypes',
+      'withholdingTaxRates',
+    ];
+
+    expect(Object.keys(api).sort()).toEqual(expectedDomains.sort());
+  });
+
+  it('shoud add the additional action to existing domain', () => {
+    const api = API({
+      getAccessToken: () => 'thisisatoken', // async or sync function
+      additionalActions: {
+        products: ['list'],
+        contacts: ['deleted'],
+      },
+    });
+
+    const expectedContactsMethods = [
+      'add',
+      'delete',
+      'info',
+      'linkToCompany',
+      'list',
+      'tag',
+      'deleted',
+      'unlinkFromCompany',
+      'untag',
+      'update',
+    ];
+
+    expect(Object.keys(api.contacts).sort()).toEqual(expectedContactsMethods.sort());
+  });
+
+  it('shoud add the additional action to a new domain', () => {
+    const api = API({
+      getAccessToken: () => 'thisisatoken', // async or sync function
+      additionalActions: {
+        products: ['list'],
+        contacts: ['deleted'],
+      },
+    });
+
+    const expectedProductsMethods = ['list'];
+
+    expect(Object.keys(api.products).sort()).toEqual(expectedProductsMethods.sort());
   });
 
   it('should run the correct response plugins', async () => {
@@ -89,5 +183,12 @@ describe('fetch response handling', () => {
     ];
 
     expect(Object.keys(api).sort()).toEqual(domains.sort());
+  });
+
+  it('should trigger a deprecation warning when using createDomainWithActions', () => {
+    const spy = jest.spyOn(global.console, 'warn');
+    createDomainWithActions();
+    expect(spy).toHaveBeenCalled();
+    spy.mockRestore();
   });
 });
