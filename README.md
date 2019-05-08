@@ -122,6 +122,8 @@ const init = async () => {
 };
 ```
 
+> Note: The fetchAll option is only meant to be used for API endpoints that have paginated results and return meta information about the pagination in their responses.
+
 ## Plugins
 
 You can provide an extra array of plugins to manipulate your data.
