@@ -122,7 +122,7 @@ const init = async () => {
 };
 ```
 
-> Note: The fetchAll option is only meant to be used for API endpoints that have paginated results and return meta information about the pagination in their responses.
+> Note: The fetchAll option is only meant to be used for API endpoints that have paginated results and return the meta information about the pagination containing the `matches` key in their responses.
 
 ## Plugins
 
