@@ -10,7 +10,9 @@ const request = async (url, fetchOptions = {}, configuration = {}) => {
     const firstRequestData = await singleRequest(url, { ...fetchOptions, page: { number: 1 } });
 
     if (firstRequestData.meta === undefined || firstRequestData.meta.matches === undefined) {
-      throw new Error('This endpoint does not have pagination and therefore fetchAll will not work here.');
+      throw new Error(
+        `The endpoint ${url} does contain the 'matches' key in the meta information and therefore fetchAll will not work here.`,
+      );
     }
 
     const {
