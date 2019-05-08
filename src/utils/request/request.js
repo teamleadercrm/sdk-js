@@ -10,7 +10,7 @@ const request = async (url, fetchOptions = {}, configuration = {}) => {
     const firstRequestData = await singleRequest(url, { ...fetchOptions, page: { number: 1 } });
 
     if (firstRequestData.meta === undefined || firstRequestData.meta.matches === undefined) {
-      return applyPlugins(firstRequestData, responsePlugins);
+      throw new Error('This endpoint does not have pagination and therefore fetchAll will not work here.');
     }
 
     const {
