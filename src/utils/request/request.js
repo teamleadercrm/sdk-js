@@ -9,7 +9,7 @@ const request = async (url, fetchOptions = {}, configuration = {}) => {
   if (fetchAll) {
     const firstRequestData = await singleRequest(url, { ...fetchOptions, page: { number: 1 } });
 
-    if (firstRequestData.meta === undefined) {
+    if (firstRequestData.meta === undefined || firstRequestData.meta.matches === undefined) {
       return applyPlugins(firstRequestData, responsePlugins);
     }
 
