@@ -93,11 +93,9 @@ describe('fetch response handling', () => {
       { headers },
     );
 
-    const jsonResponse = await request(undefined, undefined, { plugins: { response: [camelCase] }, fetchAll: true });
-
-    expect(jsonResponse).toEqual({
-      data: [{ name: 'John', lastName: 'Doe' }],
-    });
+    await expect(request(undefined, undefined, { plugins: { response: [camelCase] }, fetchAll: true })).rejects.toThrow(
+      Error,
+    );
   });
 
   it('throws an error with json if the response was unsuccessful', async () => {
