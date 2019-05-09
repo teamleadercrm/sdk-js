@@ -3,16 +3,26 @@
     [
       "@babel/preset-env",
       {
-        "modules": false,
-        "targets": {
-          "browsers": [">0.25%", "not op_mini all"]
-        }
+        "modules": false
       }
     ]
   ],
   "env": {
     "test": {
-      "presets": [["@babel/preset-env"]]
+      "presets": ["@babel/preset-env"]
+    },
+    "es": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "modules": false
+          }
+        ]
+      ]
+    },
+    "cjs": {
+      "presets": ["@babel/preset-env"]
     }
   }
 }
