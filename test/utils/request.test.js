@@ -23,7 +23,7 @@ describe('fetch response handling', () => {
       headers: { 'content-type': 'application/json' },
     });
 
-    const jsonResponse = await request(undefined, undefined, { plugins: { response: [camelCase] } });
+    const jsonResponse = await request({ configuration: { plugins: { response: [camelCase] } } });
 
     expect(jsonResponse).toEqual({ data: { userId: 'bar' } });
   });
@@ -72,7 +72,7 @@ describe('fetch response handling', () => {
         { headers },
       );
 
-    const jsonResponse = await request(undefined, undefined, { plugins: { response: [camelCase] }, fetchAll: true });
+    const jsonResponse = await request({ configuration: { plugins: { response: [camelCase] }, fetchAll: true } });
 
     expect(jsonResponse).toEqual({
       data: [
@@ -93,7 +93,7 @@ describe('fetch response handling', () => {
       { headers },
     );
 
-    await expect(request(undefined, undefined, { plugins: { response: [camelCase] }, fetchAll: true })).rejects.toThrow(
+    await expect(request({ configuration: { plugins: { response: [camelCase] }, fetchAll: true } })).rejects.toThrow(
       Error,
     );
   });
