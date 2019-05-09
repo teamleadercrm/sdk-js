@@ -1,5 +1,4 @@
 import API, { camelCase, normalize, createDomainWithActions } from '../src/main';
-import { create } from 'domain';
 
 describe('fetch response handling', () => {
   beforeEach(() => {
