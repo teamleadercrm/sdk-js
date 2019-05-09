@@ -2,11 +2,12 @@
   "name": "@teamleader/api",
   "version": "3.3.0",
   "description": "Teamleader API SDK",
-  "main": "dist/api.cjs.js",
-  "module": "dist/api.esm.js",
+  "main": "dist/cjs/main.js",
+  "module": "dist/es/main.js",
   "browser": "dist/api.min.umd.js",
   "devDependencies": {
     "@babel/core": "^7.0.0",
+    "@babel/cli": "^7.4.4",
     "@babel/preset-env": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.4.2",
@@ -35,7 +36,10 @@
     "humps": "^2.0.1"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build:es": "NODE_ENV=es babel src --out-dir dist/es",
+    "build:cjs": "NODE_ENV=cjs babel src --out-dir dist/cjs",
+    "build:umd": "rollup -c",
+    "build": "npm run build:umd && npm run build:cjs && npm run build:es",
     "start": "rollup -c -w",
     "test": "jest",
     "test:watch": "jest --watch",
