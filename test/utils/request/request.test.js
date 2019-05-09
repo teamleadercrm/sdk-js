@@ -74,6 +74,10 @@ describe('fetch response handling', () => {
 
     const jsonResponse = await request(undefined, undefined, { plugins: { response: [camelCase] }, fetchAll: true });
 
+    expect(fetch.mock.calls[0][1].body).toBe(JSON.stringify({ page: { number: 1 } }));
+    expect(fetch.mock.calls[1][1].body).toBe(JSON.stringify({ page: { number: 2 } }));
+    expect(fetch.mock.calls[2][1].body).toBe(JSON.stringify({ page: { number: 3 } }));
+
     expect(jsonResponse).toEqual({
       data: [
         { name: 'John', lastName: 'Doe' },
