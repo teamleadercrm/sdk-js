@@ -1,9 +1,10 @@
 import singleRequest from './singleRequest';
+import merge from 'lodash.merge';
 
-const fetchAllRequest = async (url, amountOfRequests, parameters, configuration = {}) => {
+const fetchAllRequest = async (config, amountOfRequests) => {
   const data = await Promise.all(
     [...new Array(amountOfRequests - 1)] // -1 because we already did a firstRequest
-      .map((_, i) => singleRequest(url, { ...parameters, page: { number: i + 2 } }, configuration)),
+      .map((_, i) => singleRequest(merge(config, { parameters: { page: { number: i + 2 } } }))),
   );
   return data;
 };

@@ -8,9 +8,9 @@ const createDomainWithActions = ({ configuration: globalConfiguration, domainNam
       ...domainObject,
       [actionName]: async (parameters, localConfiguration = {}) => {
         const configuration = mergeConfigurations({ globalConfiguration, localConfiguration });
-        const requestUrl = createRequestUrl({ configuration, domainName, actionName });
+        const url = createRequestUrl({ configuration, domainName, actionName });
 
-        return request(requestUrl, parameters, configuration);
+        return request({ url, parameters, configuration });
       },
     }),
     {},
