@@ -1,5 +1,5 @@
-import request from '../../../src/utils/request';
-import { camelCase } from '../../../src/main';
+import request from '../../src/utils/request';
+import { camelCase } from '../../src/main';
 
 describe('fetch response handling', () => {
   beforeEach(() => {
