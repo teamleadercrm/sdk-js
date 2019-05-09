@@ -7,7 +7,10 @@ const request = async (url, fetchOptions = {}, configuration = {}) => {
   const { plugins: { response: responsePlugins = [] } = {}, fetchAll = false } = configuration;
 
   if (fetchAll) {
-    const firstRequestData = await singleRequest(url, { ...fetchOptions, page: { number: 1 } });
+    const { body = '{}' } = fetchOptions;
+    let parsedBody = JSON.parse(body);
+    parsedBody.page = { number: 1 };
+    const firstRequestData = await singleRequest(url, { ...fetchOptions, body: JSON.stringify(parsedBody) });
 
     if (firstRequestData.meta === undefined || firstRequestData.meta.matches === undefined) {
       throw new Error(
