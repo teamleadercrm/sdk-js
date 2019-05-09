@@ -21,6 +21,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "husky": "^0.14.3",
     "jest": "^23.6.0",
+    "jest-fetch-mock": "^2.1.0",
     "prettier": "^1.16.1",
     "pretty-quick": "^1.6.0",
     "rollup": "^1.1.2",
@@ -57,7 +58,11 @@
   ],
   "jest": {
     "verbose": true,
-    "testURL": "http://localhost"
+    "testURL": "http://localhost",
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ]
   },
   "license": "MIT",
   "bugs": {

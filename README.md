@@ -104,6 +104,26 @@ const api = API({
 });
 ```
 
+## fetchAll option
+
+In case the response of your API call contains pagination but you want to get all results, you can pass the `fetchAll` option to the request.
+
+```js
+import API from '@teamleader/api';
+
+const { users } = API({
+  getAccessToken: () => 'thisisatoken',
+  version: '2018-10-30',
+});
+
+const init = async () => {
+  // (options, plugins)
+  const users = await users.list(undefined, { fetchAll: true });
+};
+```
+
+> Note: The fetchAll option is only meant to be used for API endpoints that have paginated results and return the meta information about the pagination containing the `matches` key in their responses.
+
 ## Plugins
 
 You can provide an extra array of plugins to manipulate your data.

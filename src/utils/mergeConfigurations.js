@@ -8,13 +8,14 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
     getAccessToken,
   } = globalConfiguration; // only destruct what we might need on request level
 
-  const { version: localVersion } = localConfiguration;
+  const { version: localVersion, fetchAll } = localConfiguration;
 
   const plugins = mergePlugins(globalConfiguration.plugins, localConfiguration.plugins);
 
   return {
     baseUrl,
     plugins,
+    fetchAll,
     ...((accessToken || getAccessToken) && { getAccessToken: getAccessToken || (() => accessToken) }),
     ...((localVersion || globalVersion) && { version: localVersion || globalVersion }),
   };

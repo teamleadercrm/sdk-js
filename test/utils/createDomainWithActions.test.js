@@ -8,8 +8,8 @@ describe(`create domain objects`, () => {
 
   const actions = ['method1', 'method2'];
 
-  it(`should create an object with the provided actions as methods`, async () => {
-    const obj = await createDomainWithActions({ config, domain: 'test', actions });
+  it(`should create an object with the provided actions as methods`, () => {
+    const obj = createDomainWithActions({ config, domain: 'test', actions });
     expect(Object.keys(obj).sort()).toEqual(actions.sort());
   });
 });

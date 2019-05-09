@@ -4,24 +4,26 @@ describe(`create header object`, () => {
   it(`should be able to pass in a sync getAccessToken function`, async () => {
     const getAccessToken = () => 'token';
 
-    const headers = {
+    const testHeaders = {
       'Content-Type': 'application/json',
       Authorization: `Bearer token`,
     };
 
-    await expect(createRequestHeaders({ getAccessToken })).resolves.toEqual(headers);
+    const headers = await createRequestHeaders({ getAccessToken });
+    expect(headers).toEqual(testHeaders);
   });
 
   it(`should be able to pass in a version`, async () => {
     const getAccessToken = () => 'token';
 
-    const headers = {
+    const testHeaders = {
       'Content-Type': 'application/json',
       Authorization: `Bearer token`,
       'X-Api-Version': '2018-09-12',
     };
 
-    await expect(createRequestHeaders({ getAccessToken, version: '2018-09-12' })).resolves.toEqual(headers);
+    const headers = await createRequestHeaders({ getAccessToken, version: '2018-09-12' });
+    expect(headers).toEqual(testHeaders);
   });
 
   it(`should be able to pass in a async getAccessToken function`, async () => {
@@ -32,12 +34,13 @@ describe(`create header object`, () => {
       return 'token';
     };
 
-    const headers = {
+    const testHeaders = {
       'Content-Type': 'application/json',
       Authorization: `Bearer token`,
     };
 
-    await expect(createRequestHeaders({ getAccessToken })).resolves.toEqual(headers);
+    const headers = await createRequestHeaders({ getAccessToken });
+    expect(headers).toEqual(testHeaders);
   });
 
   it(`should only keep content type when no options are provided`, async () => {

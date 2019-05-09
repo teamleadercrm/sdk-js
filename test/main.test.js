@@ -2,20 +2,9 @@ import API, { camelCase, normalize, createDomainWithActions } from '../src/main'
 import { create } from 'domain';
 
 describe('fetch response handling', () => {
-  const mockFetch = desiredResponse => (window.fetch = () => Promise.resolve(desiredResponse));
-  const response = ({ ok, statusText, status, contentType, json, text }) => {
-    const headers = new Map();
-    headers.set('content-type', contentType);
-
-    return {
-      ok,
-      headers,
-      status,
-      statusText,
-      json: () => Promise.resolve(json),
-      text: () => Promise.resolve(text),
-    };
-  };
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
 
   it('shoud add the customActions to the correct domains', () => {
     const api = API({
@@ -140,14 +129,10 @@ describe('fetch response handling', () => {
     expect(Object.keys(api.products).sort()).toEqual(expectedProductsMethods.sort());
   });
 
-  it('should run the correct response plugins', () => {
-    mockFetch(
-      response({
-        ok: true,
-        contentType: 'application/json',
-        json: { data: { id: '84845512', name: 'john', last_name: 'doe' } },
-      }),
-    );
+  it('should run the correct response plugins', async () => {
+    fetch.once(JSON.stringify({ data: { id: '84845512', name: 'john', last_name: 'doe' } }), {
+      headers: { 'content-type': 'application/json' },
+    });
 
     const api = API({
       getAccessToken: () => 'thisisatoken', // async or sync function
@@ -156,9 +141,8 @@ describe('fetch response handling', () => {
       },
     });
 
-    api.contacts.info({ userId: '84989' }, { plugins: { response: [normalize] } }).then(data => {
-      expect(data).toEqual({ byId: { '84845512': { id: '84845512', lastName: 'doe', name: 'john' } } });
-    });
+    const data = await api.contacts.info({ userId: '84989' }, { plugins: { response: [normalize] } });
+    expect(data).toEqual({ byId: { '84845512': { id: '84845512', lastName: 'doe', name: 'john' } } });
   });
 
   it('shoud include all domains', () => {

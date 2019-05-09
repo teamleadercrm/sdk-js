@@ -22,7 +22,7 @@ describe(`merge configurations`, () => {
     },
   };
 
-  it(`should merge the configurations in a correct way`, async () => {
+  it(`should merge the configurations in a correct way`, () => {
     const configuration = mergeConfigurations({ globalConfiguration, localConfiguration });
 
     const expectedConfiguration = {
@@ -72,7 +72,7 @@ describe(`merge configurations`, () => {
     expect(configuration.getAccessToken()).toEqual(customGlobalConfiguration.accessToken);
   });
 
-  it(`should use the correct defaults when optionals are not provided`, async () => {
+  it(`should use the correct defaults when optionals are not provided`, () => {
     const configuration = mergeConfigurations({
       globalConfiguration: { ...globalConfiguration, version: undefined, baseUrl: undefined },
       localConfiguration,
@@ -90,10 +90,10 @@ describe(`merge configurations`, () => {
     expect(configuration).toEqual(expectedConfiguration);
   });
 
-  it(`should prefer the local version over the global version `, async () => {
+  it(`should prefer the local version over the global version `, () => {
     const configuration = mergeConfigurations({
       globalConfiguration,
-      localConfiguration: { ...localConfiguration, version: '2018-11-20' },
+      localConfiguration: { ...localConfiguration, version: '2018-11-20', fetchAll: true },
     });
 
     const expectedConfiguration = {
@@ -103,13 +103,33 @@ describe(`merge configurations`, () => {
         request: [snakeCase],
         response: [camelCase],
       },
+      fetchAll: true,
       version: '2018-11-20',
     };
 
     expect(configuration).toEqual(expectedConfiguration);
   });
 
-  it(`should provide the correct defaults`, async () => {
+  it(`should ignore invalid keys`, () => {
+    const configuration = mergeConfigurations({
+      globalConfiguration: { ...globalConfiguration, fetchAll: true },
+      localConfiguration: { ...localConfiguration, blabla: 'checkitout' },
+    });
+
+    const expectedConfiguration = {
+      baseUrl: 'https://test.teamleader.eu',
+      getAccessToken,
+      plugins: {
+        request: [snakeCase],
+        response: [camelCase],
+      },
+      version: '2018-09-20',
+    };
+
+    expect(configuration).toEqual(expectedConfiguration);
+  });
+
+  it(`should provide the correct defaults`, () => {
     const configuration = mergeConfigurations({
       globalConfiguration: { ...globalConfiguration, baseUrl: undefined },
     });
