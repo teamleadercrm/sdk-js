@@ -1,4 +1,4 @@
-import getResponseData from '../../../src/utils/request/getResponseData';
+import getResponseData from '../../src/utils/getResponseData';
 
 const response = ({ ok, statusText, status, contentType, json, text }) => {
   const headers = new Map();

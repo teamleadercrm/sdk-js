@@ -1,5 +1,5 @@
-import checkStatus from '../../../src/utils/request/checkStatus';
-import FetchError from '../../../src/utils/request/FetchError';
+import checkStatus from '../../src/utils/checkStatus';
+import FetchError from '../../src/utils/FetchError';
 
 const response = ({ ok, statusText, status, contentType, json, text }) => {
   const headers = new Map();
