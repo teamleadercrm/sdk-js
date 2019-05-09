@@ -2,8 +2,8 @@
   "name": "@teamleader/api",
   "version": "3.3.0",
   "description": "Teamleader API SDK",
-  "main": "dist/api.cjs.js",
-  "module": "dist/api.esm.js",
+  "main": "dist/cjs/main.js",
+  "module": "dist/es/main.js",
   "browser": "dist/api.min.umd.js",
   "devDependencies": {
     "@babel/core": "^7.0.0",
