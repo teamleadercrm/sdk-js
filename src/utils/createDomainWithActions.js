@@ -1,7 +1,5 @@
 import request from './request';
-
 import mergeConfigurations from './mergeConfigurations';
-import createFetchOptions from './createFetchOptions';
 import createRequestUrl from './createRequestUrl';
 
 const createDomainWithActions = ({ configuration: globalConfiguration, domainName, actions = [] } = {}) =>
@@ -10,11 +8,9 @@ const createDomainWithActions = ({ configuration: globalConfiguration, domainNam
       ...domainObject,
       [actionName]: async (parameters, localConfiguration = {}) => {
         const configuration = mergeConfigurations({ globalConfiguration, localConfiguration });
+        const url = createRequestUrl({ configuration, domainName, actionName });
 
-        const fetchOptions = await createFetchOptions({ configuration, parameters });
-        const requestUrl = createRequestUrl({ configuration, domainName, actionName });
-
-        return request(requestUrl, fetchOptions, configuration);
+        return request({ url, parameters, configuration });
       },
     }),
     {},

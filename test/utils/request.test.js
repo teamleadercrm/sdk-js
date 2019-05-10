@@ -1,5 +1,5 @@
-import request from '../../../src/utils/request';
-import { camelCase } from '../../../src/main';
+import request from '../../src/utils/request';
+import { camelCase } from '../../src/main';
 
 describe('fetch response handling', () => {
   beforeEach(() => {
@@ -11,7 +11,10 @@ describe('fetch response handling', () => {
       headers: { 'content-type': 'application/json' },
     });
 
-    const jsonResponse = await request();
+    const jsonResponse = await request({
+      url: 'http://mock.teamleader.api/users.list',
+      configuration: { plugins: { response: [camelCase] } },
+    });
 
     expect(jsonResponse).toEqual({
       foo: 'bar',
@@ -23,7 +26,10 @@ describe('fetch response handling', () => {
       headers: { 'content-type': 'application/json' },
     });
 
-    const jsonResponse = await request(undefined, undefined, { plugins: { response: [camelCase] } });
+    const jsonResponse = await request({
+      url: 'http://mock.teamleader.api/users.list',
+      configuration: { plugins: { response: [camelCase] } },
+    });
 
     expect(jsonResponse).toEqual({ data: { userId: 'bar' } });
   });
@@ -72,7 +78,10 @@ describe('fetch response handling', () => {
         { headers },
       );
 
-    const jsonResponse = await request(undefined, undefined, { plugins: { response: [camelCase] }, fetchAll: true });
+    const jsonResponse = await request({
+      url: 'http://mock.teamleader.api/users.list',
+      configuration: { plugins: { response: [camelCase] }, fetchAll: true },
+    });
 
     expect(jsonResponse).toEqual({
       data: [
@@ -83,7 +92,7 @@ describe('fetch response handling', () => {
     });
   });
 
-  it('returns the first request when fetchAll is enabled but there is no matches information', async () => {
+  it('throws and error when fetchAll is enabled but there are is matches information', async () => {
     const headers = { 'content-type': 'application/json' };
 
     fetch.once(
@@ -93,9 +102,12 @@ describe('fetch response handling', () => {
       { headers },
     );
 
-    await expect(request(undefined, undefined, { plugins: { response: [camelCase] }, fetchAll: true })).rejects.toThrow(
-      Error,
-    );
+    await expect(
+      request({
+        url: 'http://mock.teamleader.api/users.list',
+        configuration: { plugins: { response: [camelCase] }, fetchAll: true },
+      }),
+    ).rejects.toThrow(Error);
   });
 
   it('throws an error with json if the response was unsuccessful', async () => {
@@ -107,7 +119,9 @@ describe('fetch response handling', () => {
     });
 
     try {
-      await request();
+      await request({
+        url: 'http://mock.teamleader.api/users.list',
+      });
     } catch (e) {
       expect(e.status).toEqual(500);
       expect(e.statusText).toEqual('There was an error 500');
