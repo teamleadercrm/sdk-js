@@ -127,7 +127,7 @@ describe('fetch response handling', () => {
 
     const expectedNewDomainMethods = ['list'];
 
-    expect(Object.keys(api.products).sort()).toEqual(expectedNewDomainMethods.sort());
+    expect(Object.keys(api.newDomain).sort()).toEqual(expectedNewDomainMethods.sort());
   });
 
   it('should run the correct response plugins', async () => {
