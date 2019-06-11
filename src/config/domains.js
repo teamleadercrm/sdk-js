@@ -7,6 +7,7 @@ const domains = {
   companies: ['list', 'info', 'add', 'update', 'delete', 'tag', 'untag'],
   businessTypes: ['list'],
   tags: ['list'],
+  levelTwoAreas: ['list'],
   deals: ['list', 'info', 'create', 'update', 'move', 'win', 'lose', 'delete'],
   lostReasons: ['list'],
   dealPhases: ['list'],
@@ -14,16 +15,19 @@ const domains = {
   quotations: ['info', 'download'],
   events: ['list', 'info', 'create', 'update', 'cancel'],
   activityTypes: ['list'],
-  invoices: ['list', 'info', 'download', 'draft', 'update', 'copy', 'book', 'delete', 'registerPayment'],
+  invoices: ['list', 'info', 'download', 'draft', 'update', 'copy', 'book', 'delete', 'registerPayment', 'credit'],
   creditNotes: ['list', 'info', 'download'],
   taxRates: ['list'],
   paymentTerms: ['list'],
   withholdingTaxRates: ['list'],
   productCategories: ['list'],
+  products: ['list', 'info', 'add'],
   projects: ['list', 'info', 'create', 'update', 'delete', 'addParticipant', 'updateParticipant'],
   milestones: ['list', 'info', 'create', 'update'],
+  tasks: ['list', 'info', 'create', 'update', 'delete'],
   timeTracking: ['list', 'info', 'add', 'update', 'resume', 'delete'],
   timers: ['current', 'start', 'stop', 'update'],
+  workOrders: ['draft'],
 };
 
 export default domains;
