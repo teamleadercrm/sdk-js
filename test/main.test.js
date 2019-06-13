@@ -5,7 +5,7 @@ describe('fetch response handling', () => {
     fetch.resetMocks();
   });
 
-  it('shoud add the customActions to the correct domains', () => {
+  it('should add the customActions to the correct domains', () => {
     const api = API({
       getAccessToken: () => 'thisisatoken', // async or sync function
       customActions: {
@@ -48,7 +48,7 @@ describe('fetch response handling', () => {
     spy.mockRestore();
   });
 
-  it('shoud add the additional domains to the API objects', () => {
+  it('should add the additional domains to the API objects', () => {
     const api = API({
       getAccessToken: () => 'thisisatoken', // async or sync function
       additionalActions: {
@@ -70,6 +70,7 @@ describe('fetch response handling', () => {
       'departments',
       'events',
       'invoices',
+      'levelTwoAreas',
       'lostReasons',
       'products',
       'milestones',
@@ -78,18 +79,20 @@ describe('fetch response handling', () => {
       'projects',
       'quotations',
       'tags',
+      'tasks',
       'taxRates',
       'timers',
       'timeTracking',
       'users',
       'workTypes',
       'withholdingTaxRates',
+      'workOrders',
     ];
 
     expect(Object.keys(api).sort()).toEqual(expectedDomains.sort());
   });
 
-  it('shoud add the additional action to existing domain', () => {
+  it('should add the additional action to existing domain', () => {
     const api = API({
       getAccessToken: () => 'thisisatoken', // async or sync function
       additionalActions: {
@@ -114,18 +117,17 @@ describe('fetch response handling', () => {
     expect(Object.keys(api.contacts).sort()).toEqual(expectedContactsMethods.sort());
   });
 
-  it('shoud add the additional action to a new domain', () => {
+  it('should add the additional action to a new domain', () => {
     const api = API({
       getAccessToken: () => 'thisisatoken', // async or sync function
       additionalActions: {
-        products: ['list'],
-        contacts: ['deleted'],
+        newDomain: ['list'],
       },
     });
 
-    const expectedProductsMethods = ['list'];
+    const expectedNewDomainMethods = ['list'];
 
-    expect(Object.keys(api.products).sort()).toEqual(expectedProductsMethods.sort());
+    expect(Object.keys(api.newDomain).sort()).toEqual(expectedNewDomainMethods.sort());
   });
 
   it('should run the correct response plugins', async () => {
@@ -144,7 +146,7 @@ describe('fetch response handling', () => {
     expect(data).toEqual({ byId: { '84845512': { id: '84845512', lastName: 'doe', name: 'john' } } });
   });
 
-  it('shoud include all domains', () => {
+  it('should include all domains', () => {
     const api = API({
       getAccessToken: () => 'thisisatoken', // async or sync function
       customActions: {
@@ -166,18 +168,22 @@ describe('fetch response handling', () => {
       'departments',
       'events',
       'invoices',
+      'levelTwoAreas',
       'lostReasons',
       'milestones',
       'paymentTerms',
       'productCategories',
+      'products',
       'projects',
       'quotations',
       'tags',
+      'tasks',
       'taxRates',
       'timers',
       'timeTracking',
       'users',
       'workTypes',
+      'workOrders',
       'withholdingTaxRates',
     ];
 

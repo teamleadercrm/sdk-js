@@ -2,6 +2,8 @@
 
 ### Added
 
+- Added new domains & actions ([@duivvv](https://github.com/duivvv) in [#54](https://github.com/teamleadercrm/sdk-js/pull/54))
+
 ### Changed
 
 ### Deprecated
