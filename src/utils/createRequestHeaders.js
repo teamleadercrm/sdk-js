@@ -1,5 +1,8 @@
-export default async ({ getAccessToken, version } = {}) => ({
-  'Content-Type': 'application/json',
-  ...(getAccessToken && { Authorization: `Bearer ${await getAccessToken()}` }),
-  ...(version && { 'X-Api-Version': version }),
-});
+export default async ({ getAccessToken, version } = {}) => {
+  let accessToken = getAccessToken && (await getAccessToken());
+  return {
+    'Content-Type': 'application/json',
+    ...(typeof accessToken !== 'undefined' && { Authorization: `Bearer ${accessToken}` }),
+    ...(version && { 'X-Api-Version': version }),
+  };
+};

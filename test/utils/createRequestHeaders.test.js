@@ -43,6 +43,22 @@ describe(`create header object`, () => {
     expect(headers).toEqual(testHeaders);
   });
 
+  it(`should not set Auth Header if result is undefined`, async () => {
+    const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    const getAccessToken = async () => {
+      await timeout(200);
+      return undefined;
+    };
+
+    const testHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    const headers = await createRequestHeaders({ getAccessToken });
+    expect(headers).toEqual(testHeaders);
+  });
+
   it(`should only keep content type when no options are provided`, async () => {
     const headers = {
       'Content-Type': 'application/json',
