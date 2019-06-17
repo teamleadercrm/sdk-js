@@ -6,6 +6,8 @@
 
 ### Changed
 
+- If `getAccessToken()` returns `undefined` the authorization header will be omitted ([@ratheDot](https://github.com/rathesDot) in [#55](https://github.com/teamleadercrm/sdk-js/pull/55))
+
 ### Deprecated
 
 ### Removed
