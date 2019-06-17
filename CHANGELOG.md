@@ -2,6 +2,18 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+## [3.5.0] - 2019-06-17
+
+### Added
+
 - Added new domains & actions ([@duivvv](https://github.com/duivvv) in [#54](https://github.com/teamleadercrm/sdk-js/pull/54))
 
 ### Changed
