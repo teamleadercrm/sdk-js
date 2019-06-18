@@ -2,7 +2,7 @@ import singleRequest from './singleRequest';
 import applyPlugins from './applyPlugins';
 import mergeArraysOnProperty from './mergeArraysOnProperty';
 import fetchAllRequest from './fetchAllRequest';
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 
 const request = async ({ url, parameters = {}, configuration = {} } = {}) => {
   const { plugins: { response: responsePlugins = [] } = {}, fetchAll = false } = configuration;
