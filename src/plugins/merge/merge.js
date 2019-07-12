@@ -23,7 +23,7 @@ const composeEntity = (entity, path, included) => {
   return mergeIncludedReferenceIntoEntity(entity, included, resolvedReferences, path);
 };
 
-const merge = (response, include) => {
+const merge = include => response => {
   const includePaths = include.split(',');
 
   return {
