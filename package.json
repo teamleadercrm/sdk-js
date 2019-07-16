@@ -47,8 +47,7 @@
     "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore src",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write src/**/*.{js,css,json,md}",
-    "prepublishOnly": "npm run build",
-    "precommit": "pretty-quick --staged"
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist"
@@ -73,5 +72,10 @@
   "bugs": {
     "url": "https://github.com/teamleadercrm/sdk-js/issues"
   },
-  "homepage": "https://github.com/teamleadercrm/sdk-js#readme"
+  "homepage": "https://github.com/teamleadercrm/sdk-js#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
 }
