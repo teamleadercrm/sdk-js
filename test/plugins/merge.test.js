@@ -31,7 +31,7 @@ describe(`merge data`, () => {
       },
     };
 
-    expect(merge(data, 'participant')).toEqual(result);
+    expect(merge('participant')(data)).toEqual(result);
   });
 
   it(`should merge the included data if the main data is an array`, () => {
@@ -87,7 +87,7 @@ describe(`merge data`, () => {
       ],
     };
 
-    expect(merge(data, 'participant')).toEqual(result);
+    expect(merge('participant')(data)).toEqual(result);
   });
 
   it('should merge the data when the parent path is an array', () => {
@@ -184,6 +184,6 @@ describe(`merge data`, () => {
       ],
     };
 
-    expect(merge(data, 'participants')).toEqual(result);
+    expect(merge('participants')(data)).toEqual(result);
   });
 });
