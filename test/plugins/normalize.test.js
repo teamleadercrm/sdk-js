@@ -1,6 +1,8 @@
 import { normalize } from '../../src/main';
 
 describe(`normalize data`, () => {
+  const requestUrl = 'http://mock.teamleader.api/users.list';
+
   it(`should return the data normalized by Id`, () => {
     const data = [
       {
@@ -18,9 +20,8 @@ describe(`normalize data`, () => {
         },
       },
     ];
-
-    expect(normalize({ data })).toEqual({
-      byId: {
+    expect(normalize({ data }, requestUrl)).toEqual({
+      users: {
         '8799873': {
           id: '8799873',
           user_id: '6979873',
@@ -47,8 +48,8 @@ describe(`normalize data`, () => {
       },
     };
 
-    expect(normalize({ data })).toEqual({
-      byId: {
+    expect(normalize({ data }, requestUrl)).toEqual({
+      users: {
         '8799873': {
           id: '8799873',
           user_id: '6979873',
@@ -62,8 +63,8 @@ describe(`normalize data`, () => {
   it(`should empty byId when data is empty`, () => {
     const data = {};
 
-    expect(normalize({ data })).toEqual({
-      byId: {},
+    expect(normalize({ data }, requestUrl)).toEqual({
+      users: {},
     });
   });
 });

@@ -143,7 +143,7 @@ describe('fetch response handling', () => {
     });
 
     const data = await api.contacts.info({ userId: '84989' }, { plugins: { response: [normalize] } });
-    expect(data).toEqual({ byId: { '84845512': { id: '84845512', lastName: 'doe', name: 'john' } } });
+    expect(data).toEqual({ contacts: { '84845512': { id: '84845512', lastName: 'doe', name: 'john' } } });
   });
 
   it('should include all domains', () => {

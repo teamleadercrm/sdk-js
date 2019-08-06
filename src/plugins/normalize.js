@@ -1,4 +1,8 @@
-export default ({ data }) => {
+import getRequestDomain from '../utils/getRequestDomain';
+
+export default ({ data }, requestUrl) => {
+  const requestedDomain = getRequestDomain(requestUrl);
+
   let dataArray;
   if (Array.isArray(data)) {
     dataArray = data;
@@ -7,5 +11,8 @@ export default ({ data }) => {
   } else {
     dataArray = [data];
   }
-  return dataArray.reduce((o, d) => ({ ...o, byId: { ...o.byId, [d.id]: d } }), { byId: {} });
+
+  return dataArray.reduce((o, d) => ({ ...o, [requestedDomain]: { ...o[requestedDomain], [d.id]: d } }), {
+    [requestedDomain]: {},
+  });
 };
