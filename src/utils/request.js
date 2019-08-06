@@ -35,10 +35,11 @@ const request = async ({ url, parameters = {}, configuration = {} } = {}) => {
     return applyPlugins(
       { data: mergeArraysOnProperty('data', firstRequestData, ...parallelRequestData) },
       responsePlugins,
+      url,
     );
   }
 
-  return applyPlugins(firstRequestData, responsePlugins);
+  return applyPlugins(firstRequestData, responsePlugins, url);
 };
 
 export default request;
