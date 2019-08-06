@@ -264,7 +264,7 @@ data out:
 
 ### normalize
 
-Normalize data structure using byId for easy access and linking.
+Normalize data structure using the domain name of the requested data for easy access and linking. It will do the same for any entities which have been included via sideloading.
 
 data in:
 
@@ -293,7 +293,7 @@ data out:
 
 ```js
 {
-  byId: {
+  users: {
     '8799873': {
       id: '8799873',
       userId: '6979873',
