@@ -14,19 +14,25 @@ export const pluralizeDomainName = domainName => {
   return `${domainName}s`;
 };
 
-export default ({ data }, requestUrl) => {
-  const requestedDomain = getRequestDomain(requestUrl);
-
+export const normalizeItemsById = items => {
   let dataArray;
-  if (Array.isArray(data)) {
-    dataArray = data;
-  } else if (Object.keys(data).length === 0) {
+  if (Array.isArray(items)) {
+    dataArray = items;
+  } else if (Object.keys(items).length === 0) {
     dataArray = [];
   } else {
-    dataArray = [data];
+    dataArray = [items];
   }
 
-  return dataArray.reduce((o, d) => ({ ...o, [requestedDomain]: { ...o[requestedDomain], [d.id]: d } }), {
-    [requestedDomain]: {},
-  });
+  return dataArray.reduce((o, d) => ({ ...o, [d.id]: d }), {});
+};
+
+export default ({ data, included }, requestUrl) => {
+  const requestedDomain = getRequestDomain(requestUrl);
+
+  const normalizedData = normalizeItemsById(data);
+
+  return {
+    [requestedDomain]: normalizedData,
+  };
 };
