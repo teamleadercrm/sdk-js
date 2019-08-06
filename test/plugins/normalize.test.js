@@ -109,4 +109,91 @@ describe(`normalize data`, () => {
     expect(pluralizeDomainName('timeTracking')).toBe('timeTracking');
     expect(pluralizeDomainName('milestone')).toBe('milestones');
   });
+  it(`should return the data and included data normalized byId`, () => {
+    const response = {
+      data: [
+        {
+          id: '8799873',
+          user_id: '6979873',
+          user_info: {
+            first_name: 'Geoffrey',
+          },
+        },
+        {
+          id: '3287687',
+          user_id: '298034',
+          user_info: {
+            first_name: 'John',
+          },
+        },
+      ],
+      included: {
+        contact: [
+          {
+            id: '6287654',
+            first_name: 'Test',
+            last_name: 'Tester',
+          },
+          {
+            id: '4087634',
+            first_name: 'John',
+            last_name: 'Smith',
+          },
+        ],
+        company: [
+          {
+            id: '6287654',
+            name: 'TeamLeader',
+          },
+          {
+            id: '1987677',
+            name: 'TestLeader',
+          },
+        ],
+      },
+    };
+
+    const result = {
+      users: {
+        '8799873': {
+          id: '8799873',
+          user_id: '6979873',
+          user_info: {
+            first_name: 'Geoffrey',
+          },
+        },
+        '3287687': {
+          id: '3287687',
+          user_id: '298034',
+          user_info: {
+            first_name: 'John',
+          },
+        },
+      },
+      contacts: {
+        '6287654': {
+          id: '6287654',
+          first_name: 'Test',
+          last_name: 'Tester',
+        },
+        '4087634': {
+          id: '4087634',
+          first_name: 'John',
+          last_name: 'Smith',
+        },
+      },
+      companies: {
+        '6287654': {
+          id: '6287654',
+          name: 'TeamLeader',
+        },
+        '1987677': {
+          id: '1987677',
+          name: 'TestLeader',
+        },
+      },
+    };
+
+    expect(normalize(response, requestUrl)).toEqual(result);
+  });
 });

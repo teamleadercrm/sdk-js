@@ -31,8 +31,17 @@ export default ({ data, included }, requestUrl) => {
   const requestedDomain = getRequestDomain(requestUrl);
 
   const normalizedData = normalizeItemsById(data);
+  let normalizedIncludedData;
+
+  if (included) {
+    normalizedIncludedData = Object.entries(included).reduce(
+      (acc, [domainName, values]) => ({ ...acc, [pluralizeDomainName(domainName)]: normalizeItemsById(values) }),
+      {},
+    );
+  }
 
   return {
     [requestedDomain]: normalizedData,
+    ...(included ? normalizedIncludedData : {}),
   };
 };
