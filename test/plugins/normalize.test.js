@@ -1,4 +1,5 @@
 import { normalize } from '../../src/main';
+import { pluralizeDomainName } from '../../src/plugins/normalize';
 
 describe(`normalize data`, () => {
   const requestUrl = 'http://mock.teamleader.api/users.list';
@@ -66,5 +67,11 @@ describe(`normalize data`, () => {
     expect(normalize({ data }, requestUrl)).toEqual({
       users: {},
     });
+  });
+  it('should correctly pluralize the domain names', () => {
+    expect(pluralizeDomainName('contact')).toBe('contacts');
+    expect(pluralizeDomainName('company')).toBe('companies');
+    expect(pluralizeDomainName('timeTracking')).toBe('timeTracking');
+    expect(pluralizeDomainName('milestone')).toBe('milestones');
   });
 });
