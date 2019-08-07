@@ -2,10 +2,13 @@ import singleRequest from './singleRequest';
 import applyPlugins from './applyPlugins';
 import mergeArraysOnProperty from './mergeArraysOnProperty';
 import fetchAllRequest from './fetchAllRequest';
+import createRequestUrl from './createRequestUrl';
 import merge from 'lodash.merge';
 
-const request = async ({ url, parameters = {}, configuration = {} } = {}) => {
+const request = async ({ domainName, actionName, parameters = {}, configuration = {} } = {}) => {
   const { plugins: { response: responsePlugins = [] } = {}, fetchAll = false } = configuration;
+
+  const url = createRequestUrl({ configuration, domainName, actionName });
 
   const firstRequestData = await singleRequest({
     url,
