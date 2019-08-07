@@ -2,7 +2,7 @@ import { normalize } from '../../src/main';
 import { pluralizeDomainName, normalizeItemsById } from '../../src/plugins/normalize';
 
 describe(`normalize data`, () => {
-  const requestUrl = 'http://mock.teamleader.api/users.list';
+  const domainName = 'users';
 
   it(`should return the items normalized by id`, () => {
     const data = [
@@ -56,7 +56,7 @@ describe(`normalize data`, () => {
         },
       },
     ];
-    expect(normalize({ data }, requestUrl)).toEqual({
+    expect(normalize({ data }, domainName)).toEqual({
       users: {
         '8799873': {
           id: '8799873',
@@ -84,7 +84,7 @@ describe(`normalize data`, () => {
       },
     };
 
-    expect(normalize({ data }, requestUrl)).toEqual({
+    expect(normalize({ data }, domainName)).toEqual({
       users: {
         '8799873': {
           id: '8799873',
@@ -99,7 +99,7 @@ describe(`normalize data`, () => {
   it(`should empty byId when data is empty`, () => {
     const data = {};
 
-    expect(normalize({ data }, requestUrl)).toEqual({
+    expect(normalize({ data }, domainName)).toEqual({
       users: {},
     });
   });
@@ -194,6 +194,6 @@ describe(`normalize data`, () => {
       },
     };
 
-    expect(normalize(response, requestUrl)).toEqual(result);
+    expect(normalize(response, domainName)).toEqual(result);
   });
 });

@@ -1,5 +1,3 @@
-import getRequestDomain from '../utils/getRequestDomain';
-
 const PLURALIZED_DOMAIN_NAMES = {
   company: 'companies',
   productCategory: 'productCategories',
@@ -23,21 +21,22 @@ export const normalizeItemsById = items => {
   return dataArray.reduce((object, data) => ({ ...object, [data.id]: data }), {});
 };
 
-export default ({ data, included }, requestUrl) => {
-  const requestedDomain = getRequestDomain(requestUrl);
-
+export default ({ data, included }, domainName) => {
   const normalizedData = normalizeItemsById(data);
   let normalizedIncludedData;
 
   if (included) {
     normalizedIncludedData = Object.entries(included).reduce(
-      (acc, [domainName, values]) => ({ ...acc, [pluralizeDomainName(domainName)]: normalizeItemsById(values) }),
+      (acc, [domainName, values]) => ({
+        ...acc,
+        [pluralizeDomainName(domainName)]: normalizeItemsById(values),
+      }),
       {},
     );
   }
 
   return {
-    [requestedDomain]: normalizedData,
+    [domainName]: normalizedData,
     ...(included ? normalizedIncludedData : {}),
   };
 };

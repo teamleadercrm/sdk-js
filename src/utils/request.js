@@ -38,11 +38,11 @@ const request = async ({ domainName, actionName, parameters = {}, configuration 
     return applyPlugins(
       { data: mergeArraysOnProperty('data', firstRequestData, ...parallelRequestData) },
       responsePlugins,
-      url,
+      domainName,
     );
   }
 
-  return applyPlugins(firstRequestData, responsePlugins, url);
+  return applyPlugins(firstRequestData, responsePlugins, domainName);
 };
 
 export default request;

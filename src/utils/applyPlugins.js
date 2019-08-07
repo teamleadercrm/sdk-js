@@ -1,2 +1,2 @@
-const applyPlugins = (data, plugins = [], requestUrl) => plugins.reduce((d, plugin) => plugin(d, requestUrl), data);
+const applyPlugins = (data, plugins = [], domainName) => plugins.reduce((d, plugin) => plugin(d, domainName), data);
 export default applyPlugins;
