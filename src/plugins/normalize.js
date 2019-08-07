@@ -7,11 +7,7 @@ const PLURALIZED_DOMAIN_NAMES = {
 };
 
 export const pluralizeDomainName = domainName => {
-  if (Object.keys(PLURALIZED_DOMAIN_NAMES).includes(domainName)) {
-    return PLURALIZED_DOMAIN_NAMES[domainName];
-  }
-
-  return `${domainName}s`;
+  return PLURALIZED_DOMAIN_NAMES[domainName] || `${domainName}s`;
 };
 
 export const normalizeItemsById = items => {
