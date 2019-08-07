@@ -24,7 +24,7 @@ export const normalizeItemsById = items => {
     dataArray = [items];
   }
 
-  return dataArray.reduce((o, d) => ({ ...o, [d.id]: d }), {});
+  return dataArray.reduce((object, data) => ({ ...object, [data.id]: data }), {});
 };
 
 export default ({ data, included }, requestUrl) => {
