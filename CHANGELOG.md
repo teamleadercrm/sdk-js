@@ -10,6 +10,12 @@
 
 ### Fixed
 
+## [4.0.0] - 2019-08-06
+
+### Changed
+
+- The normalize plugin now returns all the entities normalized under their domain name, this also includes any included entities in the response ([@kemosabert](https://github.com/kemosabert) in [#85])
+
 ## [3.5.0] - 2019-06-17
 
 ### Added

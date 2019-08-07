@@ -12,7 +12,8 @@ describe('fetch response handling', () => {
     });
 
     const jsonResponse = await request({
-      url: 'http://mock.teamleader.api/users.list',
+      domainName: 'users',
+      actionName: 'list',
       configuration: { plugins: { response: [camelCase] } },
     });
 
@@ -27,7 +28,8 @@ describe('fetch response handling', () => {
     });
 
     const jsonResponse = await request({
-      url: 'http://mock.teamleader.api/users.list',
+      domainName: 'users',
+      actionName: 'list',
       configuration: { plugins: { response: [camelCase] } },
     });
 
@@ -79,7 +81,8 @@ describe('fetch response handling', () => {
       );
 
     const jsonResponse = await request({
-      url: 'http://mock.teamleader.api/users.list',
+      domainName: 'users',
+      actionName: 'list',
       configuration: { plugins: { response: [camelCase] }, fetchAll: true },
     });
 
@@ -120,7 +123,8 @@ describe('fetch response handling', () => {
 
     try {
       await request({
-        url: 'http://mock.teamleader.api/users.list',
+        domainName: 'users',
+        actionName: 'list',
       });
     } catch (e) {
       expect(e.status).toEqual(500);
