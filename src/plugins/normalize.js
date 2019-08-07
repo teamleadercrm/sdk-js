@@ -1,14 +1,14 @@
 import getRequestDomain from '../utils/getRequestDomain';
 
-export const pluralizeDomainName = domainName => {
-  const pluralizedDomainNames = {
-    company: 'companies',
-    productCategory: 'productCategories',
-    timeTracking: 'timeTracking',
-  };
+const PLURALIZED_DOMAIN_NAMES = {
+  company: 'companies',
+  productCategory: 'productCategories',
+  timeTracking: 'timeTracking',
+};
 
-  if (Object.keys(pluralizedDomainNames).includes(domainName)) {
-    return pluralizedDomainNames[domainName];
+export const pluralizeDomainName = domainName => {
+  if (Object.keys(PLURALIZED_DOMAIN_NAMES).includes(domainName)) {
+    return PLURALIZED_DOMAIN_NAMES[domainName];
   }
 
   return `${domainName}s`;
