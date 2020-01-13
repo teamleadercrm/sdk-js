@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- A bug with the fetchAll option doing the wrong requests ([@ArnaudWeyts](https://github.com/ArnaudWeyts) in [#196](https://github.com/teamleadercrm/sdk-js/pull/196))
+
 ## [4.0.0] - 2019-08-06
 
 ### Changed
