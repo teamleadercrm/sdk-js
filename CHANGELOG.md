@@ -10,6 +10,10 @@
 
 ### Fixed
 
+## [4.0.2] - 2020-01-14
+
+### Fixed
+
 - A bug with the fetchAll option for empty responses ([@ArnaudWeyts](https://github.com/ArnaudWeyts) in [#196](https://github.com/teamleadercrm/sdk-js/pull/200))
 
 ## [4.0.1] - 2020-01-13
