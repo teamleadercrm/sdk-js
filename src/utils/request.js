@@ -30,7 +30,8 @@ const request = async ({ domainName, actionName, parameters = {}, configuration 
       },
     } = firstRequestData;
 
-    const amountOfRequests = Math.ceil(matches / size);
+    // Fall back to 1 in case the amount of requests is 0
+    const amountOfRequests = Math.ceil(matches / size) || 1;
 
     // do the 2nd batch in parallel
     const parallelRequestData = await fetchAllRequest({ url, parameters, configuration }, amountOfRequests);
