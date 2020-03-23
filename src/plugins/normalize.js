@@ -4,11 +4,11 @@ const PLURALIZED_DOMAIN_NAMES = {
   timeTracking: 'timeTracking',
 };
 
-export const pluralizeDomainName = domainName => {
+export const pluralizeDomainName = (domainName) => {
   return PLURALIZED_DOMAIN_NAMES[domainName] || `${domainName}s`;
 };
 
-export const normalizeItemsById = items => {
+export const normalizeItemsById = (items) => {
   let dataArray;
   if (Array.isArray(items)) {
     dataArray = items;
