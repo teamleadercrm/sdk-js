@@ -46,7 +46,7 @@
     "test:watch": "jest --watch",
     "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore src",
     "lint:fix": "npm run lint -- --fix",
-    "format": "prettier --write src/**/*.{js,css,json,md}",
+    "format": "prettier --write src/**/*.js",
     "prepublishOnly": "npm run build"
   },
   "files": [
