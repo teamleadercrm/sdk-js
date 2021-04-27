@@ -1,10 +1,7 @@
 export default (...headers) =>
   headers.reduce((combined, headerConfiguration) => {
-    if (!headerConfiguration) {
+    if (!headerConfiguration || typeof headerConfiguration !== 'object') {
       return combined;
     }
-    if (typeof headerConfiguration[Symbol.iterator] === 'function') {
-      return { ...combined, ...headerConfiguration };
-    }
-    return combined;
+    return { ...combined, ...headerConfiguration };
   }, {});
