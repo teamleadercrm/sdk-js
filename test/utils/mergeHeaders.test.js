@@ -57,4 +57,27 @@ describe(`merge headers`, () => {
 
     expect(headers).toEqual(expectedHeaders);
   });
+
+  it(`should merge the headers in a correct way when header objects are undefined`, () => {
+    const headers = mergeHeaders(undefined, undefined);
+
+    expect(headers).toEqual({});
+  });
+  it(`should merge the headers in a correct way when one header object is invalid`, () => {
+    const globalHeaders = {
+      'x-header-1': 'headerValue1',
+      'x-header-2': 'headerValue2',
+    };
+
+    const localHeaders = 'invalid';
+
+    const headers = mergeHeaders(globalHeaders, localHeaders);
+
+    const expectedHeaders = {
+      'x-header-1': 'headerValue1',
+      'x-header-2': 'headerValue2',
+    };
+
+    expect(headers).toEqual(expectedHeaders);
+  });
 });
