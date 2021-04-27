@@ -84,6 +84,30 @@ const init = async () => {
 };
 ```
 
+- `additionalHeaders`: (object) request headers that are passed on top of the existing ones.
+
+`additionalHeaders` can also be provided at local level, in that case it will override the global headers.
+
+```js
+import API from '@teamleader/api';
+
+const { users } = API({
+  getAccessToken: () => 'thisisatoken',
+  additionalHeaders: {
+    'x-tl-feature-flags': 'core.some-feature-flag=true',
+  },
+});
+
+const init = async () => {
+  // (options, plugins)
+  const me = await users.me(undefined, {
+    additionalHeaders: {
+      'x-tl-feature-flags': 'core.some-feature-flag=true',
+    },
+  }); // The X-TL-Feature_flags header is passed
+};
+```
+
 ## Additional actions
 
 You can also add additional actions (the domain will also be created if needed), which will be handled the same way as the available actions.
@@ -149,7 +173,7 @@ const { users } = API({
 });
 
 // own plugin
-const addMeta = data => ({ ...data, meta: { size: data.length } });
+const addMeta = (data) => ({ ...data, meta: { size: data.length } });
 
 const init = async () => {
   // (options, plugins)
