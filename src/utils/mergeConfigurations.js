@@ -1,4 +1,5 @@
 import mergePlugins from './mergePlugins';
+import mergeHeaders from './mergeHeaders';
 
 export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   const {
@@ -11,11 +12,13 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   const { version: localVersion, fetchAll } = localConfiguration;
 
   const plugins = mergePlugins(globalConfiguration.plugins, localConfiguration.plugins);
+  const additionalHeaders = mergeHeaders(globalConfiguration.additionalHeaders, localConfiguration.additionalHeaders);
 
   return {
     baseUrl,
     plugins,
     fetchAll,
+    additionalHeaders,
     ...((accessToken || getAccessToken) && { getAccessToken: getAccessToken || (() => accessToken) }),
     ...((localVersion || globalVersion) && { version: localVersion || globalVersion }),
   };

@@ -10,6 +10,12 @@
 
 ### Fixed
 
+## [4.1.0]
+
+### Added
+
+- Possibility to add additionalHeaders to global and local configuration ([@JorenSaeyTL](https://github.com/JorenSaeyTL) in [#314](https://github.com/teamleadercrm/sdk-js/pull/314))
+
 ## [4.0.2] - 2020-01-14
 
 ### Fixed

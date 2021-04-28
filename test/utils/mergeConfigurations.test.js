@@ -14,11 +14,17 @@ describe(`merge configurations`, () => {
       response: [camelCase],
     },
     version: '2018-09-20',
+    additionalHeaders: {
+      'x-tl-feature-flags': 'core.elastified-companies',
+    },
   };
 
   const localConfiguration = {
     plugins: {
       request: [snakeCase],
+    },
+    additionalHeaders: {
+      'x-some-other-header': 'test',
     },
   };
 
@@ -33,6 +39,10 @@ describe(`merge configurations`, () => {
         response: [camelCase],
       },
       version: '2018-09-20',
+      additionalHeaders: {
+        'x-tl-feature-flags': 'core.elastified-companies',
+        'x-some-other-header': 'test',
+      },
     };
 
     expect(configuration).toEqual(expectedConfiguration);
@@ -53,6 +63,9 @@ describe(`merge configurations`, () => {
       plugins: {
         request: [snakeCase],
         response: [camelCase],
+      },
+      additionalHeaders: {
+        'x-some-other-header': 'test',
       },
     };
 
@@ -85,6 +98,10 @@ describe(`merge configurations`, () => {
         request: [snakeCase],
         response: [camelCase],
       },
+      additionalHeaders: {
+        'x-tl-feature-flags': 'core.elastified-companies',
+        'x-some-other-header': 'test',
+      },
     };
 
     expect(configuration).toEqual(expectedConfiguration);
@@ -105,6 +122,10 @@ describe(`merge configurations`, () => {
       },
       fetchAll: true,
       version: '2018-11-20',
+      additionalHeaders: {
+        'x-tl-feature-flags': 'core.elastified-companies',
+        'x-some-other-header': 'test',
+      },
     };
 
     expect(configuration).toEqual(expectedConfiguration);
@@ -124,6 +145,10 @@ describe(`merge configurations`, () => {
         response: [camelCase],
       },
       version: '2018-09-20',
+      additionalHeaders: {
+        'x-tl-feature-flags': 'core.elastified-companies',
+        'x-some-other-header': 'test',
+      },
     };
 
     expect(configuration).toEqual(expectedConfiguration);
