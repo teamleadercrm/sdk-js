@@ -40,14 +40,14 @@
     "build:es": "NODE_ENV=es babel src --out-dir dist/es",
     "build:cjs": "NODE_ENV=cjs babel src --out-dir dist/cjs",
     "build:umd": "rollup -c",
-    "build": "npm run build:umd && npm run build:cjs && npm run build:es",
+    "build": "yarn build:umd && yarn build:cjs && yarn build:es",
     "start": "rollup -c -w",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore src",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "yarn lint -- --fix",
     "format": "prettier --write src/**/*.js",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "yarn build"
   },
   "files": [
     "dist"
