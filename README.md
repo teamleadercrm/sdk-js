@@ -84,27 +84,31 @@ const init = async () => {
 };
 ```
 
-- `additionalHeaders`: (object) request headers that are passed on top of the existing ones.
+- `fetchOptions`: (object) options for the fetch configuration that will be merged with the internal options.
 
-`additionalHeaders` can also be provided at local level, in that case it will override the global headers.
+`fetchOptions` can also be provided at local level, in that case it will override the global configuration.
 
 ```js
 import API from '@teamleader/api';
 
 const { users } = API({
   getAccessToken: () => 'thisisatoken',
-  additionalHeaders: {
-    'x-tl-feature-flags': 'core.some-feature-flag=true',
+  fetchOptions: {
+    headers: {
+      'x-tl-feature-flags': 'core.some-feature-flag=true',
+    },
   },
 });
 
 const init = async () => {
   // (options, plugins)
   const me = await users.me(undefined, {
-    additionalHeaders: {
-      'x-tl-feature-flags': 'core.some-feature-flag=true',
+    fetchOptions: {
+      headers: {
+        'x-tl-feature-flags': 'core.some-other-feature-flag=true',
+      },
     },
-  }); // The X-TL-Feature_flags header is passed
+  }); // The 'x-tl-feature-flags': 'core.some-other-feature-flag=true' header is passed
 };
 ```
 

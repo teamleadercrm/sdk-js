@@ -1,5 +1,5 @@
 import mergePlugins from './mergePlugins';
-import mergeHeaders from './mergeHeaders';
+import merge from 'lodash.merge';
 
 export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   const {
@@ -12,13 +12,13 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
   const { version: localVersion, fetchAll } = localConfiguration;
 
   const plugins = mergePlugins(globalConfiguration.plugins, localConfiguration.plugins);
-  const additionalHeaders = mergeHeaders(globalConfiguration.additionalHeaders, localConfiguration.additionalHeaders);
+  const fetchOptions = merge(globalConfiguration.fetchOptions, localConfiguration.fetchOptions);
 
   return {
     baseUrl,
     plugins,
     fetchAll,
-    additionalHeaders,
+    fetchOptions,
     ...((accessToken || getAccessToken) && { getAccessToken: getAccessToken || (() => accessToken) }),
     ...((localVersion || globalVersion) && { version: localVersion || globalVersion }),
   };
