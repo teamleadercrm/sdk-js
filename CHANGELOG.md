@@ -2,11 +2,15 @@
 
 ### Added
 
+- Added `fetchOptions` object to global and local configuration ([@ArnaudWeyts](https://github.com/ArnaudWeyts) in [#322](https://github.com/teamleadercrm/sdk-js/pull/322))
+
 ### Changed
 
 ### Deprecated
 
 ### Removed
+
+- [BREAKING] `additionalHeaders` configuration object, use the new `fetchOptions` configuration with a `headers` property instead ([@ArnaudWeyts](https://github.com/ArnaudWeyts) in [#322](https://github.com/teamleadercrm/sdk-js/pull/322))
 
 ### Fixed
 
