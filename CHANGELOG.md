@@ -2,11 +2,19 @@
 
 ### Added
 
-- Added `fetchOptions` object to global and local configuration ([@ArnaudWeyts](https://github.com/ArnaudWeyts) in [#322](https://github.com/teamleadercrm/sdk-js/pull/322))
-
 ### Changed
 
 ### Deprecated
+
+### Removed
+
+### Fixed
+
+## [5.0.0] - 2021-12-23
+
+### Added
+
+- Added `fetchOptions` object to global and local configuration ([@ArnaudWeyts](https://github.com/ArnaudWeyts) in [#322](https://github.com/teamleadercrm/sdk-js/pull/322))
 
 ### Removed
 
@@ -14,9 +22,7 @@
 - [BREAKING] The `customActions` configuration object, use `additionalActions` instead ([@ArnaudWeyts](https://github.com/ArnaudWeyts) in [#323](https://github.com/teamleadercrm/sdk-js/pull/323))
 - [BREAKING] The `createDomainWithActions` function, use `additionalActions` instead ([@ArnaudWeyts](https://github.com/ArnaudWeyts) in [#323](https://github.com/teamleadercrm/sdk-js/pull/323))
 
-### Fixed
-
-## [4.1.0]
+## [4.1.0] - 2021-04-28
 
 ### Added
 
