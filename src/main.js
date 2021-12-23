@@ -7,15 +7,9 @@ const mergeDomains = (originalActions, additionalActions) =>
     return { ...mergedDomains, [domainKey]: mergedActions };
   }, originalActions);
 
-const API = globalConfiguration => {
-  const { customActions = {}, additionalActions = {} } = globalConfiguration;
+const API = (globalConfiguration) => {
+  const { additionalActions = {} } = globalConfiguration;
   const mergedDomains = mergeDomains(domains, additionalActions);
-
-  if (Object.keys(customActions).length > 0) {
-    console.warn(
-      '@teamleader/api: `customActions` will be deprecated in a next version, use `additionalActions` instead.',
-    );
-  }
 
   return Object.keys(mergedDomains).reduce(
     (apiObject, domainName) => ({
@@ -23,14 +17,14 @@ const API = globalConfiguration => {
       [domainName]: createDomainWithActions({
         configuration: globalConfiguration,
         domainName,
-        actions: [...mergedDomains[domainName], ...(customActions[domainName] || [])],
+        actions: mergedDomains[domainName],
       }),
     }),
     {},
   );
 };
 
-const deprecatedCreateDomainWithActions = configuration => {
+const deprecatedCreateDomainWithActions = (configuration) => {
   console.warn(
     '@teamleader/api: `createDomainWithActions` will be deprecated in a next version, use `additionalActions` instead.',
   );
