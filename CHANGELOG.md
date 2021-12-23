@@ -11,6 +11,8 @@
 ### Removed
 
 - [BREAKING] `additionalHeaders` configuration object, use the new `fetchOptions` configuration with a `headers` property instead ([@ArnaudWeyts](https://github.com/ArnaudWeyts) in [#322](https://github.com/teamleadercrm/sdk-js/pull/322))
+- [BREAKING] The `customActions` configuration object, use `additionalActions` instead ([@ArnaudWeyts](https://github.com/ArnaudWeyts) in [#323](https://github.com/teamleadercrm/sdk-js/pull/323))
+- [BREAKING] The `createDomainWithActions` function, use `additionalActions` instead ([@ArnaudWeyts](https://github.com/ArnaudWeyts) in [#323](https://github.com/teamleadercrm/sdk-js/pull/323))
 
 ### Fixed
 
