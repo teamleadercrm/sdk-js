@@ -7,7 +7,7 @@ export default async ({ configuration, parameters } = {}) => {
   const { headers = {}, ...rest } = fetchOptions;
 
   return {
-    headers: await createRequestHeaders({ getAccessToken, version, additionalHeaders: headers }),
+    headers: await createRequestHeaders({ getAccessToken, version, headers }),
     body: JSON.stringify(applyPlugins(parameters, requestPlugins)),
     method: 'POST',
     ...rest,
