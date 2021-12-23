@@ -7,11 +7,13 @@ export default async ({ configuration, parameters } = {}) => {
     plugins: { request: requestPlugins = [] } = {},
     version,
     additionalHeaders = {},
+    fetchOptions,
   } = configuration;
 
   return {
     headers: await createRequestHeaders({ getAccessToken, version, additionalHeaders }),
     body: JSON.stringify(applyPlugins(parameters, requestPlugins)),
     method: 'POST',
+    ...fetchOptions,
   };
 };
