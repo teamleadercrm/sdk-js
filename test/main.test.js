@@ -5,49 +5,6 @@ describe('fetch response handling', () => {
     fetch.resetMocks();
   });
 
-  it('should add the customActions to the correct domains', () => {
-    const api = API({
-      getAccessToken: () => 'thisisatoken', // async or sync function
-      customActions: {
-        contacts: ['deleted'],
-        activityTypes: ['deleted'],
-      },
-    });
-
-    const activityTypesMethods = ['list', 'deleted'];
-    expect(Object.keys(api.activityTypes).sort()).toEqual(activityTypesMethods.sort());
-
-    const contactsMethods = [
-      'list',
-      'info',
-      'add',
-      'update',
-      'delete',
-      'tag',
-      'untag',
-      'linkToCompany',
-      'unlinkFromCompany',
-      'deleted',
-    ];
-    expect(Object.keys(api.contacts).sort()).toEqual(contactsMethods.sort());
-
-    const dealPhasesMethods = ['list'];
-    expect(Object.keys(api.dealPhases).sort()).toEqual(dealPhasesMethods.sort());
-  });
-
-  it('should trigger a deprecation warning when using customActions', () => {
-    const spy = jest.spyOn(global.console, 'warn');
-    API({
-      getAccessToken: () => 'thisisatoken', // async or sync function
-      customActions: {
-        contacts: ['deleted'],
-        activityTypes: ['deleted'],
-      },
-    });
-    expect(spy).toHaveBeenCalled();
-    spy.mockRestore();
-  });
-
   it('should add the additional domains to the API objects', () => {
     const api = API({
       getAccessToken: () => 'thisisatoken', // async or sync function
@@ -143,16 +100,12 @@ describe('fetch response handling', () => {
     });
 
     const data = await api.contacts.info({ userId: '84989' }, { plugins: { response: [normalize] } });
-    expect(data).toEqual({ contacts: { '84845512': { id: '84845512', lastName: 'doe', name: 'john' } } });
+    expect(data).toEqual({ contacts: { 84845512: { id: '84845512', lastName: 'doe', name: 'john' } } });
   });
 
   it('should include all domains', () => {
     const api = API({
       getAccessToken: () => 'thisisatoken', // async or sync function
-      customActions: {
-        contacts: ['deleted'],
-        activityTypes: ['deleted'],
-      },
     });
 
     const domains = [
