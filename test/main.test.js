@@ -1,4 +1,4 @@
-import API, { camelCase, normalize, createDomainWithActions } from '../src/main';
+import API, { camelCase, normalize } from '../src/main';
 
 describe('fetch response handling', () => {
   beforeEach(() => {
@@ -141,12 +141,5 @@ describe('fetch response handling', () => {
     ];
 
     expect(Object.keys(api).sort()).toEqual(domains.sort());
-  });
-
-  it('should trigger a deprecation warning when using createDomainWithActions', () => {
-    const spy = jest.spyOn(global.console, 'warn');
-    createDomainWithActions();
-    expect(spy).toHaveBeenCalled();
-    spy.mockRestore();
   });
 });
