@@ -22,7 +22,7 @@
 - [BREAKING] The `customActions` configuration object, use `additionalActions` instead ([@ArnaudWeyts](https://github.com/ArnaudWeyts) in [#323](https://github.com/teamleadercrm/sdk-js/pull/323))
 - [BREAKING] The `createDomainWithActions` function, use `additionalActions` instead ([@ArnaudWeyts](https://github.com/ArnaudWeyts) in [#323](https://github.com/teamleadercrm/sdk-js/pull/323))
 
-## [4.1.0]
+## [4.1.0] - 2021-04-28
 
 ### Added
 
