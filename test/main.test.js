@@ -1,8 +1,27 @@
 import API, { camelCase, normalize } from '../src/main';
+import * as requestModule from '../src/utils/request';
 
 describe('fetch response handling', () => {
   beforeEach(() => {
     fetch.resetMocks();
+  });
+
+  it('should call the correct domain and action', async () => {
+    const requestSpy = jest.spyOn(requestModule, 'default');
+    const getAccessToken = () => 'thisisatoken';
+
+    const api = API({
+      getAccessToken,
+    });
+
+    await api.foo.bar();
+
+    expect(requestSpy).toHaveBeenCalledWith(
+      expect.objectContaining({
+        actionName: 'bar',
+        domainName: 'foo',
+      }),
+    );
   });
 
   it('should add the additional domains to the API objects', () => {
