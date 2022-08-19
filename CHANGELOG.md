@@ -3,10 +3,10 @@
 ### Added
 
 ### Changed
-
 ### Deprecated
-
 ### Removed
+
+- [BREAKING] The `additionalActions` configuration option is removed, and is replaced by a `Proxy` implementation. Any domain and action will be possible, as long as you use the `API.<domain>.<action>()` format (which is our API format anyway). Proxy is not supported by IE, so you will need to polyfill that if you need to support IE. ([@lowiebenoot](https://github.com/lowiebenoot) in [#322](https://github.com/teamleadercrm/sdk-js/pull/328))
 
 ### Fixed
 

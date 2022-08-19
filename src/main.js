@@ -1,26 +1,24 @@
-import domains from './config/domains';
-import createDomainWithActions from './utils/createDomainWithActions';
-
-const mergeDomains = (originalActions, additionalActions) =>
-  Object.keys(additionalActions).reduce((mergedDomains, domainKey) => {
-    const mergedActions = [...(originalActions[domainKey] || []), ...(additionalActions[domainKey] || [])];
-    return { ...mergedDomains, [domainKey]: mergedActions };
-  }, originalActions);
+import mergeConfigurations from './utils/mergeConfigurations';
+import request from './utils/request';
 
 const API = (globalConfiguration) => {
-  const { additionalActions = {} } = globalConfiguration;
-  const mergedDomains = mergeDomains(domains, additionalActions);
-
-  return Object.keys(mergedDomains).reduce(
-    (apiObject, domainName) => ({
-      ...apiObject,
-      [domainName]: createDomainWithActions({
-        configuration: globalConfiguration,
-        domainName,
-        actions: mergedDomains[domainName],
-      }),
-    }),
+  return new Proxy(
     {},
+    {
+      get(target, domainName) {
+        return new Proxy(
+          {},
+          {
+            get(target, actionName) {
+              return async (parameters, localConfiguration = {}) => {
+                const configuration = mergeConfigurations({ globalConfiguration, localConfiguration });
+                return request({ domainName, actionName, parameters, configuration });
+              };
+            },
+          },
+        );
+      },
+    },
   );
 };
 

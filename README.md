@@ -31,8 +31,6 @@ const init = async () => {
 };
 ```
 
-The [domains config file](/src/config/domains.js) should reflect [developer.teamleader.eu](https://developer.teamleader.eu/), please [open PRs](https://github.com/teamleadercrm/sdk-js/compare) to keep it in sync.
-
 This module is also available as UMD build (in the example below via unpkg).
 
 ```html
@@ -110,26 +108,6 @@ const init = async () => {
     },
   }); // The 'x-tl-feature-flags': 'core.some-other-feature-flag=true' header is passed
 };
-```
-
-## Additional actions
-
-You can also add additional actions (the domain will also be created if needed), which will be handled the same way as the available actions.
-
-- `additionalActions`: (Object) domain as property -> array of actions as value
-
-In the example below we are extending `api.contacts` with `deleted` and we're adding a `products` domain with a `list` action.
-
-```js
-import API from '@teamleader/api';
-
-const api = API({
-  getAccessToken: () => 'thisisatoken', // async or sync function
-  additionalActions: {
-    contacts: ['deleted'],
-    products: ['list'],
-  },
-});
 ```
 
 ## fetchAll option

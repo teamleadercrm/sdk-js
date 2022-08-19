@@ -1,90 +1,27 @@
 import API, { camelCase, normalize } from '../src/main';
+import * as requestModule from '../src/utils/request';
 
 describe('fetch response handling', () => {
   beforeEach(() => {
     fetch.resetMocks();
   });
 
-  it('should add the additional domains to the API objects', () => {
+  it('should call the correct domain and action', async () => {
+    const requestSpy = jest.spyOn(requestModule, 'default');
+    const getAccessToken = () => 'thisisatoken';
+
     const api = API({
-      getAccessToken: () => 'thisisatoken', // async or sync function
-      additionalActions: {
-        products: ['list'],
-        contacts: ['deleted'],
-      },
+      getAccessToken,
     });
 
-    const expectedDomains = [
-      'activityTypes',
-      'businessTypes',
-      'companies',
-      'contacts',
-      'creditNotes',
-      'customFieldDefinitions',
-      'dealPhases',
-      'deals',
-      'dealSources',
-      'departments',
-      'events',
-      'invoices',
-      'levelTwoAreas',
-      'lostReasons',
-      'products',
-      'milestones',
-      'paymentTerms',
-      'productCategories',
-      'projects',
-      'quotations',
-      'tags',
-      'tasks',
-      'taxRates',
-      'timers',
-      'timeTracking',
-      'users',
-      'workTypes',
-      'withholdingTaxRates',
-      'workOrders',
-    ];
+    await api.foo.bar();
 
-    expect(Object.keys(api).sort()).toEqual(expectedDomains.sort());
-  });
-
-  it('should add the additional action to existing domain', () => {
-    const api = API({
-      getAccessToken: () => 'thisisatoken', // async or sync function
-      additionalActions: {
-        products: ['list'],
-        contacts: ['deleted'],
-      },
-    });
-
-    const expectedContactsMethods = [
-      'add',
-      'delete',
-      'info',
-      'linkToCompany',
-      'list',
-      'tag',
-      'deleted',
-      'unlinkFromCompany',
-      'untag',
-      'update',
-    ];
-
-    expect(Object.keys(api.contacts).sort()).toEqual(expectedContactsMethods.sort());
-  });
-
-  it('should add the additional action to a new domain', () => {
-    const api = API({
-      getAccessToken: () => 'thisisatoken', // async or sync function
-      additionalActions: {
-        newDomain: ['list'],
-      },
-    });
-
-    const expectedNewDomainMethods = ['list'];
-
-    expect(Object.keys(api.newDomain).sort()).toEqual(expectedNewDomainMethods.sort());
+    expect(requestSpy).toHaveBeenCalledWith(
+      expect.objectContaining({
+        actionName: 'bar',
+        domainName: 'foo',
+      }),
+    );
   });
 
   it('should run the correct response plugins', async () => {
@@ -101,45 +38,5 @@ describe('fetch response handling', () => {
 
     const data = await api.contacts.info({ userId: '84989' }, { plugins: { response: [normalize] } });
     expect(data).toEqual({ contacts: { 84845512: { id: '84845512', lastName: 'doe', name: 'john' } } });
-  });
-
-  it('should include all domains', () => {
-    const api = API({
-      getAccessToken: () => 'thisisatoken', // async or sync function
-    });
-
-    const domains = [
-      'activityTypes',
-      'businessTypes',
-      'companies',
-      'contacts',
-      'creditNotes',
-      'customFieldDefinitions',
-      'dealPhases',
-      'deals',
-      'dealSources',
-      'departments',
-      'events',
-      'invoices',
-      'levelTwoAreas',
-      'lostReasons',
-      'milestones',
-      'paymentTerms',
-      'productCategories',
-      'products',
-      'projects',
-      'quotations',
-      'tags',
-      'tasks',
-      'taxRates',
-      'timers',
-      'timeTracking',
-      'users',
-      'workTypes',
-      'workOrders',
-      'withholdingTaxRates',
-    ];
-
-    expect(Object.keys(api).sort()).toEqual(domains.sort());
   });
 });
