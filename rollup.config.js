@@ -8,14 +8,25 @@ import bundleSize from 'rollup-plugin-bundle-size';
 import pkg from './package.json';
 
 export default [
-  // browser-friendly UMD build
   {
-    output: {
-      name: 'api',
-      file: pkg.browser,
-      format: 'umd',
-    },
     input: 'src/main.ts',
+    output: [
+      {
+        name: 'api',
+        file: pkg.browser,
+        format: 'umd',
+      },
+      {
+        name: 'api',
+        file: pkg.module,
+        format: 'es',
+      },
+      {
+        name: 'api',
+        file: pkg.main,
+        format: 'cjs',
+      },
+    ],
     plugins: [
       resolve(),
       typescript(),

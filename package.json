@@ -4,7 +4,7 @@
   "description": "Teamleader API SDK",
   "main": "dist/cjs/main.js",
   "module": "dist/es/main.js",
-  "browser": "dist/api.min.umd.js",
+  "browser": "dist/umd/api.min.js",
   "devDependencies": {
     "@babel/cli": "^7.7.4",
     "@babel/core": "^7.18.10",
@@ -42,10 +42,7 @@
     "lodash.merge": "^4.6.1"
   },
   "scripts": {
-    "build:es": "NODE_ENV=es babel src --out-dir dist/es",
-    "build:cjs": "NODE_ENV=cjs babel src --out-dir dist/cjs",
-    "build:umd": "rollup -c",
-    "build": "yarn build:umd && yarn build:cjs && yarn build:es",
+    "build": "rollup -c",
     "start": "rollup -c -w",
     "test": "jest",
     "test:watch": "jest --watch",
