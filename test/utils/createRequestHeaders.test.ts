@@ -27,7 +27,7 @@ describe(`create header object`, () => {
   });
 
   it(`should be able to pass in a async getAccessToken function`, async () => {
-    const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
+    const timeout = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     const getAccessToken = async () => {
       await timeout(200);
@@ -44,7 +44,7 @@ describe(`create header object`, () => {
   });
 
   it(`should not set Auth Header if result is undefined`, async () => {
-    const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
+    const timeout = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     const getAccessToken = async () => {
       await timeout(200);
