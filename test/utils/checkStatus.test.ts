@@ -1,9 +1,23 @@
 import checkStatus from '../../src/utils/checkStatus';
 import FetchError from '../../src/utils/FetchError';
 
-const response = ({ ok, statusText, status, contentType, json, text }) => {
-  const headers = new Map();
-  headers.set('content-type', contentType);
+const response = ({
+  ok,
+  statusText,
+  status,
+  contentType,
+  json,
+  text,
+}: Partial<{
+  ok: boolean;
+  statusText: string;
+  status: number;
+  contentType: string;
+  json: Record<string, any>;
+  text: string;
+}>): Partial<Response> => {
+  const headers = new Headers();
+  headers.set('content-type', contentType || 'application/json');
 
   return {
     ok,
@@ -11,7 +25,7 @@ const response = ({ ok, statusText, status, contentType, json, text }) => {
     status,
     statusText,
     json: () => Promise.resolve(json),
-    text: () => Promise.resolve(text),
+    text: () => Promise.resolve(text || ''),
   };
 };
 
@@ -23,7 +37,7 @@ describe('checkStatus', () => {
       json: { data: 'this is correct' },
     });
 
-    const data = await checkStatus(testResponse);
+    const data = await checkStatus(testResponse as Response);
     expect(data).toEqual({ data: 'this is correct' });
   });
 
@@ -39,7 +53,7 @@ describe('checkStatus', () => {
     });
 
     try {
-      await checkStatus(testResponse);
+      await checkStatus(testResponse as Response);
     } catch (error) {
       expect(error).toEqual(testError);
     }

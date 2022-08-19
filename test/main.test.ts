@@ -1,9 +1,11 @@
+import fetchMock from 'jest-fetch-mock';
+
 import API, { camelCase, normalize } from '../src/main';
 import * as requestModule from '../src/utils/request';
 
 describe('fetch response handling', () => {
   beforeEach(() => {
-    fetch.resetMocks();
+    fetchMock.resetMocks();
   });
 
   it('should call the correct domain and action', async () => {
@@ -25,7 +27,7 @@ describe('fetch response handling', () => {
   });
 
   it('should run the correct response plugins', async () => {
-    fetch.once(JSON.stringify({ data: { id: '84845512', name: 'john', last_name: 'doe' } }), {
+    fetchMock.once(JSON.stringify({ data: { id: '84845512', name: 'john', last_name: 'doe' } }), {
       headers: { 'content-type': 'application/json' },
     });
 

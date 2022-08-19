@@ -1,8 +1,22 @@
 import getResponseData from '../../src/utils/getResponseData';
 
-const response = ({ ok, statusText, status, contentType, json, text }) => {
-  const headers = new Map();
-  headers.set('content-type', contentType);
+const response = ({
+  ok,
+  statusText,
+  status,
+  contentType,
+  json,
+  text,
+}: Partial<{
+  ok: boolean;
+  statusText: string;
+  status: number;
+  contentType: string;
+  json: Record<string, any>;
+  text: string;
+}>): Partial<Response> => {
+  const headers = new Headers();
+  headers.set('content-type', contentType || 'application/json');
 
   return {
     ok,
@@ -10,7 +24,7 @@ const response = ({ ok, statusText, status, contentType, json, text }) => {
     status,
     statusText,
     json: () => Promise.resolve(json),
-    text: () => Promise.resolve(text),
+    text: () => Promise.resolve(text || ''),
   };
 };
 
@@ -24,7 +38,7 @@ describe('getResponseData', () => {
       },
     });
 
-    const data = await getResponseData(testResponse);
+    const data = await getResponseData(testResponse as Response);
     expect(data).toEqual({ foo: 'bar' });
   });
 
@@ -35,7 +49,7 @@ describe('getResponseData', () => {
       text: 'test',
     });
 
-    const data = await getResponseData(testResponse);
+    const data = await getResponseData(testResponse as Response);
     expect(data).toEqual('test');
   });
 });

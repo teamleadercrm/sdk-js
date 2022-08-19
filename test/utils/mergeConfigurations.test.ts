@@ -3,7 +3,7 @@ import snakeCase from '../../src/plugins/snakeCase';
 import camelCase from '../../src/plugins/camelCase';
 
 describe(`merge configurations`, () => {
-  const getAccessToken = () => {};
+  const getAccessToken = () => 'myAccessToken';
 
   const globalConfiguration = {
     baseUrl: 'https://test.teamleader.eu',
@@ -90,6 +90,8 @@ describe(`merge configurations`, () => {
     };
 
     const configuration = mergeConfigurations({ globalConfiguration: customGlobalConfiguration, localConfiguration });
+
+    // @ts-ignore
     expect(configuration.getAccessToken()).toEqual(customGlobalConfiguration.accessToken);
   });
 
@@ -145,7 +147,9 @@ describe(`merge configurations`, () => {
 
   it(`should ignore invalid keys`, () => {
     const configuration = mergeConfigurations({
+      // @ts-ignore
       globalConfiguration: { ...globalConfiguration, fetchAll: true },
+      // @ts-ignore
       localConfiguration: { ...localConfiguration, blabla: 'checkitout' },
     });
 

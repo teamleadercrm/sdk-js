@@ -1,13 +1,15 @@
+import fetchMock from 'jest-fetch-mock';
+
 import request from '../../src/utils/request';
 import { camelCase } from '../../src/main';
 
 describe('fetch response handling', () => {
   beforeEach(() => {
-    fetch.resetMocks();
+    fetchMock.resetMocks();
   });
 
   it('returns json when the response was successful', async () => {
-    fetch.once(JSON.stringify({ foo: 'bar' }), {
+    fetchMock.once(JSON.stringify({ foo: 'bar' }), {
       headers: { 'content-type': 'application/json' },
     });
 
@@ -23,7 +25,7 @@ describe('fetch response handling', () => {
   });
 
   it('returns the correct data after running the plugins', async () => {
-    fetch.once(JSON.stringify({ data: { user_id: 'bar' } }), {
+    fetchMock.once(JSON.stringify({ data: { user_id: 'bar' } }), {
       headers: { 'content-type': 'application/json' },
     });
 
@@ -39,7 +41,7 @@ describe('fetch response handling', () => {
   it('returns the correct data with fetchAll enabled', async () => {
     const headers = { 'content-type': 'application/json' };
 
-    fetch
+    fetchMock
       .once(
         JSON.stringify({
           data: [{ name: 'John', last_name: 'Doe' }],
@@ -98,7 +100,7 @@ describe('fetch response handling', () => {
   it('throws and error when fetchAll is enabled but there are is matches information', async () => {
     const headers = { 'content-type': 'application/json' };
 
-    fetch.once(
+    fetchMock.once(
       JSON.stringify({
         data: [{ name: 'John', last_name: 'Doe' }],
       }),
@@ -107,15 +109,15 @@ describe('fetch response handling', () => {
 
     await expect(
       request({
-        url: 'http://mock.teamleader.api/users.list',
+        domainName: 'users',
+        actionName: 'list',
         configuration: { plugins: { response: [camelCase] }, fetchAll: true },
       }),
     ).rejects.toThrow(Error);
   });
 
   it('throws an error with json if the response was unsuccessful', async () => {
-    fetch.once(JSON.stringify({ errors: ['There was an error'] }), {
-      ok: false,
+    fetchMock.once(JSON.stringify({ errors: ['There was an error'] }), {
       status: 500,
       statusText: 'There was an error 500',
       headers: { 'content-type': 'application/json' },
@@ -126,7 +128,7 @@ describe('fetch response handling', () => {
         domainName: 'users',
         actionName: 'list',
       });
-    } catch (e) {
+    } catch (e: any) {
       expect(e.status).toEqual(500);
       expect(e.statusText).toEqual('There was an error 500');
       expect(e.message).toEqual('There was an error 500');

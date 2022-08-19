@@ -18,7 +18,7 @@ describe(`create fetch options`, () => {
 
   it(`should return the correct Authorization header`, async () => {
     const obj = await createFetchOptions({ configuration, parameters });
-    expect(obj.headers.Authorization).toEqual(`Bearer ${getAccessToken()}`);
+    expect((obj.headers as Record<string, string>).Authorization).toEqual(`Bearer ${getAccessToken()}`);
   });
 
   it(`should return the correct body data`, async () => {
