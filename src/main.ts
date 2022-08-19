@@ -1,19 +1,28 @@
+import { GlobalConfiguration, LocalConfiguration } from './types';
 import mergeConfigurations from './utils/mergeConfigurations';
 import request from './utils/request';
 
-const API = (globalConfiguration) => {
-  return new Proxy(
+type ActionEndpoint = (parameters?: Record<string, any>, localConfiguration?: LocalConfiguration) => Promise<any>;
+
+const API = (globalConfiguration: GlobalConfiguration) => {
+  return new Proxy<Record<string, Record<string, ActionEndpoint>>>(
     {},
     {
-      get(target, domainName) {
+      get(_target, domainName) {
         return new Proxy(
           {},
           {
-            get(target, actionName) {
-              return async (parameters, localConfiguration = {}) => {
+            get(_target, actionName) {
+              const actionEndpoint: ActionEndpoint = async (parameters = {}, localConfiguration = {}) => {
                 const configuration = mergeConfigurations({ globalConfiguration, localConfiguration });
-                return request({ domainName, actionName, parameters, configuration });
+                return request({
+                  domainName: String(domainName),
+                  actionName: String(actionName),
+                  parameters,
+                  configuration,
+                });
               };
+              return actionEndpoint;
             },
           },
         );
