@@ -1,2 +1,4 @@
 import { camelizeKeys } from 'humps';
-export default (data) => camelizeKeys(data);
+const camelCase = (data: any): any => camelizeKeys(data);
+
+export default camelCase;
