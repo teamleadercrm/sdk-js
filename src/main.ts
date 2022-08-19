@@ -2,7 +2,10 @@ import { GlobalConfiguration, LocalConfiguration } from './types';
 import mergeConfigurations from './utils/mergeConfigurations';
 import request from './utils/request';
 
-type ActionEndpoint = (parameters?: Record<string, any>, localConfiguration?: LocalConfiguration) => Promise<any>;
+type ActionEndpoint = <T = any>(
+  parameters?: Record<string, any>,
+  localConfiguration?: LocalConfiguration,
+) => Promise<T>;
 
 const API = (globalConfiguration: GlobalConfiguration) => {
   return new Proxy<Record<string, Record<string, ActionEndpoint>>>(
