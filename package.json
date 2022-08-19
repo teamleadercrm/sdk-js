@@ -67,7 +67,9 @@
   ],
   "jest": {
     "verbose": true,
-    "testURL": "http://localhost",
+    "testEnvironmentOptions": {
+      "url": "http://localhost"
+    },
     "automock": false,
     "setupFiles": [
       "./setupJest.js"
