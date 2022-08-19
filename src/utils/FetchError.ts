@@ -1,5 +1,9 @@
 class FetchError extends Error {
-  constructor(status, statusText, body) {
+  status: number;
+  statusText: string;
+  body: any;
+
+  constructor(status: number, statusText: string, body: any) {
     super(statusText);
 
     if (Error.captureStackTrace) {
