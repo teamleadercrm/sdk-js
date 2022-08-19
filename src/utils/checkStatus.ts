@@ -1,7 +1,7 @@
 import getResponseData from './getResponseData';
 import FetchError from './FetchError';
 
-const checkStatus = async (response) => {
+const checkStatus = async (response: Response) => {
   const data = await getResponseData(response);
 
   if (!response.ok) {
