@@ -4,8 +4,19 @@ import mergeArraysOnProperty from './mergeArraysOnProperty';
 import fetchAllRequest from './fetchAllRequest';
 import createRequestUrl from './createRequestUrl';
 import merge from 'lodash.merge';
+import { Configuration } from '../types';
 
-const request = async ({ domainName, actionName, parameters = {}, configuration = {} } = {}) => {
+const request = async ({
+  domainName,
+  actionName,
+  parameters = {},
+  configuration = {},
+}: {
+  domainName: string;
+  actionName: string;
+  parameters?: Record<string, any>;
+  configuration?: Configuration;
+}) => {
   const { plugins: { response: responsePlugins = [] } = {}, fetchAll = false } = configuration;
 
   const url = createRequestUrl({ configuration, domainName, actionName });
