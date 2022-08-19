@@ -1,4 +1,4 @@
-const getResponseData = async (response) => {
+const getResponseData = async (response: Response) => {
   const contentType = response.headers.get('content-type');
 
   if (contentType && contentType.indexOf('application/json') !== -1) {
