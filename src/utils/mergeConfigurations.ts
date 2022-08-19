@@ -1,7 +1,15 @@
 import mergePlugins from './mergePlugins';
 import merge from 'lodash.merge';
 
-export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
+import { Configuration, GlobalConfiguration, LocalConfiguration } from '../types';
+
+export default ({
+  globalConfiguration = {},
+  localConfiguration = {},
+}: {
+  globalConfiguration?: GlobalConfiguration;
+  localConfiguration?: LocalConfiguration;
+}): Configuration => {
   const {
     baseUrl = 'https://api.teamleader.eu',
     version: globalVersion,
@@ -11,10 +19,10 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
 
   const { version: localVersion, fetchAll } = localConfiguration;
 
-  const plugins = mergePlugins(globalConfiguration.plugins, localConfiguration.plugins);
+  const plugins = mergePlugins(globalConfiguration.plugins || {}, localConfiguration.plugins || {});
   const fetchOptions = merge(globalConfiguration.fetchOptions, localConfiguration.fetchOptions);
 
-  return {
+  const mergedConfiguration = {
     baseUrl,
     plugins,
     fetchAll,
@@ -22,4 +30,6 @@ export default ({ globalConfiguration = {}, localConfiguration = {} }) => {
     ...((accessToken || getAccessToken) && { getAccessToken: getAccessToken || (() => accessToken) }),
     ...((localVersion || globalVersion) && { version: localVersion || globalVersion }),
   };
+
+  return mergedConfiguration;
 };
