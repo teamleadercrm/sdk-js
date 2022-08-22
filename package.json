@@ -51,7 +51,7 @@
     "test:watch": "jest --watch",
     "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore src",
     "lint:fix": "yarn lint -- --fix",
-    "check-types": "tsc --noEmit",
+    "check-types": "tsc",
     "format": "prettier --write src/**/*.ts",
     "prepublishOnly": "yarn build"
   },
