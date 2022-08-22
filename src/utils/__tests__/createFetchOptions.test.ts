@@ -1,5 +1,5 @@
-import createFetchOptions from '../../src/utils/createFetchOptions';
-import snakeCaseKeys from '../../src/plugins/snakeCase';
+import createFetchOptions from '../createFetchOptions';
+import snakeCaseKeys from '../../plugins/snakeCase';
 
 describe(`create fetch options`, () => {
   const getAccessToken = () => 'token';

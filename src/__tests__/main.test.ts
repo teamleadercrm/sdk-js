@@ -1,7 +1,7 @@
 import fetchMock from 'jest-fetch-mock';
 
-import API, { camelCase, normalize } from '../src/main';
-import * as requestModule from '../src/utils/request';
+import API, { camelCase, normalize } from '../main';
+import * as requestModule from '../utils/request';
 
 describe('fetch response handling', () => {
   beforeEach(() => {

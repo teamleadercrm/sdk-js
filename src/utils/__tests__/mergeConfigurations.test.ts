@@ -1,6 +1,6 @@
-import mergeConfigurations from '../../src/utils/mergeConfigurations';
-import snakeCase from '../../src/plugins/snakeCase';
-import camelCase from '../../src/plugins/camelCase';
+import mergeConfigurations from '../mergeConfigurations';
+import snakeCase from '../../plugins/snakeCase';
+import camelCase from '../../plugins/camelCase';
 
 describe(`merge configurations`, () => {
   const getAccessToken = () => 'myAccessToken';

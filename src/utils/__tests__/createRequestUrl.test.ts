@@ -1,4 +1,4 @@
-import createRequestUrl from '../../src/utils/createRequestUrl';
+import createRequestUrl from '../createRequestUrl';
 
 describe(`create request url`, () => {
   const configuration = {

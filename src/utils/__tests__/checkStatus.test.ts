@@ -1,5 +1,5 @@
-import checkStatus from '../../src/utils/checkStatus';
-import FetchError from '../../src/utils/FetchError';
+import checkStatus from '../checkStatus';
+import FetchError from '../FetchError';
 
 const response = ({
   ok,

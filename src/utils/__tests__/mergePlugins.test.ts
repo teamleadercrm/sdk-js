@@ -1,6 +1,6 @@
-import mergePlugins from '../../src/utils/mergePlugins';
-import snakeCase from '../../src/plugins/snakeCase';
-import camelCase from '../../src/plugins/camelCase';
+import mergePlugins from '../mergePlugins';
+import snakeCase from '../../plugins/snakeCase';
+import camelCase from '../../plugins/camelCase';
 
 describe(`merge plugins`, () => {
   const globalPlugins = {

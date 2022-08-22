@@ -1,5 +1,4 @@
-import { normalize } from '../../src/main';
-import { pluralizeDomainName, normalizeItemsById } from '../../src/plugins/normalize';
+import normalize, { pluralizeDomainName, normalizeItemsById } from '../normalize';
 
 describe(`normalize data`, () => {
   const domainName = 'users';

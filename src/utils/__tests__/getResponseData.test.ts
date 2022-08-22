@@ -1,4 +1,4 @@
-import getResponseData from '../../src/utils/getResponseData';
+import getResponseData from '../getResponseData';
 
 const response = ({
   ok,

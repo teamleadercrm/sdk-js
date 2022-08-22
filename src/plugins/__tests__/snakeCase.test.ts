@@ -1,4 +1,4 @@
-import { snakeCase } from '../../src/main';
+import snakeCase from '../snakeCase';
 
 describe(`snakeCase data`, () => {
   it(`should return the data snakeCased`, () => {

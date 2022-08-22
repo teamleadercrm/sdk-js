@@ -1,5 +1,5 @@
-import { Plugin } from '../../src/types';
-import applyPlugins from '../../src/utils/applyPlugins';
+import { Plugin } from '../../types';
+import applyPlugins from '../applyPlugins';
 
 describe(`run plugins in sequence`, () => {
   it(`should return the transformed data after applyPlugins`, () => {
