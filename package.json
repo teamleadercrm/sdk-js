@@ -49,7 +49,7 @@
     "start": "rollup -c -w",
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore src",
+    "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore --ext .ts src",
     "lint:fix": "yarn lint -- --fix",
     "check-types": "tsc",
     "format": "prettier --write src/**/*.ts",
