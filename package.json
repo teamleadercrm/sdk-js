@@ -46,7 +46,7 @@
     "lodash.merge": "^4.6.1"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "rimraf dist && rollup -c",
     "start": "rollup -c -w",
     "test": "jest",
     "test:watch": "jest --watch",
