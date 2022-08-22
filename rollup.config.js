@@ -29,7 +29,11 @@ export default [
     ],
     plugins: [
       resolve(),
-      typescript(),
+      typescript({
+        tsconfigOverride: {
+          exclude: ['**/__tests__', '**/*.test.ts'],
+        },
+      }),
       babel({
         externalHelpers: false,
         runtimeHelpers: true,
