@@ -14,7 +14,7 @@ const request = async ({
 }: {
   domainName: string;
   actionName: string;
-  parameters?: Record<string, any>;
+  parameters?: Record<string, any> | null;
   configuration?: Configuration;
 }) => {
   const { plugins: { response: responsePlugins = [] } = {}, fetchAll = false } = configuration;

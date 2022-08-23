@@ -3,7 +3,7 @@ import merge from 'lodash.merge';
 import { Configuration } from '../types';
 
 const fetchAllRequest = async (
-  config: { url: string; parameters: Record<string, any>; configuration: Configuration },
+  config: { url: string; parameters: Record<string, any> | null; configuration: Configuration },
   amountOfRequests: number,
 ) => {
   const data = await Promise.all(

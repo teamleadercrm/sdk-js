@@ -7,7 +7,7 @@ export default async ({
   parameters,
 }: {
   configuration: Configuration;
-  parameters: Record<string, any>;
+  parameters: Record<string, any> | null;
 }): Promise<RequestInit> => {
   const { getAccessToken, plugins: { request: requestPlugins = [] } = {}, version, fetchOptions = {} } = configuration;
 

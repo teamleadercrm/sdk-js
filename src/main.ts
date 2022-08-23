@@ -3,7 +3,7 @@ import mergeConfigurations from './utils/mergeConfigurations';
 import request from './utils/request';
 
 type ActionEndpoint = <T = any>(
-  parameters?: Record<string, any>,
+  parameters?: Record<string, any> | null,
   localConfiguration?: LocalConfiguration,
 ) => Promise<T>;
 
