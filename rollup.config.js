@@ -1,22 +1,39 @@
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import typescript from 'rollup-plugin-typescript2';
 import babel from 'rollup-plugin-babel';
-import { uglify } from 'rollup-plugin-uglify';
+import { terser } from 'rollup-plugin-terser';
 import bundleSize from 'rollup-plugin-bundle-size';
 
 import pkg from './package.json';
 
 export default [
-  // browser-friendly UMD build
   {
-    input: 'src/main.js',
-    output: {
-      name: 'api',
-      file: pkg.browser,
-      format: 'umd',
-    },
+    input: 'src/main.ts',
+    output: [
+      {
+        name: 'api',
+        file: pkg.browser,
+        format: 'umd',
+      },
+      {
+        name: 'api',
+        file: pkg.module,
+        format: 'es',
+      },
+      {
+        name: 'api',
+        file: pkg.main,
+        format: 'cjs',
+      },
+    ],
     plugins: [
       resolve(),
+      typescript({
+        tsconfigOverride: {
+          exclude: ['**/__tests__', '**/*.test.ts'],
+        },
+      }),
       babel({
         externalHelpers: false,
         runtimeHelpers: true,
@@ -27,7 +44,7 @@ export default [
           'node_modules/humps/humps.js': ['camelizeKeys', 'decamelizeKeys'],
         },
       }),
-      uglify(),
+      terser(),
       bundleSize(),
     ],
   },
