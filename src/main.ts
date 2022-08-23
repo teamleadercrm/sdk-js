@@ -1,6 +1,10 @@
-import { GlobalConfiguration, LocalConfiguration } from './types';
+import { Configuration, GlobalConfiguration, LocalConfiguration, Plugins, Plugin } from './types';
 import mergeConfigurations from './utils/mergeConfigurations';
 import request from './utils/request';
+
+import camelCase from './plugins/camelCase';
+import normalize from './plugins/normalize';
+import snakeCase from './plugins/snakeCase';
 
 type ActionEndpoint = <T = any>(
   parameters?: Record<string, any> | null,
@@ -34,8 +38,16 @@ const API = (globalConfiguration: GlobalConfiguration) => {
   );
 };
 
-export { default as camelCase } from './plugins/camelCase';
-export { default as normalize } from './plugins/normalize';
-export { default as snakeCase } from './plugins/snakeCase';
+export {
+  camelCase,
+  snakeCase,
+  normalize,
+  Configuration,
+  GlobalConfiguration,
+  LocalConfiguration,
+  ActionEndpoint,
+  Plugins,
+  Plugin,
+};
 
 export default API;
