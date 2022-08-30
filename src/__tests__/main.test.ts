@@ -41,4 +41,16 @@ describe('fetch response handling', () => {
     const data = await api.contacts.info({ userId: '84989' }, { plugins: { response: [normalize] } });
     expect(data).toEqual({ contacts: { 84845512: { id: '84845512', lastName: 'doe', name: 'john' } } });
   });
+
+  it('using the same endpoint twice actually uses the same function', async () => {
+    const getAccessToken = () => 'thisisatoken';
+
+    const api = API({
+      getAccessToken,
+    });
+
+    expect(api.contacts.info).toEqual(api.contacts.info);
+    expect(api.companies.info).toEqual(api.companies.info);
+    expect(api.companies.info).not.toEqual(api.contacts.info);
+  });
 });
