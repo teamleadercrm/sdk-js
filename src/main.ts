@@ -12,23 +12,38 @@ type ActionEndpoint = <T = any>(
 ) => Promise<T>;
 
 const API = (globalConfiguration: GlobalConfiguration) => {
+  const cachedActionEndpoints: Record<string, Record<string, ActionEndpoint>> = {};
+
   return new Proxy<Record<string, Record<string, ActionEndpoint>>>(
     {},
     {
-      get(_target, domainName) {
+      get(_target, domainNameKey) {
         return new Proxy(
           {},
           {
-            get(_target, actionName) {
+            get(_target, actionNameKey) {
+              const domainName = String(domainNameKey);
+              const actionName = String(actionNameKey);
+
+              if (typeof cachedActionEndpoints[domainName] === 'undefined') {
+                cachedActionEndpoints[domainName] = {};
+              }
+
+              if (typeof cachedActionEndpoints[domainName][actionName] !== 'undefined') {
+                return cachedActionEndpoints[domainName][actionName];
+              }
+
               const actionEndpoint: ActionEndpoint = async (parameters = {}, localConfiguration = {}) => {
                 const configuration = mergeConfigurations({ globalConfiguration, localConfiguration });
                 return request({
-                  domainName: String(domainName),
-                  actionName: String(actionName),
+                  domainName,
+                  actionName,
                   parameters,
                   configuration,
                 });
               };
+
+              cachedActionEndpoints[domainName][actionName] = actionEndpoint;
               return actionEndpoint;
             },
           },
