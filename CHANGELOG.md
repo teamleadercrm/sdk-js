@@ -4,13 +4,17 @@
 
 ### Changed
 
-- Cache the values that are created by the proxy. So if you call an endpoint 2 times, it will call the same function 2 times. This makes testing easier. ([@lowiebenoot](https://github.com/lowiebenoot) in [#332](https://github.com/teamleadercrm/sdk-js/pull/332))
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+## [6.0.1] - 2022-08-30
+
+### Changed
+
+- Cache the values that are created by the proxy. So if you call an endpoint 2 times, it will call the same function 2 times. This makes testing easier. ([@lowiebenoot](https://github.com/lowiebenoot) in [#332](https://github.com/teamleadercrm/sdk-js/pull/332))
 
 ## [6.0.0] - 2022-08-23
 
