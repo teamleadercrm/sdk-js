@@ -53,4 +53,17 @@ describe('fetch response handling', () => {
     expect(api.companies.info).toEqual(api.companies.info);
     expect(api.companies.info).not.toEqual(api.contacts.info);
   });
+
+  it('can overwrite an endpoint', async () => {
+    const getAccessToken = () => 'thisisatoken';
+
+    const api = API({
+      getAccessToken,
+    });
+
+    const mockFunction = jest.fn();
+    api.contacts.info = mockFunction;
+
+    expect(api.contacts.info).toEqual(mockFunction);
+  });
 });
