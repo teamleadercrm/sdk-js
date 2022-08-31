@@ -4,13 +4,17 @@
 
 ### Changed
 
-- Allow overwriting action endpoints. This is useful for mocking the API. ([@lowiebenoot](https://github.com/lowiebenoot) in [#334](https://github.com/teamleadercrm/sdk-js/pull/334))
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+## [6.0.2] - 2022-08-31
+
+### Changed
+
+- Allow overwriting action endpoints. This is useful for mocking the API. ([@lowiebenoot](https://github.com/lowiebenoot) in [#334](https://github.com/teamleadercrm/sdk-js/pull/334))
 
 ## [6.0.1] - 2022-08-30
 
