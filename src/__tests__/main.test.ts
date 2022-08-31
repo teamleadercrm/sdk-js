@@ -61,9 +61,7 @@ describe('fetch response handling', () => {
       getAccessToken,
     });
 
-    const mockFunction = () => {};
-
-    // @ts-ignore
+    const mockFunction = jest.fn();
     api.contacts.info = mockFunction;
 
     expect(api.contacts.info).toEqual(mockFunction);
