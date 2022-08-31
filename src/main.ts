@@ -46,6 +46,18 @@ const API = (globalConfiguration: GlobalConfiguration) => {
               cachedActionEndpoints[domainName][actionName] = actionEndpoint;
               return actionEndpoint;
             },
+            set(_target, actionNameKey, value) {
+              const domainName = String(domainNameKey);
+              const actionName = String(actionNameKey);
+
+              if (typeof cachedActionEndpoints[domainName] === 'undefined') {
+                cachedActionEndpoints[domainName] = {};
+              }
+
+              cachedActionEndpoints[domainName][actionName] = value;
+
+              return true;
+            },
           },
         );
       },
