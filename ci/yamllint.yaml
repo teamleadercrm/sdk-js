@@ -1,0 +1,13 @@
+---
+platform: linux
+
+inputs:
+  - name: git-ci-sdk-js
+
+run:
+  path: sh
+  args:
+    - -exec
+    - |
+      cd git-ci-sdk-js/ci
+      yamllint . -d .yamllint
