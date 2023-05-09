@@ -45,6 +45,7 @@ describe('fetch response handling', () => {
       .once(
         JSON.stringify({
           data: [{ name: 'John', last_name: 'Doe' }],
+          included: { team: [{ name: 'Awesome' }] },
           meta: {
             page: {
               size: 1,
@@ -58,6 +59,7 @@ describe('fetch response handling', () => {
       .once(
         JSON.stringify({
           data: [{ name: 'Alex', last_name: 'Turner' }],
+          included: { team: [{ name: 'Champagne' }] },
           meta: {
             page: {
               size: 1,
@@ -71,6 +73,7 @@ describe('fetch response handling', () => {
       .once(
         JSON.stringify({
           data: [{ name: 'William', last_name: 'Hurt' }],
+          included: { team: [] },
           meta: {
             page: {
               size: 1,
@@ -94,6 +97,9 @@ describe('fetch response handling', () => {
         { name: 'Alex', lastName: 'Turner' },
         { name: 'William', lastName: 'Hurt' },
       ],
+      included: {
+        team: [{ name: 'Awesome' }, { name: 'Champagne' }],
+      },
     });
   });
 

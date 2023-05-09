@@ -4,6 +4,7 @@ import mergeArraysOnProperty from './mergeArraysOnProperty';
 import fetchAllRequest from './fetchAllRequest';
 import createRequestUrl from './createRequestUrl';
 import merge from 'lodash.merge';
+import mergeWith from 'lodash.mergewith';
 import { Configuration } from '../types';
 
 const request = async ({
@@ -48,7 +49,14 @@ const request = async ({
     const parallelRequestData = await fetchAllRequest({ url, parameters, configuration }, amountOfRequests);
 
     return applyPlugins(
-      { data: mergeArraysOnProperty('data', firstRequestData, ...parallelRequestData) },
+      {
+        data: mergeArraysOnProperty('data', firstRequestData, ...parallelRequestData),
+        included: mergeWith(
+          firstRequestData.included,
+          ...parallelRequestData.map(({ included }) => included),
+          (objValue: unknown[], srcValue: unknown[]) => objValue.concat(srcValue),
+        ),
+      },
       responsePlugins,
       domainName,
     );
