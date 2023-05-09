@@ -10,6 +10,12 @@
 
 ### Fixed
 
+## [6.1.0] - 2023-05-10
+
+### Added
+
+- Merge `included` when using `fetchAll` so it can be used in combination with sideloading ([@lorgan3](https://github.com/lorgan3) in [#341](https://github.com/teamleadercrm/sdk-js/pull/341))
+
 ## [6.0.2] - 2022-08-31
 
 ### Changed
