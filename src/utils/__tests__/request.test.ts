@@ -94,6 +94,72 @@ describe('fetch response handling', () => {
         { name: 'Alex', lastName: 'Turner' },
         { name: 'William', lastName: 'Hurt' },
       ],
+      included: {},
+    });
+  });
+
+  it('returns the correct data with fetchAll and sideloading enabled', async () => {
+    const headers = { 'content-type': 'application/json' };
+
+    fetchMock
+      .once(
+        JSON.stringify({
+          data: [{ name: 'John', last_name: 'Doe' }],
+          included: { team: [{ name: 'Awesome' }] },
+          meta: {
+            page: {
+              size: 1,
+              number: 1,
+            },
+            matches: 3,
+          },
+        }),
+        { headers },
+      )
+      .once(
+        JSON.stringify({
+          data: [{ name: 'Alex', last_name: 'Turner' }],
+          included: { team: [{ name: 'Champagne' }] },
+          meta: {
+            page: {
+              size: 1,
+              number: 2,
+            },
+            matches: 3,
+          },
+        }),
+        { headers },
+      )
+      .once(
+        JSON.stringify({
+          data: [{ name: 'William', last_name: 'Hurt' }],
+          included: { team: [] },
+          meta: {
+            page: {
+              size: 1,
+              number: 3,
+            },
+            matches: 3,
+          },
+        }),
+        { headers },
+      );
+
+    const jsonResponse = await request({
+      domainName: 'users',
+      actionName: 'list',
+      configuration: { plugins: { response: [camelCase] }, fetchAll: true },
+    });
+
+    expect(jsonResponse).toEqual({
+      data: [
+        { name: 'John', lastName: 'Doe' },
+        { name: 'Alex', lastName: 'Turner' },
+        { name: 'William', lastName: 'Hurt' },
+      ],
+      included: {
+        team: [{ name: 'Awesome' }, { name: 'Champagne' }],
+      },
     });
   });
 
