@@ -10,6 +10,12 @@
 
 ### Fixed
 
+## [6.1.1] - 2024-07-12
+
+### Fixed
+
+- Fix crash when using `fetchAll` and first request contains less sideloaded data than subsequent requests ([@lorgan3](https://github.com/lorgan3) in [#350](https://github.com/teamleadercrm/sdk-js/pull/350))
+
 ## [6.1.0] - 2023-05-10
 
 ### Added
