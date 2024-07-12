@@ -54,7 +54,13 @@ const request = async ({
         included: mergeWith(
           firstRequestData.included,
           ...parallelRequestData.map(({ included }) => included),
-          (objValue: unknown[], srcValue: unknown[]) => objValue.concat(srcValue),
+          (objValue: unknown[] | undefined, srcValue: unknown[]) => {
+            if (!objValue) {
+              return srcValue;
+            }
+
+            return objValue.concat(srcValue);
+          },
         ),
       },
       responsePlugins,

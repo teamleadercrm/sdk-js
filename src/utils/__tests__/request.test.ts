@@ -104,6 +104,20 @@ describe('fetch response handling', () => {
     fetchMock
       .once(
         JSON.stringify({
+          data: [{ name: 'Jane', last_name: 'Doe' }],
+          included: {},
+          meta: {
+            page: {
+              size: 1,
+              number: 1,
+            },
+            matches: 4,
+          },
+        }),
+        { headers },
+      )
+      .once(
+        JSON.stringify({
           data: [{ name: 'John', last_name: 'Doe' }],
           included: { team: [{ name: 'Awesome' }] },
           meta: {
@@ -111,7 +125,7 @@ describe('fetch response handling', () => {
               size: 1,
               number: 1,
             },
-            matches: 3,
+            matches: 4,
           },
         }),
         { headers },
@@ -125,7 +139,7 @@ describe('fetch response handling', () => {
               size: 1,
               number: 2,
             },
-            matches: 3,
+            matches: 4,
           },
         }),
         { headers },
@@ -139,7 +153,7 @@ describe('fetch response handling', () => {
               size: 1,
               number: 3,
             },
-            matches: 3,
+            matches: 4,
           },
         }),
         { headers },
@@ -153,6 +167,7 @@ describe('fetch response handling', () => {
 
     expect(jsonResponse).toEqual({
       data: [
+        { name: 'Jane', lastName: 'Doe' },
         { name: 'John', lastName: 'Doe' },
         { name: 'Alex', lastName: 'Turner' },
         { name: 'William', lastName: 'Hurt' },
