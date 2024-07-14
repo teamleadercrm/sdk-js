@@ -35,7 +35,7 @@ jobs:
           tag: ${{ env.COMPONENT_TAG }}
           frail: false
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         id: release
         with:
           token: ${{ steps.get_workflow_token.outputs.token }}
@@ -50,7 +50,7 @@ jobs:
           toTag: ${{ env.COMPONENT_TAG }}
         if: ${{ steps.contains_tag.outputs.retval != 'true' }}
       - name: Update release with Changelog
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         id: release_update
         with:
           token: ${{ steps.get_workflow_token.outputs.token }}
