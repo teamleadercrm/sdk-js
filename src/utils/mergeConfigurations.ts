@@ -1,5 +1,5 @@
 import mergePlugins from './mergePlugins';
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 
 import { Configuration, GlobalConfiguration, LocalConfiguration } from '../types';
 
