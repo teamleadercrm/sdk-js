@@ -1,5 +1,5 @@
 import singleRequest from './singleRequest';
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import { Configuration } from '../types';
 
 const fetchAllRequest = async (

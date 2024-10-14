@@ -3,8 +3,8 @@ import applyPlugins from './applyPlugins';
 import mergeArraysOnProperty from './mergeArraysOnProperty';
 import fetchAllRequest from './fetchAllRequest';
 import createRequestUrl from './createRequestUrl';
-import merge from 'lodash.merge';
-import mergeWith from 'lodash.mergewith';
+import merge from 'lodash/merge';
+import mergeWith from 'lodash/mergeWith';
 import { Configuration } from '../types';
 
 const request = async ({
