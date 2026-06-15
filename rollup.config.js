@@ -30,6 +30,7 @@ export default [
     plugins: [
       resolve(),
       typescript({
+        include: ['**/*.ts', '**/*.tsx'],
         tsconfigOverride: {
           exclude: ['**/__tests__', '**/*.test.ts'],
         },
