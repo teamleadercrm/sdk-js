@@ -10,6 +10,12 @@
 
 ### Fixed
 
+## [6.2.0] - 2026-06-15
+
+### Changed
+
+- Bump all `@babel/*` dependencies to 7.29.7: `@babel/cli`, `@babel/core`, `@babel/preset-env`, `@babel/preset-typescript` and the transitive `@babel/traverse` ([@lorgan3](https://github.com/lorgan3) in [#353](https://github.com/teamleadercrm/sdk-js/pull/353))
+
 ## [6.1.1] - 2024-07-12
 
 ### Fixed
